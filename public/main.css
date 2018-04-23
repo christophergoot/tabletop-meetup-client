@@ -12,13 +12,7 @@ body {
 	line-height: 1.5;
 }
 
-nav {
-	background-color: grey;
-	color: white;
-	font-size: .8em;
-}
-
-footer {
+nav, footer {
 	background-color: grey;
 	color: white;
 	padding: 20px 0;
@@ -56,7 +50,11 @@ form {
 
 input {
 	display: block;
-	margin: 5px 0;
+	margin: 5px auto;
 	padding: 5px;
 	width: 100%;
+}
+
+input[type=date], input[type=time] {
+	width: auto;
 }
