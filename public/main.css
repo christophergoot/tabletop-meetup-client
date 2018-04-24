@@ -12,6 +12,11 @@ body {
 	line-height: 1.5;
 }
 
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
 nav, footer {
 	background-color: grey;
 	color: white;
@@ -57,4 +62,55 @@ input {
 
 input[type=date], input[type=time] {
 	width: auto;
+}
+
+.game-list {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+.game-card {
+	color: black;
+	background-color: white;
+	font-size: .7em;
+	display: block;
+	width: 200px;
+	margin: 10px;
+	padding: 2px;
+}
+
+.game-card span {
+	display: block;
+}
+
+.game-action {
+	cursor: pointer;
+	color: lightgrey;
+	font-style: italic;
+	text-align: right;
+	line-height: 14px;
+}
+
+.sort {
+	border: 1px solid grey;
+	border-radius: 2px;
+	padding: 2px 5px;
+	cursor: pointer;
+}
+
+.sort.selected {
+	border: none;
+	background-color: grey;
+	color:lightgray;
+	cursor: inherit;
+}
+
+.rating {
+	background-color: lightgray;
+	color: black;
+	border-radius: 100%;
+	padding: 7px;
+	/* height: 75px; */
+	/* width: 75px; */
 }
