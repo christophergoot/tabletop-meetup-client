@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>HTML wireframe</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.css">
+	<link rel="stylesheet" type="text/css" href="main.css">
+</head>
+
+<body>
+	<nav role="navigation">
+		<h2>Tabletop Meetup</h2>
+		<ul>
+			<li>My Events
+				<!-- <ul>
+					<li>Upcomming Events</li>
+					<li>Previous Events</li>
+					<li>Add New Event</li>
+				</ul> -->
+			</li>
+			<li>My Games</li>
+			<li>Logout</li>
+		</ul>
+	</nav>
+	<main role="main">
+		<header role="banner">
+			<h1>Manage Game List</h1>
+		</header>
+		<section>
+			<a href>Add a Game</a>
+			<p>Sort by
+				<span class="sort selected">abc</span>
+				<span class="sort">rating</span>
+				<span class="sort">play time</span>
+				<span class="sort">weight</span>
+			</p>
+			<div class="game-list">
+			</div>
+		</section>
+	</main>
+	<footer role="content-info">
+		A Progressive Web App by
+		<a href="http://christophergoot.com/" title="christophergoot.com">Christopher Gutierrez</a>
+	</footer>
+	<script type="text/javascript" src="mock-data.js"></script>
+	<script type="text/javascript" src="index.js"></script>
+</body>
+</html>
