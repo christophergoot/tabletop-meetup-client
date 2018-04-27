@@ -1,28 +1,82 @@
-.App {
-  text-align: center;
+* {
+	margin: 0px;
+	padding: 0px;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+body {
+	font-family: "Open Sans",
+	sans-serif; 
+	font-size: 20px;
+	color: #444;
+	text-align: center;
+	line-height: 1.5;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+a {
+	text-decoration: none;
+	color: inherit;
 }
 
-.App-title {
-  font-size: 1.5em;
+nav, footer {
+	background-color: grey;
+	color: white;
+	padding: 20px 0;
+	font-size: .8em;
 }
 
-.App-intro {
-  font-size: large;
+section ul {
+	text-align: left;
+	padding-left: 60px;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+section {
+	padding: 20px;
+}
+
+section:nth-child(even) {
+	background-color: lightgrey;
+}
+
+form {
+	padding: 0 60px;
+}
+
+input {
+	display: block;
+	margin: 5px auto;
+	padding: 5px;
+	width: 100%;
+}
+
+input[type=date], input[type=time] {
+	width: auto;
+}
+
+.game-list {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+.sort {
+	border: 1px solid grey;
+	border-radius: 2px;
+	padding: 2px 5px;
+	cursor: pointer;
+}
+
+.sort.selected {
+	border: none;
+	background-color: grey;
+	color:lightgray;
+	cursor: inherit;
+}
+
+.rating {
+	background-color: lightgray;
+	color: black;
+	border-radius: 100%;
+	padding: 7px;
+	/* height: 75px; */
+	/* width: 75px; */
 }
