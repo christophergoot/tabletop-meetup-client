@@ -71,13 +71,20 @@ input[type=date], input[type=time] {
 }
 
 .game-card {
-	color: black;
+	color: lightgrey;
+text-shadow:
+   -1px -1px 0 #000,  
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+     1px 1px 0 #000;
 	background-color: white;
 	font-size: .7em;
 	display: block;
 	width: 200px;
 	margin: 10px;
 	padding: 2px;
+	background-size: cover;
+	background-position: center;
 }
 
 .game-card span {
