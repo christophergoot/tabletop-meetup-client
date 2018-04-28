@@ -1,0 +1,9 @@
+.event-guests {
+	background-color: grey;
+	color: white;
+	/* float: right; */
+	margin: 5px;
+	margin-left: auto;
+	padding: 5px;
+	border-radius: 5px;
+}

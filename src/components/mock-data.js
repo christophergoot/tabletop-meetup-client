@@ -4026,4 +4026,51 @@ export const MOCK_USER_GAMES = [
 	}
 	];
 
-	
+	export const MOCK_USER_EVENTS = [
+		{
+			id: "jilhjd8890jdsaf",
+			date: 1525395600,
+			eventName: "Upcomming Event",
+			location: "My Garage",
+			guests: [
+				{
+					user: "jgarcia",
+					confirmed: true,
+					invitedBy: "christophergoot"
+				},
+				{
+					user: "jabriel",
+					confirmed: false,
+					invitedBy: "jgarcia"
+				},
+				{
+					user: "eholland",
+					confirmed: false,
+					invitedBy: "christophergoot"
+				}
+			]
+		},
+		{
+			id: "jilhjd8890jdsaf",
+			date: 1519956000,
+			eventName: "Old Event",
+			location: "Cloud Cap Games",
+			guests: [
+				{
+					user: "jgarcia",
+					confirmed: true,
+					invitedBy: "christophergoot"
+				},
+				{
+					user: "jabriel",
+					confirmed: false,
+					invitedBy: "jgarcia"
+				},
+				{
+					user: "eholland",
+					confirmed: false,
+					invitedBy: "christophergoot"
+				}
+			]
+		}
+	];
