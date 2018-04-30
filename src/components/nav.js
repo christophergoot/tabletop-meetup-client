@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { logout, login } from '../actions';
+import { logout, login } from '../actions/index';
 import './nav.css'
 
 export class Nav extends React.Component {
