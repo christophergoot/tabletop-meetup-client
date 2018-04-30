@@ -24,8 +24,8 @@ export default function NewEvent(props) {
 			<h3>Guests to Invite</h3>
 			<ul>
 				<li>Christopher Gutierrez (organizer)</li>
-				<li>Juan Garcia (<a href="#">remove</a>)</li>
-				<li>Ampelios Berenike (<a href="#">remove</a>)</li>
+				<li>Juan Garcia (<a href="remove">remove</a>)</li>
+				<li>Ampelios Berenike (<a href="remove">remove</a>)</li>
 				<select name="guests">
 					<option value="">Theron Iunius</option>
 					<option value="">Kris Faithe</option>

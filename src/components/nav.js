@@ -1,19 +1,42 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { logout, login } from '../actions';
 import './nav.css'
 
-export default function Nav(props) {
-	const onClick = e => {
+export class Nav extends React.Component {
+	onClick = e => {
 		e.preventDefault();
-		console.log('logging out');
+		if (this.props.loggedIn) {
+			console.log('logging out');
+			this.props.dispatch(logout());
+		} else {
+			console.log('loggin in');
+			this.props.dispatch(login());
+		}
 	};
-	return (
-		<nav>
-			<ul>
-				<li><Link to="/events">My Events</Link></li>
-				<li><Link to="/games">My Games</Link></li>
-				<li><a onClick={e => onClick(e)}>Logout</a></li>
-			</ul>
-		</nav>
-	);
+	render() {
+		if (this.props.loggedIn) { return (
+			<nav>
+				<ul>
+					<li><Link to="/events">My Events</Link></li>
+					<li><Link to="/games">My Games</Link></li>
+					<li><a onClick={e => this.onClick(e)}>Logout</a></li>
+				</ul>
+			</nav>
+		)} else { return (
+			<nav>
+				<ul>
+					<li><a onClick={e => this.onClick(e)}>Login</a></li>
+				</ul>
+			</nav>
+
+		)}
+	}
 };
+
+const mapStateToProps = state => ({
+	loggedIn: state.loggedIn
+});
+
+export default connect(mapStateToProps)(Nav);

@@ -14,6 +14,11 @@ text-shadow:
 	padding: 2px;
 	background-size: cover;
 	background-position: top;
+	border-radius: 3px;
+}
+
+.game-card:hover {
+	box-shadow: 1px 1px 3px 0px rgb(190, 190, 190);
 }
 
 .game-card span {
