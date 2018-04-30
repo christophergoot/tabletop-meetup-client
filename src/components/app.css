@@ -17,13 +17,6 @@ a {
 	color: inherit;
 }
 
-nav, footer {
-	background-color: grey;
-	color: white;
-	padding: 20px 0;
-	font-size: .8em;
-}
-
 section ul {
 	text-align: left;
 	padding-left: 60px;

@@ -1,35 +1,21 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import EventGuests from './event-guests';
 import EventDetails from './event-details';
 import "./list-event.css"
 
 export default function ListEvent(props) {
 	const { guests } = props.event;
+	// const onClick = e => {
+	// 	e.preventDefault();
+	// 	// const eventId = e.currentTarget;
+		const eventId = 'jilhjd8890jdsaf';
+	// 	return <Link to={`/event/${eventId}`} />
+	// };
 	return (
-		<div className="list-event">
+		<Link to={`/event/${eventId}`} className="list-event">
 			<EventDetails event={props.event} />
 			<EventGuests guests={guests} />
-		</div>
+		</Link>
 	);
 }
-
-// id: "jilhjd8890jdsaf",
-// date: 1525395600,
-// eventName: "Upcomming Event",
-// location: "My Garage",
-// guests: [
-// 	{
-// 		user: "jgarcia",
-// 		confirmed: true,
-// 		invitedBy: "christophergoot"
-// 	},
-// 	{
-// 		user: "jabriel",
-// 		confirmed: false,
-// 		invitedBy: "jgarcia"
-// 	},
-// 	{
-// 		user: "eholland",
-// 		confirmed: false,
-// 		invitedBy: "christophergoot"
-// 	}

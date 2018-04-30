@@ -6,7 +6,10 @@ import ListEvent from './list-event';
 
 export default function Events(props) {
 	const { events } = props;
-	const eventList = events.map((event, i) => <ListEvent event={event} key={i} />);
+	const eventList = events.map((event, i) => {
+		console.log('event', event);
+		return <ListEvent event={event} key={i} />;
+	});
 	return (
 		<section>
 			<h2>List of Events</h2>
