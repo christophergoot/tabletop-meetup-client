@@ -1,5 +1,5 @@
 import React from 'react';
-import GameBoxtop from './game-boxtop';
+import GameCard from './game-card';
 import './game-list.css';
 
 export default function GameList(props) {
@@ -7,7 +7,11 @@ export default function GameList(props) {
 	const gameList = collection.filter(game => game.owned && !game.isExpansion);
 	const cards = gameList.map((game, index) => {
 		return (
-			<GameBoxtop game={game} key={index+1} />
+			<GameCard 
+				game={game} 
+				key={index} 
+				dispatch={props.dispatch}
+			/>
 		);
 	});
 

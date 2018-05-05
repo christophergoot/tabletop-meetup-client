@@ -1,4 +1,4 @@
-export const MOCK_USER_GAMES = [
+export const MOCK_PLAYER_COLLECTION = [
 	{
 	"gameId": 153999,
 	"name": "...and then, we held hands.",
@@ -4026,7 +4026,7 @@ export const MOCK_USER_GAMES = [
 	}
 	];
 
-	export const MOCK_USER_EVENTS = [
+	export const MOCK_PLAYER_EVENTS = [
 		{
 			id: "jilhjd8890jdsaf",
 			date: 1525395600,

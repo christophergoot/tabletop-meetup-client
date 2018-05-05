@@ -1,4 +1,20 @@
 import React from 'react';
+import { Formik } from 'formik';
+
+const EventForm = () => (
+	<section>
+		<h2>Create a new Event</h2>
+		<Formik
+		initialValues={{
+			eventName: '',
+			eventDate: new Date()
+		}}
+		onSubmit={(values) => this.createNewEvent(values)}
+		/>
+	</section>
+);
+
+
 
 export default function NewEvent(props) {
 	return (

@@ -1,14 +1,18 @@
 import React from 'react';
+import CollectionDetails from './collection-details';
+// import { removeGame } from '../actions';
+// import { connect } from 'react-redux';
+
 import './game-boxtop.css';
 
 export default function GameBoxtop(props) {
-	const { name, thumbnail, yearPublished, averageRating, minPlayers, maxPlayers, playingTime} = props.game;
+	const { gameId, name, thumbnail, yearPublished, averageRating, minPlayers, maxPlayers, playingTime } = props.game;
 	const divStyle = {
-		background: 
+		background:
 			'linear-gradient(' +
-				// 'to bottom, rgba(125,126,125,0.5) 0%,rgba(14,14,14,1) 100%),' + // black gradient
-				'to bottom, rgba(256,256,256,0.5) 0%,rgba(256,256,256,1) 100%),' + // white gradient
-				'url(' + thumbnail + ')',
+			// 'to bottom, rgba(125,126,125,0.5) 0%,rgba(14,14,14,1) 100%),' + // black gradient
+			'to bottom, rgba(256,256,256,0.5) 0%,rgba(256,256,256,1) 100%),' + // white gradient
+			'url(' + thumbnail + ')',
 		backgroundSize: 'cover',
 		backgroundPosition: 'top',
 	};
@@ -19,14 +23,16 @@ export default function GameBoxtop(props) {
 		}
 		else return (`${minPlayers} to ${maxPlayers} Players`)
 	};
+
 	return (
 		<div className='game-card' style={divStyle}>
-			<h3><a href={name}>{name}</a> ({yearPublished})</h3>
+			<h3><a onClick={e => console.log("view details for BGG id " + gameId)}>{name}</a> ({yearPublished})</h3>
+			<CollectionDetails 
+				game={props.game}
+				editCollectionDetails={props.editCollectionDetails} />
 			<span>{averageRating.toFixed(2)} Average Rating</span>
 			<span>{playerCount(minPlayers, maxPlayers)}</span>
 			<span>{playingTime} Min Playing Time</span>
-			<span className='game-action'>edit</span>
-			<span className='game-action'>remove</span>
 		</div>
 	);
 }
