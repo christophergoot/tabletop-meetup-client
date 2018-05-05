@@ -1,5 +1,4 @@
 import React from 'react';
-import { MOCK_PLAYER_EVENTS } from './mock-data';
 import { Link } from 'react-router-dom';
 import ListEvent from './list-event';
 
@@ -16,7 +15,3 @@ export default function Events(props) {
 		</section>
 	);
 }
-
-Events.defaultProps = {
-	events: MOCK_PLAYER_EVENTS
-};

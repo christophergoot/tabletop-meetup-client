@@ -5,11 +5,11 @@ import EventDetails from './event-details';
 import "./list-event.css"
 
 export default function ListEvent(props) {
-	const { guests } = props.event;
+	const { guests, eventId } = props.event;
 	// const onClick = e => {
 	// 	e.preventDefault();
 	// 	// const eventId = e.currentTarget;
-		const eventId = 'jilhjd8890jdsaf';
+		// const eventId = 'jilhjd8890jdsaf';
 	// 	return <Link to={`/event/${eventId}`} />
 	// };
 	return (
