@@ -3,14 +3,37 @@ import './event-guests.css';
 
 export default function EventGuests(props) {
 	const guests = props.guests;
+	// debugger
 	const guestList = guests.map((guest, i) => {
-		const hasConfirmed = guest => {
-			if (guest.confirmed) return ("Confirmed");
-			else return ("Invited");
+		function rsvp(guest) {
+			switch (guest.rsvp) {
+				case 'host':
+					return {
+						status: 'Hosting',
+						class: 'rsvp host'
+					};
+				case 'invited':
+					return {
+						status: 'Invited',
+						class: 'rsvp invited'
+					};
+				case 'declined':
+					return {
+						status: 'Declined',
+						class: 'rsvp declined'
+					};
+				case 'confirmed':
+					return {
+						status: 'Confirmed',
+						class: 'rsvp confirmed'
+					};
+			};
 		};
+		const status = rsvp(guest);
 		return (
 			<div key={i}>
-				{guest.user} ({hasConfirmed(guest)})
+				{guest.user} <span
+					className={status.class}>({status.status})</span>
 			</div>
 		);
 	});

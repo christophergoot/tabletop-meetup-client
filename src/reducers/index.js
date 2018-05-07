@@ -1,11 +1,16 @@
-import { LOGIN, LOGOUT, EDIT_GAME, REMOVE_GAME } from '../actions';
-import { MOCK_PLAYER_EVENTS, MOCK_PLAYER_COLLECTION } from '../components/mock-data';
+import { LOGIN, LOGOUT, EDIT_GAME, REMOVE_GAME, SORT_GAMES } from '../actions';
+import MOCK_DATA from '../mock-data';
 
+const { Events, Collections, Users } = MOCK_DATA;
 
+// const currentUserName = Users[Math.floor(Math.random()*Users.length)].userName;
+const currentUserName = 'goot';
 const initialState = {
-	loggedIn: true,
-	collection: MOCK_PLAYER_COLLECTION,
-	events: MOCK_PLAYER_EVENTS
+	collections: Collections,
+	collection: Collections.find(coll => coll.userName === currentUserName),
+	events: Events,
+	currentUser: currentUserName,
+	loggedIn: false
 };
 
 function rejectGameById(collection, gameId) {
@@ -17,6 +22,13 @@ function updateGameById(collection, updatedGame) {
 	return [
 		...collection.filter(game => game.gameId !== updatedGame.gameId),
 		updatedGame
+	];
+}
+
+function sortGamesByMethod(games, method) {
+	// possible methods: name, rating, playTime, weight, year
+	return [
+		...games
 	];
 }
 
@@ -39,6 +51,13 @@ export const tabletopMeetupReducer = (state=initialState, action) => {
 			return {
 				...state,
 				collection: updateGameById(state.collection, action.game)
+			}
+
+		case SORT_GAMES: // recieves action.games && action.sortMethod
+			console.log('sorting by ' + action.sortMethod);
+			return {
+				...state,
+				// collection: sortGamesByMethod(action.games, action.sortMethod)
 			}
 
 		default: 

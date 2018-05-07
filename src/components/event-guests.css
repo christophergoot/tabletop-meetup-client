@@ -1,9 +1,26 @@
 .event-guests {
 	background-color: grey;
-	color: white;
+	color: lightgrey;
 	/* float: right; */
 	margin: 5px;
 	margin-left: auto;
 	padding: 5px;
 	border-radius: 5px;
+	width: 200px;
+}
+
+.rsvp {
+	font-size: .75em;
+}
+
+.rsvp.declined {
+	color: rgb(216, 163, 163);
+}
+
+.rsvp.host, .rsvp.confirmed {
+	color: rgb(162, 201, 162);
+}
+
+.rsvp.invited {
+	color: rgb(222, 226, 158);
 }

@@ -2,7 +2,7 @@ import React from 'react';
 
 export const Events = [
 	{
-		id: "jilhjd8890jdsaf",
+		eventId: "jilhjd8890jdsaf",
 		date: 1525395600,
 		eventName: "Upcomming Event",
 		location: "My Garage",
@@ -26,24 +26,24 @@ export const Events = [
 		]
 	},
 	{
-		id: "jilhjd8890jdsaf",
+		eventId: "jilhjd8890jdsaf",
 		date: 1519956000,
 		eventName: "Old Event",
 		location: "Cloud Cap Games",
 		guests: [
 			{
 				user: "jgarcia",
-				confirmed: 'host',
+				rsvp: 'host',
 				invitedBy: "jgarcia"
 			},
 			{
 				user: "goot",
-				confirmed: 'confirmed',
+				rsvp: 'confirmed',
 				invitedBy: "jgarcia"
 			},
 			{
 				user: "eholland",
-				confirmed: 'declined',
+				rsvp: 'declined',
 				invitedBy: "christophergoot"
 			}
 		]

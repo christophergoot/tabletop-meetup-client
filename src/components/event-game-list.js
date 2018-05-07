@@ -15,8 +15,8 @@ export class EventGameList extends React.Component {
 
 const mapStateToProps = state => {
 	return {
-		events: this.state.events,
-		users: this.state.users
+		events: state.events,
+		users: state.users
 	}
 };
 

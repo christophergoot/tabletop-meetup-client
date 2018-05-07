@@ -1,0 +1,19 @@
+.sort-container>ul {
+	display: flex;
+	flex-direction: row;
+	margin: 0 10px;
+	list-style-type: none;	
+	flex-wrap: wrap;
+	justify-content: center;
+
+}
+
+.sort-container {
+	display: flex;
+	flex-direction: row;
+	/* align-items: space-between; */
+	margin: 10px auto;
+	flex-wrap: wrap;
+	justify-content: center;
+	/* display: inline-block; */
+}
