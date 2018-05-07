@@ -46,6 +46,7 @@ export default class CollectionDetails extends React.Component {
 			if (game[Object.keys(field)]) return (
 				<p key={i}>{(field[Object.keys(field)])}</p>
 			)
+			return ("");
 		});
 		const checkBoxes = collectionFields.map((field, i) => {
 			return (this.createCheckbox(

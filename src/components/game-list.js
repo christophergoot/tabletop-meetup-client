@@ -4,8 +4,7 @@ import './game-list.css';
 
 export default function GameList(props) {
 	// const { collection } = props;
-	const games = props.collection.collection;
-	console.log(games);
+	const { games } = props.collection;
 	const gameList = games.filter(game => game.owned && !game.isExpansion);
 	const cards = gameList.map((game, i) => {
 		return (

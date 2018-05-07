@@ -8,7 +8,7 @@ import './game-sort.css';
 // 		super(props);
 // 	};
 
-// 	render() {
+// 	render() { 
 
 export default function GameSort(props) {
 	const methods = [
@@ -18,35 +18,41 @@ export default function GameSort(props) {
 			label: 'sort Alphabetically'
 		},
 		{
-			method: 'rating',
+			method: 'averageRating',
 			name: 'Rating',
 			label: 'sort by Rating'
 		},
 		{
-			method: 'playTime',
+			method: 'playingTime',
 			label: 'sort by Play Time',
 			name: 'Time'
 		},
+		// {
+		// 	method: 'weight',
+		// 	name: 'Weight',
+		// 	label: 'sort by Weight'
+		// },
 		{
-			method: 'weight',
-			name: 'Weight',
-			label: 'sort by Weight'
-		},
-		{
-			method: 'year',
+			method: 'yearPublished',
 			name: 'Year',
 			label: 'sort by Year Published'
+		},
+		{
+			method: 'rank',
+			name: 'Rank',
+			label: 'sort by BBG Rank'
 		}
 	];
-	const listItems = methods.map((el, i) => (
-		<li key={i}
-			className='sort'
-			title={el.label} 
-			alt={el.label}
-			onClick={() => props.dispatch(sortGames(props.collection, el.method))} >
-			{el.name}
-		</li>
-	));
+	const listItems = methods.map((el, i) => {
+		return (
+			<li key={i}
+				className='sort'
+				title={el.label} 
+				alt={el.label}
+				onClick={() => props.dispatch(sortGames(props.collection.games, el.method))} >
+				{el.name}
+			</li>
+		)});
 
 	return (
 		<div className='sort-container'>
@@ -58,8 +64,6 @@ export default function GameSort(props) {
 	);
 };
 
-// const mapDispatchToProps = dispatch => {
-// 	return
-// };
-
-// export default connect(null, mapDispatchToProps)(GameSort);
+// GameSort.defaultProps = {
+// 	collection: { sort: {method: 'name', order: 'ascending'}}
+// }

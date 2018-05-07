@@ -1,5 +1,6 @@
 import { LOGIN, LOGOUT, EDIT_GAME, REMOVE_GAME, SORT_GAMES } from '../actions';
 import MOCK_DATA from '../mock-data';
+import { combineReducers } from 'redux';
 
 const { Events, Collections, Users } = MOCK_DATA;
 
@@ -7,6 +8,7 @@ const { Events, Collections, Users } = MOCK_DATA;
 const currentUserName = 'goot';
 const initialState = {
 	collections: Collections,
+	users: Users,
 	collection: Collections.find(coll => coll.userName === currentUserName),
 	events: Events,
 	currentUser: currentUserName,
@@ -26,10 +28,31 @@ function updateGameById(collection, updatedGame) {
 }
 
 function sortGamesByMethod(games, method) {
-	// possible methods: name, rating, playTime, weight, year
-	return [
-		...games
-	];
+
+	const sorted = games.sort((a,b) => {
+		// return a[method] - b[method]
+		if (a[method] < b[method]) {
+			return -1;
+		} 
+
+		if (a[method] > b[method]) {
+			return 1;
+		} 
+
+		return 0;
+	})
+	return sorted;
+}
+
+const initialSessionState = {
+	user: {
+		userName: 'goot',
+		token: 'token'
+	}
+}
+
+export const sessionReducer = (state=initialSessionState, action) => {
+	return state;
 }
 
 export const tabletopMeetupReducer = (state=initialState, action) => {
@@ -57,31 +80,18 @@ export const tabletopMeetupReducer = (state=initialState, action) => {
 			console.log('sorting by ' + action.sortMethod);
 			return {
 				...state,
-				// collection: sortGamesByMethod(action.games, action.sortMethod)
+				collection: Object.assign({}, state.collection, {
+					sort: { method: action.sortMethod},
+					games: sortGamesByMethod(action.games, action.sortMethod)
+				})		
 			}
 
 		default: 
 			return state;
 	}
-
-
-	
-	// if (action.type === actions.LOGIN) {
-	// 	return Object.assign({}, state, {
-	// 		loggedIn: true
-	// 	});
-	// }
-	// if (action.type === actions.EDIT_GAME) {
-	// 	return Object.assign({}, state, {
-			
-	// 	});
-	// }
-	// if (action.type === actions.REMOVE_GAME) {
-	// 	const newCollection = state.collection.filter(game => 
-	// 		(game.gameId !== action.gameId));
-	// 	return Object.assign({}, state, {
-	// 		collection: newCollection
-	// 	})
-	// }
-	// return state;
 }
+
+export const rootReducer = combineReducers({
+	sessions: sessionReducer, 
+	tabletopMeetup: tabletopMeetupReducer
+});

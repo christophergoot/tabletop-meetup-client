@@ -2,9 +2,7 @@ import React from 'react';
 import GameList from './game-list';
 import GameSort from './game-sort';
 import GameFilter from './game-filter';
-// import { MOCK_PLAYER_COLLECTION } from './mock-data';
 import { connect } from 'react-redux';
-import { SORT_GAMES } from '../actions';
 
 
 // export default function Games(props) {

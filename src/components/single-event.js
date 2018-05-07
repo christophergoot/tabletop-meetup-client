@@ -23,7 +23,7 @@ export class SingleEvent extends React.Component {
 			<div>
 				<ListEvent event={event} />
 				<h2>Games on deck</h2>
-				<EventGameList eventId={eventId} />
+				<EventGameList eventId={eventId} games={games} />
 			</div>
 		);
 	};

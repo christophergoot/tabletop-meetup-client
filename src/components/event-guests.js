@@ -27,6 +27,7 @@ export default function EventGuests(props) {
 						status: 'Confirmed',
 						class: 'rsvp confirmed'
 					};
+				default:
 			};
 		};
 		const status = rsvp(guest);

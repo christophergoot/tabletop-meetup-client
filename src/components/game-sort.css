@@ -7,7 +7,7 @@
 	cursor: pointer;
 }
 
-.sort:hover, sort.sort.selected {
+.sort:hover, .sort.selected {
 	background-color: grey;
 	color: white;
 }

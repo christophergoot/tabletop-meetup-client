@@ -1,5 +1,3 @@
-import React from 'react';
-
 export const Users = [
 	{
 		userId: '4088u7540843a2',

@@ -1,5 +1,3 @@
-import React from 'react';
-
 export const Events = [
 	{
 		eventId: "jilhjd8890jdsaf",

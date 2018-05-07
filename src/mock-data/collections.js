@@ -1,10 +1,8 @@
-import React from 'react';
-
 export const Collections = [
 	{
 		userId: 507102,
 		userName: 'goot',
-		collection: [
+		games: [
 			{
 				"gameId": 153999,
 				"name": "...and then, we held hands.",
@@ -4035,7 +4033,7 @@ export const Collections = [
 	{
 		userId: 1130617,
 		userName: 'Cloyd',
-		collection: [
+		games: [
 			{
 			"gameId": 68448,
 			"name": "7 Wonders",
@@ -7791,7 +7789,7 @@ export const Collections = [
 	{
 		userId: 701708,
 		userName: 'soltzt',
-		collection: [
+		games: [
 			{
 			"gameId": 4098,
 			"name": "Age of Steam",
@@ -8897,7 +8895,7 @@ export const Collections = [
 	{
 		userId: 311230,
 		userName: 'Pastor_Mora',
-		collection: [
+		games: [
 			{
 			"gameId": 177876,
 			"name": "1653: Sailors and Merchants",
