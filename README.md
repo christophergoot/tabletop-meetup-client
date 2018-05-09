@@ -1,4 +1,4 @@
-# Tabletop Meetup Client  [![Build Status](https://travis-ci.org/christophergoot/tabletop-meetup.svg?branch=master)](https://travis-ci.org/christophergoot/tabletop-meetup)
+# Tabletop Meetup Client  [![Build Status](https://travis-ci.org/christophergoot/tabletop-meetup-client.svg?branch=master)](https://travis-ci.org/christophergoot/tabletop-meetup-client)
 Tabletop Meetup is a progressive webapp designed to help a group of tabletop gamers decide which games to get to the table at their next meetup.
 
 ## Technology
