@@ -8,13 +8,17 @@ export const Users = [
 		associated: {
 			players: [
 				{
-					userId: '1130617',
-					userName: 'Cloyd'
-							},
-							{userId: '701708',
-								userName: 'soltzt'},
-							{userId: '311230',
-								userName: 'Pastor_Mora'}
+					"userId": "5af51eaf4e39b29dc1d71697",
+				}, 
+				{
+					"userId": "5af51e974e39b29dc1d71693",
+				}, 
+				{
+					"userId": "5af51e874e39b29dc1d7168d"
+				},
+				{
+					"userId": "5af51e784e39b29dc1d71687",
+				}
 
 			],
 			events: [
@@ -23,8 +27,8 @@ export const Users = [
 					date: 1525395600,
 					eventName: "Upcomming Event",
 					rsvp: 'host'
-			
-				},{
+
+				}, {
 					id: "jilhjd8890jdsaf",
 					date: 1519956000,
 					eventName: "Old Event",
@@ -38,5 +42,27 @@ export const Users = [
 			]
 		}
 
+	},
+	{
+		"userId": "5af51eaf4e39b29dc1d71697",
+		"bggId" : "1130617",
+		"userName" : "Cloyd"
+	}, 
+	{
+		"userId": "5af51e974e39b29dc1d71693",
+		"bggId" : "701708",
+		"userName" : "soltzt"
+	}, 
+	{
+		"bggId" : "311230",
+		"firstName": 'Juan',
+		"lastName": 'Gargia',
+		"userName" : "Pastor_Mora",
+		"userId": "5af51e874e39b29dc1d7168d"
+	},
+	{
+		"userId": "5af51e784e39b29dc1d71687",
+		"firstName": "Emma",
+		"lastName": "Holland"
 	}
 ];

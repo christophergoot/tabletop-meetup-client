@@ -1,6 +1,5 @@
-import { LOGIN, LOGOUT, EDIT_GAME, REMOVE_GAME, SORT_GAMES } from '../actions';
+import { LOGIN, LOGOUT, EDIT_GAME, REMOVE_GAME, SORT_GAMES } from '../actions/tabletopmeetup';
 import MOCK_DATA from '../mock-data';
-import { combineReducers } from 'redux';
 
 const { Events, Collections, Users } = MOCK_DATA;
 
@@ -44,19 +43,9 @@ function sortGamesByMethod(games, method) {
 	return sorted;
 }
 
-const initialSessionState = {
-	user: {
-		userName: 'goot',
-		token: 'token'
-	}
-}
-
-export const sessionReducer = (state=initialSessionState, action) => {
-	return state;
-}
-
-export const tabletopMeetupReducer = (state=initialState, action) => {
-	const { type } = action;
+// export const tabletopMeetupReducer = (state=initialState, action) => {
+export default function tabletopMeetupReducer(state=initialState, action) {
+		const { type } = action;
 	switch (type) {
 		case LOGOUT:
 			return { ...state, loggedIn: false };
@@ -90,8 +79,3 @@ export const tabletopMeetupReducer = (state=initialState, action) => {
 			return state;
 	}
 }
-
-export const rootReducer = combineReducers({
-	sessions: sessionReducer, 
-	tabletopMeetup: tabletopMeetupReducer
-});

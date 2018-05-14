@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { logout, login } from '../actions';
+import { logout, login } from '../actions/tabletopmeetup';
 import './nav.css'
 
 export class Nav extends React.Component {
@@ -11,7 +11,7 @@ export class Nav extends React.Component {
 			console.log('logging out');
 			this.props.dispatch(logout());
 		} else {
-			console.log('loggin in');
+			console.log('logging in');
 			this.props.dispatch(login());
 		}
 	};
@@ -36,7 +36,7 @@ export class Nav extends React.Component {
 };
 
 const mapStateToProps = state => ({
-	loggedIn: state.loggedIn
+    loggedIn: state.auth.currentUser !== null
 });
 
 export default connect(mapStateToProps)(Nav);

@@ -1,6 +1,6 @@
 import React from 'react';
 // import { connect } from 'react-redux';
-import { sortGames } from '../actions';
+import { sortGames } from '../actions/tabletopmeetup';
 import './game-sort.css';
 
 // export class GameSort extends React.Component {

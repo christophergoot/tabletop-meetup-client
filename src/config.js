@@ -1,5 +1,3 @@
-import React from 'react';
-
 export const currentUser = {
 	userId: '4088u7540843a2',
 	bggId: '507102',
@@ -8,3 +6,5 @@ export const currentUser = {
 	lastName: 'Gutierrez'
 };
 
+export const API_BASE_URL = process.env.REACT_APP_API_BASE_URL ||
+'http://localhost:3030/api';

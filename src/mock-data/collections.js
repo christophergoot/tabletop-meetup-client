@@ -1,6 +1,6 @@
 export const Collections = [
 	{
-		userId: 507102,
+		bggId: 507102,
 		userName: 'goot',
 		games: [
 			{
@@ -4031,7 +4031,7 @@ export const Collections = [
 		]
 	},
 	{
-		userId: 1130617,
+		bggId: 1130617,
 		userName: 'Cloyd',
 		games: [
 			{
@@ -7787,7 +7787,7 @@ export const Collections = [
 			]
 	},
 	{
-		userId: 701708,
+		bggId: 701708,
 		userName: 'soltzt',
 		games: [
 			{
@@ -8893,7 +8893,7 @@ export const Collections = [
 			]
 	},
 	{
-		userId: 311230,
+		bggId: 311230,
 		userName: 'Pastor_Mora',
 		games: [
 			{
@@ -16296,7 +16296,6 @@ export const Collections = [
 			"wishList": false,
 			"userComment": ""
 			}
-			]
+		]
 	}
-
 ];
