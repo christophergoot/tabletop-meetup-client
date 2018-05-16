@@ -1,4 +1,4 @@
-import { LOGIN, LOGOUT, EDIT_GAME, REMOVE_GAME, SORT_GAMES } from '../actions/tabletopmeetup';
+import { EDIT_GAME, REMOVE_GAME, SORT_GAMES } from '../actions/tabletopmeetup';
 import MOCK_DATA from '../mock-data';
 
 const { Events, Collections, Users } = MOCK_DATA;
@@ -15,7 +15,6 @@ const initialState = {
 };
 
 function rejectGameById(collection, gameId) {
-	console.log(gameId);
 	return collection.filter(game => game.gameId !== gameId);
 }
 
@@ -39,43 +38,37 @@ function sortGamesByMethod(games, method) {
 		} 
 
 		return 0;
-	})
+	});
 	return sorted;
 }
 
 // export const tabletopMeetupReducer = (state=initialState, action) => {
 export default function tabletopMeetupReducer(state=initialState, action) {
-		const { type } = action;
+	const { type } = action;
 	switch (type) {
-		case LOGOUT:
-			return { ...state, loggedIn: false };
 
-		case LOGIN:
-			return {...state, loggedIn: true };
+	case REMOVE_GAME:
+		return {
+			...state, 
+			collection: rejectGameById(state.collection, action.gameId)
+		};
 
-		case REMOVE_GAME:
-			return {
-				...state, 
-				collection: rejectGameById(state.collection, action.gameId)
-			}
+	case EDIT_GAME:
+		return {
+			...state,
+			collection: updateGameById(state.collection, action.game)
+		};
 
-		case EDIT_GAME:
-			return {
-				...state,
-				collection: updateGameById(state.collection, action.game)
-			}
+	case SORT_GAMES: // recieves action.games && action.sortMethod
+		return {
+			...state,
+			collection: Object.assign({}, state.collection, {
+				sort: { method: action.sortMethod},
+				games: sortGamesByMethod(action.games, action.sortMethod)
+			})		
+		};
 
-		case SORT_GAMES: // recieves action.games && action.sortMethod
-			console.log('sorting by ' + action.sortMethod);
-			return {
-				...state,
-				collection: Object.assign({}, state.collection, {
-					sort: { method: action.sortMethod},
-					games: sortGamesByMethod(action.games, action.sortMethod)
-				})		
-			}
-
-		default: 
-			return state;
+	default: 
+		return state;
 	}
 }
