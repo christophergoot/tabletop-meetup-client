@@ -4,9 +4,7 @@ import thunk from 'redux-thunk';
 import {loadAuthToken} from './local-storage';
 
 import authReducer from './reducers/auth';
-import protectedDataReducer from './reducers/protected-data';
-import tabletopMeetupReducer from './reducers/tabletopmeetup';
-import sessionReducer from './reducers/session';
+import collectionsReducer from './reducers/collections';
 
 
 import {setAuthToken, refreshAuthToken} from './actions/auth';
@@ -14,22 +12,21 @@ import {setAuthToken, refreshAuthToken} from './actions/auth';
 
 
 const store = createStore(
-    combineReducers({
-        form: formReducer,
-        auth: authReducer,
-		protectedData: protectedDataReducer,
-		tabletopmeetup: tabletopMeetupReducer,
-		session: sessionReducer
-    }),
-    applyMiddleware(thunk)
+	combineReducers({
+		form: formReducer,
+		auth: authReducer,
+		collections: collectionsReducer
+	}),
+	applyMiddleware(thunk)
+	// window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
 // Hydrate the authToken from localStorage if it exists
 const authToken = loadAuthToken();
 if (authToken) {
-    const token = authToken;
-    store.dispatch(setAuthToken(token));
-    store.dispatch(refreshAuthToken());
+	const token = authToken;
+	store.dispatch(setAuthToken(token));
+	store.dispatch(refreshAuthToken());
 }
 
 export default store;

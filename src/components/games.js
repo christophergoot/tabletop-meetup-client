@@ -3,6 +3,7 @@ import GameList from './game-list';
 import GameSort from './game-sort';
 import GameFilter from './game-filter';
 import { connect } from 'react-redux';
+import requiresLogin from './requires-login';
 
 
 // export default function Games(props) {
@@ -15,11 +16,11 @@ export class Games extends React.Component {
 				<GameSort 
 					dispatch={this.props.dispatch}
 					collection={this.props.collection}
-					/>
+				/>
 				<GameList 
 					collection={this.props.collection}
 					dispatch={this.props.dispatch}
-					 />
+				/>
 			</section>
 		);
 	}
@@ -27,8 +28,8 @@ export class Games extends React.Component {
 
 const mapStateToProps = state => {
 	return ({
-		collection: state.collection
-	})
+		collection: state.collections.find(c => c.userId === state.auth.currentUser.userId)
+	});
 };
 
 // const mapDispatchToProps = dispatch => {
@@ -37,4 +38,4 @@ const mapStateToProps = state => {
 // 	});
 // };
 
-export default connect(mapStateToProps)(Games);
+export default requiresLogin()(connect(mapStateToProps)(Games));

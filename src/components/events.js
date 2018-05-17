@@ -21,8 +21,8 @@ export class Events extends React.Component {
 
 const mapStateToProps = state => {
 	return ({
-		events: state.events
+		events: state.events.filter(event => event.guests.userId === state.auth.currentUser.userId)
 	});
-}
+};
 
 export default connect(mapStateToProps)(Events);
