@@ -1,4 +1,4 @@
-'user strict';
+'use strict';
 
 export const EDIT_GAME = 'EDIT_GAME';
 export const editGame = (gameId) => ({
