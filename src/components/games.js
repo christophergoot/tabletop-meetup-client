@@ -4,10 +4,15 @@ import GameSort from './game-sort';
 import GameFilter from './game-filter';
 import { connect } from 'react-redux';
 import requiresLogin from './requires-login';
+import { fetchCollection } from '../actions/collections';
 
 
-// export default function Games(props) {
 export class Games extends React.Component {
+	componentDidMount() {
+		const { userId } = this.props;
+		this.props.dispatch(fetchCollection(userId));
+	}
+
 	render() {
 		const { collection, dispatch } = this.props;
 		const { games } = collection;
@@ -32,7 +37,8 @@ export class Games extends React.Component {
 const mapStateToProps = state => {
 	return ({
 		// games: state.collections.list.games.find(c => c.userId === state.auth.currentUser.userId),
-		collection: state.collections.list.find(c => c.userId === state.auth.currentUser.userId)
+		collection: state.collections.list,
+		userId: state.auth.currentUser.userId
 	});
 };
 

@@ -26,6 +26,7 @@ export function Landing(props) {
 			<h2>Give it a Go</h2>
 			<p><Link to='/register'>Register for an account</Link> and start planning your next Tabletop Meetup now</p>
 			<LoginForm />
+			<Register />
 		</section>
 	);
 }

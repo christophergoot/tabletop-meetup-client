@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import ListEvent from './list-event';
 import { connect } from 'react-redux';
+import requiresLogin from './requires-login';
 
 
 export class Events extends React.Component {
@@ -28,4 +29,4 @@ const mapStateToProps = state => {
 	});
 };
 
-export default connect(mapStateToProps)(Events);
+export default requiresLogin()(connect(mapStateToProps)(Events));

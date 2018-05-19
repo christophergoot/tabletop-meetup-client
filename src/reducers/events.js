@@ -11,12 +11,10 @@ export default function eventsReducer(state=initialState, action) {
 	switch (type) {
 
 	case FETCH_EVENTS_SUCCESS:
-		return {
+		return [
 			...state,
-			list: [
-				action.events
-			]
-		};
+			action.events
+		];
 
 	default: 
 		return state;

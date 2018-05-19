@@ -9,13 +9,6 @@ const initialState = ({
 	}
 });
 
-// function refreshCollection(collections, collection) {
-// 	return [
-// 		collections.filter(col => col.userId !== collection.userId),
-// 		collection
-// 	];
-// }
-
 export default function collectionsReducer(state=initialState, action) {
 	const { type } = action;
 	console.log(state,action);

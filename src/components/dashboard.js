@@ -22,22 +22,20 @@ export class Dashboard extends React.Component {
 					<p>Name: {this.props.name}</p>
 				</div>
 				<GameListSummary collection={this.props.collection} />
-				{/* <Events events={this.props.events}/> */}
+				<Events events={this.props.events}/>
 			</div>
 		);
 	}
 }
 
 const mapStateToProps = state => {
-	const {currentUser} = state.auth;
-	let userCollection = {games: []};
-	if (state.collections.length>0) userCollection = state.collections.find(c => c.userId === state.auth.currentUser.userId);
+	const { currentUser } = state.auth;
 	return {
 		userId: state.auth.currentUser.userId,
 		username: state.auth.currentUser.username,
 		name: `${currentUser.firstName} ${currentUser.lastName}`,
-		collection: userCollection,
-		events: state.events
+		collection: state.collections.list,
+		events: state.events.list
 	};
 };
 

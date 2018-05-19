@@ -13,8 +13,7 @@ export const fetchEvents = () => dispatch => {
 		headers: {
 			'Content-Type': 'application/json',
 			'Authorization': 'Bearer ' + authToken
-		},
-		method: 'GET'
+		}
 	}).then(res => {
 		if (!res.ok) {
 			return Promise.reject(res.statusText);
