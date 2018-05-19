@@ -8,6 +8,7 @@ import collectionsReducer from './reducers/collections';
 
 
 import {setAuthToken, refreshAuthToken} from './actions/auth';
+import eventsReducer from './reducers/events';
 
 
 
@@ -15,7 +16,8 @@ const store = createStore(
 	combineReducers({
 		form: formReducer,
 		auth: authReducer,
-		collections: collectionsReducer
+		collections: collectionsReducer,
+		events: eventsReducer
 	}),
 	applyMiddleware(thunk)
 	// window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()

@@ -1,14 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchCollection } from '../actions/collections';
-import requiresLogin from './requires-login';
-import GameListSummary from './game-list-summary';
-import Events from './events';
+import { fetchEvents } from '../actions/events';
 import './dashboard.css';
+import Events from './events';
+import GameListSummary from './game-list-summary';
+import requiresLogin from './requires-login';
 
 export class Dashboard extends React.Component {
 	componentDidMount() {
-		this.props.dispatch(fetchCollection(this.props.userId));
+		const { userId } = this.props;
+		this.props.dispatch(fetchCollection(userId));
+		this.props.dispatch(fetchEvents(userId));
 	}
 
 	render() {
@@ -19,7 +22,7 @@ export class Dashboard extends React.Component {
 					<p>Name: {this.props.name}</p>
 				</div>
 				<GameListSummary collection={this.props.collection} />
-				<Events />
+				{/* <Events events={this.props.events}/> */}
 			</div>
 		);
 	}
@@ -33,7 +36,8 @@ const mapStateToProps = state => {
 		userId: state.auth.currentUser.userId,
 		username: state.auth.currentUser.username,
 		name: `${currentUser.firstName} ${currentUser.lastName}`,
-		collection: userCollection
+		collection: userCollection,
+		events: state.events
 	};
 };
 

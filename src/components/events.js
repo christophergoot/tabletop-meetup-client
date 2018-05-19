@@ -5,6 +5,9 @@ import { connect } from 'react-redux';
 
 
 export class Events extends React.Component {
+	componentDidMount() {
+		
+	}
 	render() {
 		const { events } = this.props;
 		const eventList = events.map((event, i) =>
@@ -21,7 +24,7 @@ export class Events extends React.Component {
 
 const mapStateToProps = state => {
 	return ({
-		events: state.events.filter(event => event.guests.userId === state.auth.currentUser.userId)
+		events: state.events.list.filter(event => event.guests.userId === state.auth.currentUser.userId)
 	});
 };
 

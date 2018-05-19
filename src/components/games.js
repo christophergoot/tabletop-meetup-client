@@ -9,17 +9,20 @@ import requiresLogin from './requires-login';
 // export default function Games(props) {
 export class Games extends React.Component {
 	render() {
+		const { collection, dispatch } = this.props;
+		const { games } = collection;
+	
 		return (
 			<section>
 				<h1>Manage Game List</h1>
 				<GameFilter />
 				<GameSort 
-					dispatch={this.props.dispatch}
-					collection={this.props.collection}
+					dispatch={dispatch}
+					collection={collection}
 				/>
 				<GameList 
-					collection={this.props.collection}
-					dispatch={this.props.dispatch}
+					games={games}
+					dispatch={dispatch}
 				/>
 			</section>
 		);
@@ -28,7 +31,8 @@ export class Games extends React.Component {
 
 const mapStateToProps = state => {
 	return ({
-		collection: state.collections.find(c => c.userId === state.auth.currentUser.userId)
+		// games: state.collections.list.games.find(c => c.userId === state.auth.currentUser.userId),
+		collection: state.collections.list.find(c => c.userId === state.auth.currentUser.userId)
 	});
 };
 
