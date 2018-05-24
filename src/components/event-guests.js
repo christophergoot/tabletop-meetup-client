@@ -3,37 +3,43 @@ import './event-guests.css';
 
 export default function EventGuests(props) {
 	const guests = props.guests;
-	// debugger
 	const guestList = guests.map((guest, i) => {
-		function rsvp(guest) {
-			switch (guest.rsvp) {
-				case 'host':
-					return {
-						status: 'Hosting',
-						class: 'rsvp host'
-					};
-				case 'invited':
-					return {
-						status: 'Invited',
-						class: 'rsvp invited'
-					};
-				case 'declined':
-					return {
-						status: 'Declined',
-						class: 'rsvp declined'
-					};
-				case 'confirmed':
-					return {
-						status: 'Confirmed',
-						class: 'rsvp confirmed'
-					};
-				default:
+		let status;
+		switch (guest.rsvp) {
+		case 'invited':
+			status = {
+				status: 'Invited',
+				class: 'rsvp invited'
 			};
-		};
-		const status = rsvp(guest);
+			break;
+		case 'maybe':
+			status = {
+				status: 'Maybe',
+				class: 'rsvp maybe'
+			};
+			break;
+		case 'no':
+			status = {
+				status: 'Declined',
+				class: 'rsvp declined'
+			};
+			break;
+		case 'yes':
+			status = {
+				status: 'Confirmed',
+				class: 'rsvp confirmed'
+			};
+			break;
+		default: 
+			status = {
+				status: '',
+				class: 'rsvp'
+			};
+			
+		}
 		return (
 			<div key={i}>
-				{guest.user} <span
+				{guest.name} <span
 					className={status.class}>({status.status})</span>
 			</div>
 		);
@@ -44,20 +50,3 @@ export default function EventGuests(props) {
 		</div>
 	);
 }
-
-// guests: [
-// 	{
-// 		user: "jgarcia",
-// 		confirmed: true,
-// 		invitedBy: "christophergoot"
-// 	},
-// 	{
-// 		user: "jabriel",
-// 		confirmed: false,
-// 		invitedBy: "jgarcia"
-// 	},
-// 	{
-// 		user: "eholland",
-// 		confirmed: false,
-// 		invitedBy: "christophergoot"
-// 	}

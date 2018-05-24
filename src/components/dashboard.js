@@ -6,20 +6,24 @@ import './dashboard.css';
 import Events from './events';
 import GameListSummary from './game-list-summary';
 import requiresLogin from './requires-login';
+import { loadAuthToken } from '../local-storage';
 
 export class Dashboard extends React.Component {
 	componentDidMount() {
 		const { userId } = this.props;
+		// this.props.dispatch(loadAuthToken());
 		this.props.dispatch(fetchCollection(userId));
 		this.props.dispatch(fetchEvents(userId));
 	}
 
 	render() {
+		let displayName = '';
+		if (this.props.name.trim() !== '') displayName = `Name: ${this.props.name}`;
 		return (
 			<div className="dashboard">
 				<div className="dashboard-user">
 					<p>Username: {this.props.username}</p>
-					<p>Name: {this.props.name}</p>
+					<p>{displayName}</p>
 				</div>
 				<GameListSummary collection={this.props.collection} />
 				<Events events={this.props.events}/>
@@ -30,12 +34,15 @@ export class Dashboard extends React.Component {
 
 const mapStateToProps = state => {
 	const { currentUser } = state.auth;
+	const authToken = loadAuthToken();
+
 	return {
 		userId: state.auth.currentUser.userId,
 		username: state.auth.currentUser.username,
 		name: `${currentUser.firstName} ${currentUser.lastName}`,
 		collection: state.collections.list,
-		events: state.events.list
+		events: state.events.list,
+		authToken
 	};
 };
 

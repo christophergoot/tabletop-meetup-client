@@ -3,7 +3,14 @@ import { FETCH_EVENTS_SUCCESS } from '../actions/events';
 
 // const { Collections } = MOCK_DATA;
 const initialState = ({
-	list: []
+	list: [
+		{
+			eventId: '',
+			location: '',
+			games: [],
+			guests: []
+		}
+	]
 });
 
 export default function eventsReducer(state=initialState, action) {
@@ -11,10 +18,10 @@ export default function eventsReducer(state=initialState, action) {
 	switch (type) {
 
 	case FETCH_EVENTS_SUCCESS:
-		return [
+		return {
 			...state,
-			action.events
-		];
+			list: action.events
+		};
 
 	default: 
 		return state;

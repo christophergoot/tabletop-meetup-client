@@ -1,48 +1,37 @@
 export const Events = [
 	{
-		eventId: 'jilhjd8890jdsaf',
-		date: 1525395600,
-		eventName: 'Upcomming Event',
+		startDate: 1527807600,
+		endDate: 1527829200,
+		name: 'Upcomming Event',
 		location: 'My Garage',
 		guests: [
 			{
-				user: 'jgarcia',
-				rsvp: 'invited',
-				invitedBy: 'goot'
+				userId: '5af9d3aa04eaf40db2da662d',
+				host: true,
+				attending: 'yes',
 			},
 			{
-				user: 'cloyd',
-				rsvp: 'confirmed',
-				invitedBy: 'jgarcia'
-			},
-			{
-				user: 'soltz',
-				rsvp: 'host',
-				invitedBy: 'goot'
-			},
-
+				userId: '5af9f461e3370c0f57bd431c',
+				host: false,
+				attending: 'yes',
+			}
 		]
 	},
 	{
-		eventId: 'jilhjd8890jdsaf',
-		date: 1519956000,
-		eventName: 'Old Event',
+		startDate: 1528498800,
+		endDate: 1528520400,
+		eventName: 'Other Event',
 		location: 'Cloud Cap Games',
 		guests: [
 			{
-				user: 'jgarcia',
-				rsvp: 'host',
-				invitedBy: 'jgarcia'
+				userId: '5af9d3aa04eaf40db2da662d',
+				host: false,
+				attending: 'maybe',
 			},
 			{
-				user: 'goot',
-				rsvp: 'confirmed',
-				invitedBy: 'jgarcia'
-			},
-			{
-				user: 'eholland',
-				rsvp: 'declined',
-				invitedBy: 'christophergoot'
+				userId: '5af9f461e3370c0f57bd431c',
+				host: false,
+				attending: 'yes',
 			}
 		]
 	}

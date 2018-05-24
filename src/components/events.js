@@ -3,11 +3,12 @@ import { Link } from 'react-router-dom';
 import ListEvent from './list-event';
 import { connect } from 'react-redux';
 import requiresLogin from './requires-login';
+import { fetchEvents } from '../actions/events';
 
 
 export class Events extends React.Component {
 	componentDidMount() {
-		
+		this.props.dispatch(fetchEvents());
 	}
 	render() {
 		const { events } = this.props;
@@ -25,7 +26,8 @@ export class Events extends React.Component {
 
 const mapStateToProps = state => {
 	return ({
-		events: state.events.list.filter(event => event.guests.userId === state.auth.currentUser.userId)
+		events: state.events.list
+		// events: state.events.list.filter(event => event.guests.userId === state.auth.currentUser.userId)
 	});
 };
 
