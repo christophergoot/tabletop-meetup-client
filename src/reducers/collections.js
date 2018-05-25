@@ -1,7 +1,7 @@
-import { FETCH_COLLECTION_SUCCESS } from '../actions/collections';
-// import MOCK_DATA from '../mock-data';
+import { 
+	FETCH_COLLECTION_SUCCESS, 
+} from '../actions/collections';
 
-// const { Collections } = MOCK_DATA;
 const initialState = ({
 	list: {
 		userId: '',

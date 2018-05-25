@@ -1,6 +1,6 @@
 import React from 'react';
 // import { connect } from 'react-redux';
-import { sortGames } from '../actions/tabletopmeetup';
+import { sortGames } from '../actions/collections';
 import './game-sort.css';
 
 // export class GameSort extends React.Component {
@@ -27,11 +27,6 @@ export default function GameSort(props) {
 			label: 'sort by Play Time',
 			name: 'Time'
 		},
-		// {
-		// 	method: 'weight',
-		// 	name: 'Weight',
-		// 	label: 'sort by Weight'
-		// },
 		{
 			method: 'yearPublished',
 			name: 'Year',
@@ -52,7 +47,7 @@ export default function GameSort(props) {
 				onClick={() => props.dispatch(sortGames(props.collection.games, el.method))} >
 				{el.name}
 			</li>
-		)});
+		);});
 
 	return (
 		<div className='sort-container'>
@@ -62,7 +57,7 @@ export default function GameSort(props) {
 			</ul>
 		</div>
 	);
-};
+}
 
 // GameSort.defaultProps = {
 // 	collection: { sort: {method: 'name', order: 'ascending'}}

@@ -2,12 +2,6 @@ import { loadAuthToken } from '../local-storage';
 // import { API_BASE_URL } from '../config';
 const API_BASE_URL = 'http://localhost:3030/api';
 
-export const FETCH_COLLECTION_SUCCESS = 'FETCH_COLLECTION_SUCCESS';
-export const fetchCollectionSuccess = collection => ({
-	type: FETCH_COLLECTION_SUCCESS,
-	collection
-});
-
 export const fetchCollection = (userId) =>  dispatch => {
 	const authToken = loadAuthToken();
 	// const authToken = localStorage.getItem('authToken');
@@ -28,15 +22,27 @@ export const fetchCollection = (userId) =>  dispatch => {
 	});
 };
 
+export const FETCH_COLLECTION_SUCCESS = 'FETCH_COLLECTION_SUCCESS';
+export const fetchCollectionSuccess = collection => ({
+	type: FETCH_COLLECTION_SUCCESS,
+	collection
+});
 
-// var misCabeceras = new Headers();
-// misCabeceras.append('Authorization', 'Bearer pepe el loco');
-// var miInit = { method: 'GET',
-// 	headers: misCabeceras,
-// 	mode: 'cors',
-// 	cache: 'default' };
+export const SORT_GAMES = 'SORT_GAMES';
+export const sortGames = (games, sortMethod) => ({
+	type: SORT_GAMES,
+	games,
+	sortMethod
+});
 
-// fetch('https://images.pexels.com/photos/39517/rose-flower-blossom-bloom-39517.jpeg?cs=srgb&dl=flowers-petals-plants-39517.jpg&fm=jpg',miInit)
-// 	.then(function(response) {
-// 		console.log(response);
-// 	}).catch(e => console.log(e));
+export const EDIT_GAME = 'EDIT_GAME';
+export const editGame = (gameId) => ({
+	type: EDIT_GAME,
+	gameId
+});
+
+export const REMOVE_GAME = 'REMOVE_GAME';
+export const removeGame = (gameId) => ({
+	type: REMOVE_GAME,
+	gameId
+}); 
