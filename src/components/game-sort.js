@@ -3,13 +3,6 @@ import React from 'react';
 import { sortGames } from '../actions/collections';
 import './game-sort.css';
 
-// export class GameSort extends React.Component {
-// 	constructor(props){
-// 		super(props);
-// 	};
-
-// 	render() { 
-
 export default function GameSort(props) {
 	const methods = [
 		{
@@ -38,10 +31,17 @@ export default function GameSort(props) {
 			label: 'sort by BBG Rank'
 		}
 	];
+	let { sort } = props;
+	if (sort === undefined) sort = {
+		method: 'name',
+		direction: 1
+	};
 	const listItems = methods.map((el, i) => {
+		let className = 'sort';
+		if (el.method === sort.method) className = 'sort selected';
 		return (
 			<li key={i}
-				className='sort'
+				className={className}
 				title={el.label} 
 				alt={el.label}
 				onClick={() => props.dispatch(sortGames(props.collection.games, el.method))} >

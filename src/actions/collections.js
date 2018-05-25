@@ -2,13 +2,25 @@ import { loadAuthToken } from '../local-storage';
 // import { API_BASE_URL } from '../config';
 const API_BASE_URL = 'http://localhost:3030/api';
 
-export const fetchCollection = (userId) =>  dispatch => {
+export const fetchCollection = (userId, sort, filter, limit) =>  dispatch => {
 	const authToken = loadAuthToken();
-	// const authToken = localStorage.getItem('authToken');
-	// return loadAuthToken().then(authToken => { 
+
+	const url = new URL(`${API_BASE_URL}/collections/${userId}`);
+	let sortMethod = 'name',
+		sortDirection = 1;
+	if (sort) sortMethod = sort.method, sortDirection = sort.direction;
+	const params = {
+		sortMethod,
+		sortDirection,
+		limit: limit || 25,
+		filter: filter || 'owned'
+	};
+	Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
+
 	const thisHeaders = new Headers();
 	thisHeaders.append('Authorization', `Bearer ${authToken}`);
-	fetch(`${API_BASE_URL}/collections/${userId}`, {
+
+	fetch(url, {
 		'method': 'GET',
 		'mode': 'cors',
 		'headers': thisHeaders
@@ -21,6 +33,7 @@ export const fetchCollection = (userId) =>  dispatch => {
 		dispatch(fetchCollectionSuccess(res));
 	});
 };
+
 
 export const FETCH_COLLECTION_SUCCESS = 'FETCH_COLLECTION_SUCCESS';
 export const fetchCollectionSuccess = collection => ({

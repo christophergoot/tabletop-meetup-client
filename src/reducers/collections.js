@@ -5,13 +5,16 @@ import {
 const initialState = ({
 	list: {
 		userId: '',
+		sort: {
+			method: 'name',
+			direction: 1
+		},
 		games:[]
 	}
 });
 
 export default function collectionsReducer(state=initialState, action) {
 	const { type } = action;
-	console.log(state,action);
 	switch (type) {
 
 	case FETCH_COLLECTION_SUCCESS:

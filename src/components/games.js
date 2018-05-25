@@ -15,7 +15,7 @@ export class Games extends React.Component {
 
 	render() {
 		const { collection, dispatch } = this.props;
-		const { games } = collection;
+		const { games, sort } = collection;
 	
 		return (
 			<section>
@@ -24,6 +24,7 @@ export class Games extends React.Component {
 				<GameSort 
 					dispatch={dispatch}
 					collection={collection}
+					sort={sort}
 				/>
 				<GameList 
 					games={games}
