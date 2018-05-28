@@ -1,5 +1,4 @@
 import React from 'react';
-// import { connect } from 'react-redux';
 import { fetchCollection } from '../actions/collections';
 import './game-sort.css';
 
@@ -31,29 +30,30 @@ export default function GameSort(props) {
 			label: 'sort by BBG Rank'
 		}
 	];
-	const { sort } = props;
+	const { sort, userId, limit, filter } = props.collection;
 	// if (sort === undefined) sort = {
 	// 	method: 'name',
 	// 	direction: 1
 	// };
 	const listItems = methods.map((el, i) => {
 		let className = 'sort';
-		// sortDirection = 1;
+		let sortDirection = 1;
 		if (el.method === sort.method) {
 			className = 'sort selected';
-			// sortDirection = -1;
+			sortDirection = sort.direction * -1;
 		}
-		// const sort = {
-		// 	method: el.method,
-		// 	direction: sortDirection
-		// };
-		sort.method = el.method;
 		return (
 			<li key={i}
 				className={className}
 				title={el.label} 
 				alt={el.label}
-				onClick={() => props.dispatch(fetchCollection(props.collection.userId, props.collection.limit, 1, sort, props.collection.filter))} >
+				onClick={() => props.dispatch(
+					fetchCollection(
+						userId, 
+						limit, 
+						1, 
+						{ method: el.method, direction: sortDirection},
+						filter))} >
 				{el.name}
 			</li>
 		);
