@@ -16,6 +16,7 @@ export class Games extends React.Component {
 	render() {
 		const { collection, dispatch } = this.props;
 		const { games, sort } = collection;
+		// const gameList = games.list;
 	
 		return (
 			<section>

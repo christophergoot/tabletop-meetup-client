@@ -1,4 +1,5 @@
 import React from 'react';
+import NewLocation from './add-location';
 // import { Formik } from 'formik';
 
 // const EventForm = () => (
@@ -16,7 +17,7 @@ import React from 'react';
 
 
 
-export default function NewEvent(props) {
+export default function NewEvent() {
 	return (
 		<section>
 			<h2>Create a new Event</h2>
@@ -30,13 +31,7 @@ export default function NewEvent(props) {
 				<label htmlFor="end-time">To</label>
 				<input type="time" id="end-time" />
 				<h3>Location</h3>
-				<select name="location">
-					<option value="">Christopher's Gararge</option>
-					<option value="">Cloud Cap Games</option>
-					<option value="">Juan's House</option>
-					<option value=""></option>
-					<option value="">add New Location</option>
-				</select> 
+				<NewLocation />
 				<h3>Guests to Invite</h3>
 				<ul>
 					<li>Christopher Gutierrez (organizer)</li>

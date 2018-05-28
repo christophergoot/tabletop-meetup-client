@@ -4,6 +4,8 @@ import './event-guests.css';
 export default function EventGuests(props) {
 	const guests = props.guests;
 	const guestList = guests.map((guest, i) => {
+		const user = guest.user[0];
+		const userName = user.firstName + user.lastName || user.username;
 		let status;
 		switch (guest.rsvp) {
 		case 'invited':
@@ -39,7 +41,7 @@ export default function EventGuests(props) {
 		}
 		return (
 			<div key={i}>
-				{guest.name} <span
+				{userName} <span
 					className={status.class}>({status.status})</span>
 			</div>
 		);

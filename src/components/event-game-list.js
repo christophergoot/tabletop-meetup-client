@@ -5,7 +5,7 @@ import GameBoxtop from './game-boxtop';
 export default class EventGameList extends React.Component {
 	render() {
 		const { games } = this.props;
-		const gameList = games.map((game, i) => (<GameBoxtop game={game} key={i} />));
+		const gameList = games.list.map((game, i) => (<GameBoxtop game={game} key={i} />));
 		return (
 			<section>
 				<h2>Event Game List</h2>

@@ -7,7 +7,9 @@ const initialState = ({
 		{
 			eventId: '',
 			location: '',
-			games: [],
+			games: {
+				list: []
+			},
 			guests: []
 		}
 	]
