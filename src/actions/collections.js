@@ -1,7 +1,7 @@
 import { loadAuthToken } from '../local-storage';
 import { API_BASE_URL } from '../config';
 // const API_BASE_URL = 'http://localhost:3030/api';
-import { fetchEvent } from './events';
+// import { fetchEvent } from './events';
 
 export const fetchCollection = (userId, limit, page, sort, filter) =>  dispatch => {
 	const authToken = loadAuthToken();
@@ -10,12 +10,12 @@ export const fetchCollection = (userId, limit, page, sort, filter) =>  dispatch 
 	let sortMethod = 'name',
 		sortDirection = 1;
 	if (sort) sortMethod = sort.method, sortDirection = sort.direction;
-	const skip = (page - 1) * limit;
+	// const skip = (page - 1) * limit;
 	const params = {
 		sortMethod,
 		sortDirection,
 		limit: limit || 25,
-		skip: skip || 0,
+		page: page || 1,
 		filter: filter || 'owned'
 	};
 	Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
