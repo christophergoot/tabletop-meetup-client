@@ -1,4 +1,4 @@
-import { FETCH_EVENTS_SUCCESS } from '../actions/events';
+import { FETCH_EVENTS_SUCCESS, FETCH_SINGLE_EVENT_SUCCESS } from '../actions/events';
 // import MOCK_DATA from '../mock-data';
 
 // const { Collections } = MOCK_DATA;
@@ -7,9 +7,15 @@ const initialState = ({
 		{
 			eventId: '',
 			location: '',
-			games: {
-				list: []
+			sort: {
+				method: 'name',
+				direction: 1
 			},
+			filter: [],
+			page: 1,
+			pageCount: 5,
+			limit: 25,
+			games: [],
 			guests: []
 		}
 	]
@@ -23,6 +29,14 @@ export default function eventsReducer(state=initialState, action) {
 		return {
 			...state,
 			list: action.events
+		};
+
+	case FETCH_SINGLE_EVENT_SUCCESS:
+		return {
+			...state,
+			list: [
+				action.event
+			] 
 		};
 
 	default: 

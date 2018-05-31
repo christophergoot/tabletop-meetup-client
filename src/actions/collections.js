@@ -1,12 +1,17 @@
 import { loadAuthToken } from '../local-storage';
 import { API_BASE_URL } from '../config';
+import { fetchSingleEventSuccess } from './events';
 // const API_BASE_URL = 'http://localhost:3030/api';
 // import { fetchEvent } from './events';
 
 export const fetchCollection = (userId, limit, page, sort, filter) =>  dispatch => {
+	dispatch(manageGameList('collections',userId,limit, page, sort, filter));
+};
+
+export const manageGameList = (collectionType, collectionId, limit, page, sort, filter) =>  dispatch => {
 	const authToken = loadAuthToken();
 
-	const url = new URL(`${API_BASE_URL}/collections/${userId}`);
+	const url = new URL(`${API_BASE_URL}/${collectionType}/${collectionId}`);
 	let sortMethod = 'name',
 		sortDirection = 1;
 	if (sort) sortMethod = sort.method, sortDirection = sort.direction;
@@ -33,7 +38,9 @@ export const fetchCollection = (userId, limit, page, sort, filter) =>  dispatch 
 		}
 		return res.json();
 	}).then(res => {
-		dispatch(fetchCollectionSuccess(res));
+		const { eventId, userId } = res;
+		if (eventId) dispatch(fetchSingleEventSuccess(res));
+		if (userId) dispatch(fetchCollectionSuccess(res));
 	});
 };
 

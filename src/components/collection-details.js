@@ -7,29 +7,29 @@ export default class CollectionDetails extends React.Component {
 		this.state = {
 			editing: false
 		};
-	}
-
-	updateCollection = e => {
-		e.preventDefault();
-		console.log('updating collection');
-		this.setState({editing: false});
-	}
-
-	createCheckbox = (label, labelId, checked) => {
 	
-		return (
-			<div key={labelId}>
-				<input 
-					type="checkbox" 
-					id={labelId}
-					name={labelId}
-					defaultChecked={checked} />
-				<label htmlFor={labelId} >
-					{label}
-				</label>
-			</div>
-		); 
+		this.updateCollection = (e) => {
+			e.preventDefault();
+			alert('updating collection');
+			this.setState({editing: false});
+		};
+
+		this.createCheckbox = (label, labelId, checked) => {
+			return (
+				<div key={labelId}>
+					<input 
+						type="checkbox" 
+						id={labelId}
+						name={labelId}
+						defaultChecked={checked} />
+					<label htmlFor={labelId} >
+						{label}
+					</label>
+				</div>
+			); 
+		};
 	}
+
 	render() {
 		const { game } = this.props;
 		const collectionFields = [
@@ -45,10 +45,10 @@ export default class CollectionDetails extends React.Component {
 		const collectionDetails = collectionFields.map((field, i) => {
 			if (game[Object.keys(field)]) return (
 				<p key={i}>{(field[Object.keys(field)])}</p>
-			)
-			return ("");
+			);
+			return ('');
 		});
-		const checkBoxes = collectionFields.map((field, i) => {
+		const checkBoxes = collectionFields.map((field) => {
 			return (this.createCheckbox(
 				field[Object.keys(field)], 
 				Object.keys(field),
@@ -57,23 +57,23 @@ export default class CollectionDetails extends React.Component {
 		});
 		if (this.state.editing) return (
 			<div className='collection-details editing'>
-				<form onSubmit={this.updateCollection}>
+				<form onSubmit={e => this.updateCollection(e)}>
 					{checkBoxes}
 					<button type='submit'>
 						Save
 					</button>
-					<button onClick={e => this.setState({editing: false})}>
+					<button onClick={() => this.setState({editing: false})}>
 						Cancel
 					</button>
 				</form>
 			</div>			
-		)
+		);
 		else return (
 			<div 
 				className='collection-details'
-				onClick={e => this.setState({editing: true})} >
+				onClick={() => this.setState({editing: true})} >
 				{collectionDetails}
 			</div>
-		)
+		);
 	}
 }

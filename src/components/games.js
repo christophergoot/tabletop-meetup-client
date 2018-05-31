@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchCollection } from '../actions/collections';
+import { manageGameList } from '../actions/collections';
 import GameFilter from './game-filter';
 import GameList from './game-list';
 import GameSort from './game-sort';
@@ -11,7 +11,7 @@ import requiresLogin from './requires-login';
 export class Games extends React.Component {
 	componentDidMount() {
 		const { userId } = this.props;
-		this.props.dispatch(fetchCollection(userId));
+		this.props.dispatch(manageGameList(userId));
 	}
 
 	render() {

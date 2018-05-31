@@ -24,9 +24,11 @@ export default function GameBoxtop(props) {
 		else return (`${minPlayers} to ${maxPlayers} Players`);
 	};
 
+	const externalLink = `https://boardgamegeek.com/boardgame/${gameId}/`;
+
 	return (
 		<div className='game-card' style={divStyle}>
-			<h3><a onClick={e => console.log('view details for BGG id ' + gameId)}>{name}</a> ({yearPublished})</h3>
+			<h3><a href={externalLink}>{name}</a> ({yearPublished})</h3>
 			<CollectionDetails 
 				game={props.game}
 				editCollectionDetails={props.editCollectionDetails} />
