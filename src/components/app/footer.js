@@ -1,7 +1,7 @@
 import React from 'react';
 import './footer.css';
 
-export default function Footer(props) {
+export default function Footer() {
 	return (
 		<footer>
 			A Progressive Web App by <a 

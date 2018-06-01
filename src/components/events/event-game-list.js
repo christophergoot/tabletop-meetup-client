@@ -1,8 +1,8 @@
 import React from 'react';
-import GameBoxtop from './game-boxtop';
-import GameFilter from './game-filter';
-import GameSort from './game-sort';
-import GamesPaginate from './games-paginate';
+import GameBoxtop from '../collections/game-boxtop';
+import GameFilter from '../collections/game-filter';
+import GameSort from '../collections/game-sort';
+import GamesPaginate from '../collections/games-paginate';
 // import { connect } from 'react-redux';
 
 export default class EventGameList extends React.Component {

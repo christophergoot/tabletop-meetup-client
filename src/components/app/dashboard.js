@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchCollection } from '../actions/collections';
-import { fetchEvents } from '../actions/events';
+import { fetchCollection } from '../../actions/collections';
+import { fetchEvents } from '../../actions/events';
 import './dashboard.css';
-import Events from './events';
-import GameListSummary from './game-list-summary';
+import Events from '../events/events';
+import GameListSummary from '../collections/game-list-summary';
 import requiresLogin from './requires-login';
-import { loadAuthToken } from '../local-storage';
+import { loadAuthToken } from '../../local-storage';
 
 export class Dashboard extends React.Component {
 	componentDidMount() {

@@ -1,7 +1,7 @@
 import React from 'react';
-import './sort-container.css'
+import './sort-container.css';
 
-export default function GameFilter(props) {
+export default function GameFilter() {
 
 	const filterMethods = [
 		{
@@ -40,7 +40,7 @@ export default function GameFilter(props) {
 		</li>
 	));
 
-    return (
+	return (
 		<div className='sort-container'>
 			<p>Filter</p>
 			<ul>
@@ -48,4 +48,4 @@ export default function GameFilter(props) {
 			</ul>
 		</div>
 	);
-};
+}

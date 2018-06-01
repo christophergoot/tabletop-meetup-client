@@ -1,8 +1,6 @@
 import React from 'react';
 import GameBoxtop from './game-boxtop';
 import EditGame from './edit-game';
-// import { removeGame } from "../actions";
-// import { connect } from "react-redux";
 
 export default class GameCard extends React.Component {
 	constructor(props) {

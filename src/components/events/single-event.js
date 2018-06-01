@@ -2,7 +2,7 @@ import React from 'react';
 import ListEvent from './list-event';
 import EventGameList from './event-game-list';
 import { connect } from 'react-redux';
-import { fetchSingleEvent } from '../actions/events';
+import { fetchSingleEvent } from '../../actions/events';
 // import { fetchEvents } from '../actions/events';
 
 export class SingleEvent extends React.Component {

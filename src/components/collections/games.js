@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { manageGameList } from '../actions/collections';
+import { manageGameList } from '../../actions/collections';
 import GameFilter from './game-filter';
 import GameList from './game-list';
 import GameSort from './game-sort';
 import GamesPaginate from './games-paginate';
-import requiresLogin from './requires-login';
+import requiresLogin from '../app/requires-login';
 
 
 export class Games extends React.Component {

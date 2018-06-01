@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import ListEvent from './list-event';
 import { connect } from 'react-redux';
-import requiresLogin from './requires-login';
-import { fetchEvents } from '../actions/events';
+import requiresLogin from '../app/requires-login';
+import { fetchEvents } from '../../actions/events';
 
 
 export class Events extends React.Component {

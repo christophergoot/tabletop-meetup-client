@@ -1,5 +1,5 @@
 import React from 'react';
-import { manageGameList } from '../actions/collections';
+import { manageGameList } from '../../actions/collections';
 import './game-sort.css';
 
 export default function GameSort(props) {

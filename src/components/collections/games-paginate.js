@@ -1,5 +1,5 @@
 import React from 'react';
-import { manageGameList } from '../actions/collections';
+import { manageGameList } from '../../actions/collections';
 import './games-paginate.css';
 
 function generatePageList(dispatch, collection, collectionType, collectionId) {

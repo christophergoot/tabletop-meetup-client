@@ -14,8 +14,10 @@ export const manageGameList = (collectionType, collectionId, limit, page, sort, 
 	const url = new URL(`${API_BASE_URL}/${collectionType}/${collectionId}`);
 	let sortMethod = 'name',
 		sortDirection = 1;
-	if (sort) sortMethod = sort.method, sortDirection = sort.direction;
-	// const skip = (page - 1) * limit;
+	if (sort) {
+		sortMethod = sort.method;
+		sortDirection = sort.direction;
+	}
 	const params = {
 		sortMethod,
 		sortDirection,
