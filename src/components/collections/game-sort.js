@@ -1,5 +1,5 @@
 import React from 'react';
-import { manageGameList } from '../../actions/collections';
+// import { fetchCollection } from '../../actions/collections';
 import './game-sort.css';
 
 export default function GameSort(props) {
@@ -30,17 +30,7 @@ export default function GameSort(props) {
 			label: 'sort by BBG Rank'
 		}
 	];
-	const { sort, userId, eventId, limit, filter } = props.collection;
-	let collectionType = '';
-	let collectionId = '';
-	if (userId) {
-		collectionType = 'collections';
-		collectionId = userId;
-	}
-	if (eventId) {
-		collectionType = 'events';
-		collectionId = eventId;
-	}
+	const { sort, limit, filter } = props.collection;
 
 	const listItems = methods.map((el, i) => {
 		let className = 'sort';
@@ -54,14 +44,14 @@ export default function GameSort(props) {
 				className={className}
 				title={el.label} 
 				alt={el.label}
-				onClick={() => props.dispatch(
-					manageGameList(
-						collectionType, 
-						collectionId, 
+				onClick={() => 
+					props.updateList(
 						limit, 
-						1, 
+						1,
 						{ method: el.method, direction: sortDirection},
-						filter))} >
+						filter
+					)} 
+			>
 				{el.name}
 			</li>
 		);
@@ -76,7 +66,3 @@ export default function GameSort(props) {
 		</div>
 	);
 }
-
-// GameSort.defaultProps = {
-// 	collection: { sort: {method: 'name', order: 'ascending'}}
-// }

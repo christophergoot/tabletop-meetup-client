@@ -1,6 +1,7 @@
 import React from 'react';
 import GameBoxtop from './game-boxtop';
 import EditGame from './edit-game';
+import CollectionDetails from './collection-details';
 
 export default class GameCard extends React.Component {
 	constructor(props) {
@@ -33,6 +34,7 @@ export default class GameCard extends React.Component {
 		else return (
 			<GameBoxtop 
 				game={this.props.game} 
+				listManager={<CollectionDetails game={this.props.game} />}
 				editCollectionDetails={this.editGame} 
 				dispatch={this.props.dispatch} 
 				// toggleEditing={this.toggleEditing}

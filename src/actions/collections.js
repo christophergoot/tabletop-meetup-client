@@ -5,13 +5,36 @@ import { fetchSingleEventSuccess } from './events';
 // import { fetchEvent } from './events';
 
 export const fetchCollection = (userId, limit, page, sort, filter) =>  dispatch => {
-	dispatch(manageGameList('collections',userId,limit, page, sort, filter));
+	const uri = `collections/${userId}/`;
+	dispatch(manageGameList(uri,limit, page, sort, filter))
+		.then(res => {
+			if (!res.ok) {
+				return Promise.reject(res.statusText);
+			}
+			return res.json();
+		})
+		.then(res => {
+			dispatch(fetchCollectionSuccess(res));
+		});
 };
 
-export const manageGameList = (collectionType, collectionId, limit, page, sort, filter) =>  dispatch => {
+export const fetchSingleEvent = (userId, limit, page, sort, filter) =>  dispatch => {
+	const uri = `events/${userId}/`;
+	dispatch(manageGameList(uri,limit, page, sort, filter))
+		.then(res => {
+			if (!res.ok) {
+				return Promise.reject(res.statusText);
+			}
+			return res.json();
+		})
+		.then(res => {
+			dispatch(fetchSingleEventSuccess(res));
+		});
+};
+const manageGameList = (uri, limit, page, sort, filter) =>  dispatch => {
 	const authToken = loadAuthToken();
-
-	const url = new URL(`${API_BASE_URL}/${collectionType}/${collectionId}`);
+	// collectionType will be either 'events' or 'collections'
+	const url = new URL(`${API_BASE_URL}${uri}`);
 	let sortMethod = 'name',
 		sortDirection = 1;
 	if (sort) {
@@ -30,19 +53,10 @@ export const manageGameList = (collectionType, collectionId, limit, page, sort, 
 	const thisHeaders = new Headers();
 	thisHeaders.append('Authorization', `Bearer ${authToken}`);
 
-	fetch(url, {
+	return fetch(url, {
 		'method': 'GET',
 		'mode': 'cors',
 		'headers': thisHeaders
-	}).then(res => {
-		if (!res.ok) {
-			return Promise.reject(res.statusText);
-		}
-		return res.json();
-	}).then(res => {
-		const { eventId, userId } = res;
-		if (eventId) dispatch(fetchSingleEventSuccess(res));
-		if (userId) dispatch(fetchCollectionSuccess(res));
 	});
 };
 

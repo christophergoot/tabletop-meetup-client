@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { manageGameList } from '../../actions/collections';
+import { fetchCollection } from '../../actions/collections';
 import GameFilter from './game-filter';
 import GameList from './game-list';
 import GameSort from './game-sort';
@@ -11,7 +11,11 @@ import requiresLogin from '../app/requires-login';
 export class Games extends React.Component {
 	componentDidMount() {
 		const { userId } = this.props;
-		this.props.dispatch(manageGameList(userId));
+		this.props.dispatch(fetchCollection(userId));
+	}
+
+	updateList = (limit,page,sort,filter) => {
+		this.props.dispatch(fetchCollection(this.props.userId, limit,page,sort,filter))
 	}
 
 	render() {
@@ -24,17 +28,15 @@ export class Games extends React.Component {
 				<h1>Manage Game List</h1>
 				<GameFilter />
 				<GameSort 
-					dispatch={dispatch}
 					collection={collection}
-					sort={sort}
+					updateList={this.updateList}
 				/>
 				<GamesPaginate 
-					dispatch={dispatch}
 					collection={collection}
+					updateList={this.updateList}
 				/>
 				<GameList 
 					games={games}
-					dispatch={dispatch}
 				/>
 			</section>
 		);

@@ -3,14 +3,28 @@ import GameBoxtop from '../collections/game-boxtop';
 import GameFilter from '../collections/game-filter';
 import GameSort from '../collections/game-sort';
 import GamesPaginate from '../collections/games-paginate';
+import GameBallot from './game-ballot';
+import { fetchSingleEvent } from  '../../actions/collections';
 // import { connect } from 'react-redux';
 
 export default class EventGameList extends React.Component {
+
+	updateList = (limit,page,sort,filter) => {
+		this.props.dispatch(fetchSingleEvent(this.props.event.eventId, limit, page, sort, filter))
+	}
+
 	render() {
 		const { event } = this.props;
 		let gameList = '';
 		if (event.games) {
-			gameList = event.games.map((game, i) => (<GameBoxtop game={game} key={i} />));
+			gameList = event.games.map((game, i) => {
+				return (
+					<GameBoxtop
+						listManager={<GameBallot game={game} />}
+						game={game} 
+						key={i} />
+				);
+			});
 		}
 		return (
 			<section>
@@ -18,10 +32,12 @@ export default class EventGameList extends React.Component {
 				<GameFilter />
 				<GameSort 
 					collection={event}
-					dispatch={this.props.dispatch} />
+					updateList={this.updateList}
+				/>
 				<GamesPaginate 
 					collection={event}
-					dispatch={this.props.dispatch} />
+					updateList={this.updateList}
+				/>
 				<span className="game-list">{gameList}</span>
 			</section>
 		);

@@ -15,7 +15,7 @@ export const fetchSingleEventSuccess = event => ({
 
 export const fetchSingleEvent = (eventId) => dispatch => {
 	const authToken = loadAuthToken();
-	return fetch(`${API_BASE_URL}/events/${eventId}`, {
+	return fetch(`${API_BASE_URL}events/${eventId}`, {
 		headers: {
 			'Content-Type': 'application/json',
 			'Authorization': 'Bearer ' + authToken
@@ -32,7 +32,7 @@ export const fetchSingleEvent = (eventId) => dispatch => {
 
 export const fetchEvents = () => dispatch => {
 	const authToken = loadAuthToken();
-	return fetch(`${API_BASE_URL}/events/`, {
+	return fetch(`${API_BASE_URL}events/`, {
 		headers: {
 			'Content-Type': 'application/json',
 			'Authorization': 'Bearer ' + authToken

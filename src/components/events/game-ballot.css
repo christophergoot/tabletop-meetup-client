@@ -1,0 +1,19 @@
+.game-ballot>a {
+	display: block;
+	/* line-height: .9em; */
+}
+
+.game-ballot {
+	/* visibility: hidden; */
+	/* display: none; */
+	/* position: absolute; */
+	/* right: 0; */
+	background-color: rgba(255, 255, 255, 0.50);
+	/* border: 1px lightgrey solid; */
+}
+
+.game-ballot:hover {
+	/* visibility: visible; */
+	/* display: inline; */
+	background-color: white;
+}

@@ -42,12 +42,16 @@ export default class CollectionDetails extends React.Component {
 			{ preOrdered: 'Pre-ordered' },
 			{ wishList: 'Wishlist' }
 		];
-		const collectionDetails = collectionFields.map((field, i) => {
+		let collectionDetails = collectionFields.map((field, i) => {
 			if (game[Object.keys(field)]) return (
 				<p key={i}>{(field[Object.keys(field)])}</p>
 			);
 			return ('');
 		});
+		if (collectionDetails.filter(el => el !== '').length === 0) {
+			collectionDetails.length = 0;
+			['Add','to List'].forEach((el,i) => collectionDetails.push(<p key={i}>{el}</p>));
+		}
 		const checkBoxes = collectionFields.map((field) => {
 			return (this.createCheckbox(
 				field[Object.keys(field)], 

@@ -1,21 +1,20 @@
 import React from 'react';
-import { manageGameList } from '../../actions/collections';
 import './games-paginate.css';
 
-function generatePageList(dispatch, collection, collectionType, collectionId) {
+function generatePageList(collection, updateList) {
 	const { page, pageCount, limit, sort, filter } = collection;
 	
 	const pages = [];
 	let prevPage = 0;
 	if (page !== 1) prevPage = page - 1;
 	if (prevPage) pages.push(
-		<li key={'prevPage'} className="sort">
-			<a onClick={() => dispatch(manageGameList(collectionType, collectionId, limit, prevPage, sort, filter))} >
+		<li key={prevPage * new Date()} className="sort">
+			<a onClick={() => updateList(limit, prevPage, sort, filter)} >
 				prev
 			</a>
 		</li>);
 	else pages.push(
-		<li key={'prevPage'} className="sort selected">
+		<li key={prevPage * new Date()} className="sort selected">
 			prev
 		</li>
 	);
@@ -25,12 +24,13 @@ function generatePageList(dispatch, collection, collectionType, collectionId) {
 		else if (i>pageCount);
 		else if (i === page-pageVis) {
 			pages.push(
-				(<li key='1' className="sort">
-					<a onClick={() => dispatch(manageGameList(collectionType, collectionId, limit, 1, sort, filter))} >
+				(<li key={i * new Date()} className="sort">
+					<a onClick={() => updateList(limit, 1, sort, filter)} >
 					1
 					</a>
 				</li>),
-				'...');
+				(<span key={i + new Date()}>...</span>)
+			);
 			i++;
 		}
 		else if (i === page) pages.push(
@@ -41,22 +41,23 @@ function generatePageList(dispatch, collection, collectionType, collectionId) {
 		else if (i ===  pageCount) {
 			pages.push(
 				<li key={i} className="sort">
-					<a onClick={() => dispatch(manageGameList(collectionType, collectionId, limit, i, sort, filter))} >
+					<a onClick={() => updateList(limit, i, sort, filter)} >
 						{i}
 					</a>
 				</li>);
 		}
 		else if (i === page+pageVis-1) {
-			pages.push('...',
+			pages.push(
+				(<span key={i + new Date()}>...</span>),
 				(<li key={pageCount} className="sort">
-					<a onClick={() => dispatch(manageGameList(collectionType, collectionId, limit, pageCount, sort, filter))} >
+					<a onClick={() => updateList(limit, pageCount, sort, filter)} >
 						{pageCount}
 					</a>
 				</li>));
 		}
 		else pages.push(
 			<li key={i} className="sort">
-				<a onClick={() => dispatch(manageGameList(collectionType, collectionId, limit, i, sort, filter))} >
+				<a onClick={() => updateList(limit, i, sort, filter)} >
 					{i}
 				</a>
 			</li>);
@@ -65,13 +66,13 @@ function generatePageList(dispatch, collection, collectionType, collectionId) {
 	let nextPage = 0;
 	if (page !== pageCount) nextPage = page + 1;
 	if (nextPage) pages.push(
-		<li key={'nextPage'} className="sort">
-			<a onClick={() => dispatch(manageGameList(collectionType, collectionId, limit, nextPage, sort, filter))} >
+		<li key={nextPage * new Date()} className="sort">
+			<a onClick={() => updateList(limit, nextPage, sort, filter)} >
 				next
 			</a>
 		</li>);
 	else pages.push(
-		<li key={'nextPage'} className="sort selected">
+		<li key={nextPage * new Date()} className="sort selected">
 			next
 		</li>
 	);
@@ -83,43 +84,23 @@ function generatePageList(dispatch, collection, collectionType, collectionId) {
 
 
 export default function GamesPaginate(props) {
-	const { page, limit, userId, eventId, sort, filter } = props.collection;
-	let collectionType = '';
-	let collectionId = '';
-	if (userId) {
-		collectionType = 'collections';
-		collectionId = userId;
-	}
-	if (eventId) {
-		collectionType = 'events';
-		collectionId = eventId;
-	}
-	const pages = generatePageList(props.dispatch, props.collection, collectionType, collectionId);
+	const { page, limit, sort, filter } = props.collection;
+	const pages = generatePageList(props.collection, props.updateList);
 	const limitOpts = [
-		{
-			value: 10,
-			label: 'show 10 per page'
-		},
-		{
-			value: 25,
-			label: 'show 25 per page'
-		},
-		{
-			value: 50,
-			label: 'show 50 per page'
-		},
-		{
-			value: 100,
-			label: 'show 100 per page'
-		},
-		{
-			value: 0,
-			label: 'Show All'
-		},
+		{	value: 10,
+			label: 'show 10 per page' },
+		{	value: 25,
+			label: 'show 25 per page' },
+		{	value: 50,
+			label: 'show 50 per page' },
+		{	value: 100,
+			label: 'show 100 per page' },
+		{	value: 0,
+			label: 'Show All' }
 	];
-	let options = limitOpts.map(opt => {
+	let options = limitOpts.map((opt, i) => {
 		return (
-			<option key={opt.value} value={opt.value}>{opt.label}</option>
+			<option key={i} value={opt.value}>{opt.label}</option>
 		);
 	});
 	return (
@@ -133,8 +114,14 @@ export default function GamesPaginate(props) {
 				onChange={(e) => {
 					const newLimit = e.target.value;
 					const newPage = Math.floor(limit * page / newLimit);
-					props.dispatch(manageGameList(collectionType, collectionId, newLimit, newPage, sort, filter));
-				}}>
+					props.updateList(
+						newLimit, 
+						newPage,
+						sort,
+						filter
+					);
+				}}
+			>
 				{options}
 			</select>
 		</div>
