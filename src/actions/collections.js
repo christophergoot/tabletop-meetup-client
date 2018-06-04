@@ -1,12 +1,10 @@
 import { loadAuthToken } from '../local-storage';
 import { API_BASE_URL } from '../config';
 import { fetchSingleEventSuccess } from './events';
-// const API_BASE_URL = 'http://localhost:3030/api';
-// import { fetchEvent } from './events';
 
 export const fetchCollection = (userId, limit, page, sort, filter) =>  dispatch => {
 	const uri = `collections/${userId}/`;
-	dispatch(manageGameList(uri,limit, page, sort, filter))
+	manageGameList(uri, limit, page, sort, filter)
 		.then(res => {
 			if (!res.ok) {
 				return Promise.reject(res.statusText);
@@ -20,7 +18,7 @@ export const fetchCollection = (userId, limit, page, sort, filter) =>  dispatch 
 
 export const fetchSingleEvent = (userId, limit, page, sort, filter) =>  dispatch => {
 	const uri = `events/${userId}/`;
-	dispatch(manageGameList(uri,limit, page, sort, filter))
+	manageGameList(uri,limit, page, sort, filter)
 		.then(res => {
 			if (!res.ok) {
 				return Promise.reject(res.statusText);
@@ -31,7 +29,8 @@ export const fetchSingleEvent = (userId, limit, page, sort, filter) =>  dispatch
 			dispatch(fetchSingleEventSuccess(res));
 		});
 };
-const manageGameList = (uri, limit, page, sort, filter) =>  dispatch => {
+
+export const manageGameList = (uri, limit, page, sort, filter)  => {
 	const authToken = loadAuthToken();
 	// collectionType will be either 'events' or 'collections'
 	const url = new URL(`${API_BASE_URL}${uri}`);

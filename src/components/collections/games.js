@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchCollection } from '../../actions/collections';
-import GameFilter from './game-filter';
+import GameFilter from '../games/game-filter';
 import GameList from './game-list';
-import GameSort from './game-sort';
-import GamesPaginate from './games-paginate';
+import GameSort from '../games/game-sort';
+import GamesPaginate from '../games/games-paginate';
 import requiresLogin from '../app/requires-login';
 
 
@@ -19,9 +19,7 @@ export class Games extends React.Component {
 	}
 
 	render() {
-		const { collection, dispatch } = this.props;
-		const { games, sort } = collection;
-		// const gameList = games.list;
+		const { collection } = this.props;
 	
 		return (
 			<section>
@@ -36,7 +34,7 @@ export class Games extends React.Component {
 					updateList={this.updateList}
 				/>
 				<GameList 
-					games={games}
+					games={collection.games}
 				/>
 			</section>
 		);
@@ -52,3 +50,8 @@ const mapStateToProps = state => {
 };
 
 export default requiresLogin()(connect(mapStateToProps)(Games));
+
+// number of players
+//    ---[4]==[7]----
+//  [no min]=======[no max]
+//  [no min]====[5]---

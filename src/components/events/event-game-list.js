@@ -1,8 +1,8 @@
 import React from 'react';
-import GameBoxtop from '../collections/game-boxtop';
-import GameFilter from '../collections/game-filter';
-import GameSort from '../collections/game-sort';
-import GamesPaginate from '../collections/games-paginate';
+import GameBoxtop from '../games/game-boxtop';
+import GameFilter from '../games/game-filter';
+import GameSort from '../games/game-sort';
+import GamesPaginate from '../games/games-paginate';
 import GameBallot from './game-ballot';
 import { fetchSingleEvent } from  '../../actions/collections';
 // import { connect } from 'react-redux';

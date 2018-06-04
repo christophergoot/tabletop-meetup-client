@@ -82,6 +82,31 @@ function generatePageList(collection, updateList) {
 	return pages;
 }
 
+// function generatePages(collection, updateList) {
+// 	const { page, pageCount, limit, sort, filter } = collection;
+	
+// 	const pages = [];
+// 	const pageVis = 4;
+// 	for (let i=0; i<=pageCount+1; i++) {
+// 		const link = false;
+// 		if (page !== 1) {
+// 			prevPage = page - 1;
+// 		}
+
+
+// 		if (link) pages.push(
+// 			<li key={i} 
+// 				className="sort"
+// 				onClick={() => updatePagination(limit, page)}
+// 			>
+// 				{label}
+// 			</li>
+// 		);
+// 	}
+
+// 	return pages;
+// }
+
 
 export default function GamesPaginate(props) {
 	const { page, limit, sort, filter } = props.collection;
@@ -115,10 +140,7 @@ export default function GamesPaginate(props) {
 					const newLimit = e.target.value;
 					const newPage = Math.floor(limit * page / newLimit);
 					props.updateList(
-						newLimit, 
-						newPage,
-						sort,
-						filter
+						newLimit, newPage, sort, filter
 					);
 				}}
 			>

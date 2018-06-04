@@ -1,5 +1,5 @@
 import React from 'react';
-import GameBoxtop from './game-boxtop';
+import GameBoxtop from '../games/game-boxtop';
 import EditGame from './edit-game';
 import CollectionDetails from './collection-details';
 
