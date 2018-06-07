@@ -30,7 +30,7 @@ export default function GameSort(props) {
 			label: 'sort by BBG Rank'
 		}
 	];
-	const { sort, limit, filter } = props.collection;
+	const { sort, limit, filters } = props.collection;
 
 	const listItems = methods.map((el, i) => {
 		let className = 'sort';
@@ -49,7 +49,7 @@ export default function GameSort(props) {
 						limit, 
 						1,
 						{ method: el.method, direction: sortDirection},
-						filter
+						filters
 					)} 
 			>
 				{el.name}

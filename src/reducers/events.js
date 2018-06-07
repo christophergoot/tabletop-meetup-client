@@ -11,7 +11,7 @@ const initialState = ({
 				method: 'name',
 				direction: 1
 			},
-			filter: [],
+			filters: [],
 			page: 1,
 			pageCount: 5,
 			limit: 25,

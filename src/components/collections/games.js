@@ -15,7 +15,7 @@ export class Games extends React.Component {
 	}
 
 	updateList = (limit,page,sort,filter) => {
-		this.props.dispatch(fetchCollection(this.props.userId, limit,page,sort,filter))
+		this.props.dispatch(fetchCollection(this.props.userId, limit, page, sort, filter))
 	}
 
 	render() {
@@ -24,7 +24,10 @@ export class Games extends React.Component {
 		return (
 			<section>
 				<h1>Manage Game List</h1>
-				<GameFilter />
+				<GameFilter 
+					collection={collection}
+					updateList={this.updateList}
+				/>
 				<GameSort 
 					collection={collection}
 					updateList={this.updateList}

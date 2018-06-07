@@ -2,19 +2,19 @@ import React from 'react';
 import './games-paginate.css';
 
 function generatePageList(collection, updateList) {
-	const { page, pageCount, limit, sort, filter } = collection;
+	const { page, pageCount, limit, sort, filters } = collection;
 	
 	const pages = [];
 	let prevPage = 0;
 	if (page !== 1) prevPage = page - 1;
 	if (prevPage) pages.push(
-		<li key={prevPage * new Date()} className="sort">
-			<a onClick={() => updateList(limit, prevPage, sort, filter)} >
+		<li className="sort">
+			<a onClick={() => updateList(limit, prevPage, sort, filters)} >
 				prev
 			</a>
 		</li>);
 	else pages.push(
-		<li key={prevPage * new Date()} className="sort selected">
+		<li className="sort selected">
 			prev
 		</li>
 	);
@@ -24,40 +24,44 @@ function generatePageList(collection, updateList) {
 		else if (i>pageCount);
 		else if (i === page-pageVis) {
 			pages.push(
-				(<li key={i * new Date()} className="sort">
-					<a onClick={() => updateList(limit, 1, sort, filter)} >
+				(<li className="sort">
+					<a onClick={() => updateList(limit, 1, sort, filters)} >
 					1
 					</a>
 				</li>),
-				(<span key={i + new Date()}>...</span>)
+				(<li>
+					...
+				</li>)
 			);
 			i++;
 		}
 		else if (i === page) pages.push(
-			<li key={i} className="sort selected">
+			<li className="sort selected">
 				{i}
 			</li>
 		);
 		else if (i ===  pageCount) {
 			pages.push(
-				<li key={i} className="sort">
-					<a onClick={() => updateList(limit, i, sort, filter)} >
+				<li className="sort">
+					<a onClick={() => updateList(limit, i, sort, filters)} >
 						{i}
 					</a>
 				</li>);
 		}
 		else if (i === page+pageVis-1) {
 			pages.push(
-				(<span key={i + new Date()}>...</span>),
-				(<li key={pageCount} className="sort">
-					<a onClick={() => updateList(limit, pageCount, sort, filter)} >
+				(<li>
+					...
+				</li>),
+				(<li className="sort">
+					<a onClick={() => updateList(limit, pageCount, sort, filters)} >
 						{pageCount}
 					</a>
 				</li>));
 		}
 		else pages.push(
-			<li key={i} className="sort">
-				<a onClick={() => updateList(limit, i, sort, filter)} >
+			<li className="sort">
+				<a onClick={() => updateList(limit, i, sort, filters)} >
 					{i}
 				</a>
 			</li>);
@@ -66,20 +70,27 @@ function generatePageList(collection, updateList) {
 	let nextPage = 0;
 	if (page !== pageCount) nextPage = page + 1;
 	if (nextPage) pages.push(
-		<li key={nextPage * new Date()} className="sort">
-			<a onClick={() => updateList(limit, nextPage, sort, filter)} >
+		<li className="sort">
+			<a onClick={() => updateList(limit, nextPage, sort, filters)} >
 				next
 			</a>
 		</li>);
 	else pages.push(
-		<li key={nextPage * new Date()} className="sort selected">
+		<li className="sort selected">
 			next
 		</li>
 	);
 	
 	if (pageCount <= 1) pages.length = 0;
 
-	return pages;
+	// const myItemsWithIds = myItems.map((item, index) => { ...item, myId: index })
+
+	const keyedPages = pages.map((el, i) => {
+		return {...el, key:i+1};
+	});
+	// };
+
+	return keyedPages;
 }
 
 // function generatePages(collection, updateList) {

@@ -10,7 +10,7 @@ const initialState = ({
 			method: 'name',
 			direction: 1
 		},
-		filter: [],
+		filters: [],
 		page: 1,
 		limit: 25,
 		games:[]

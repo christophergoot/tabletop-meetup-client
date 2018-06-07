@@ -10,6 +10,7 @@ body {
 	color: #444;
 	text-align: center;
 	line-height: 1.5;
+	/* margin: 50px; */
 }
 
 a {
@@ -17,6 +18,13 @@ a {
 	color: inherit;
 	cursor: pointer;
 }
+
+button {
+	height: 1em;
+	background-color: #e7e7e7;
+	display: inline-block;
+}
+
 /* 
 section ul {
 	text-align: left;

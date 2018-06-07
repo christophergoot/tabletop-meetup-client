@@ -9,8 +9,13 @@ import { fetchSingleEvent } from  '../../actions/collections';
 
 export default class EventGameList extends React.Component {
 
-	updateList = (limit,page,sort,filter) => {
-		this.props.dispatch(fetchSingleEvent(this.props.event.eventId, limit, page, sort, filter))
+	updateList = (limit,page,sort,filters) => {
+		this.props.dispatch(fetchSingleEvent(
+			this.props.event.eventId, 
+			limit, 
+			page, 
+			sort, 
+			filters))
 	}
 
 	render() {
@@ -26,10 +31,58 @@ export default class EventGameList extends React.Component {
 				);
 			});
 		}
+		const filterMethods = [
+			{
+				name: 'Player Count',
+				field: 'minPlayers',
+				range: { min: 1, max: 10},
+				step: 1,
+				valueDescripter: 'Players'
+			},
+			{
+				name: 'Time',
+				field: 'playingTime',
+				range: { min: 0, max: 240},
+				step: 5,
+				valueDescripter: 'Minutes'
+			},
+			{
+				name: 'Rating',
+				field: 'averageRating',
+				range: { min: 0, max: 10},
+				step: 0.5,
+				valueDescripter: 'Rating'
+			},
+			{
+				name: 'BGG Rank',
+				field: 'rank',
+				range: { min: 0, max: 10000},
+				step: 100,
+				valueDescripter: 'Game Rank'
+			},
+			{
+				name: 'Year Published',
+				field: 'yearPublished',
+				range: { min: 1954, max: new Date().getFullYear() + 1},
+				step: 1,
+				valueDescripter: 'Year Published'
+			},
+			// {
+			// 	name: 'RSVP',
+			// 	label: 'filter by RSVP Status',
+			// 	method: 'rsvp',
+			// 	type: 'radio'
+			// },
+		];
+	
 		return (
 			<section>
 				<h2>Event Game List</h2>
-				<GameFilter />
+				<GameFilter 
+					collection={event}
+					updateList={this.updateList}
+					filterMethods={filterMethods}
+				/>
 				<GameSort 
 					collection={event}
 					updateList={this.updateList}
@@ -43,12 +96,3 @@ export default class EventGameList extends React.Component {
 		);
 	}
 }
-
-// const mapStateToProps = state => {
-// 	return {
-// 		events: state.events,
-// 		users: state.users
-// 	}
-// };
-
-// export default connect(mapStateToProps)(EventGameList);

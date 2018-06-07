@@ -2,9 +2,9 @@ import { loadAuthToken } from '../local-storage';
 import { API_BASE_URL } from '../config';
 import { fetchSingleEventSuccess } from './events';
 
-export const fetchCollection = (userId, limit, page, sort, filter) =>  dispatch => {
+export const fetchCollection = (userId, limit, page, sort, filters) =>  dispatch => {
 	const uri = `collections/${userId}/`;
-	manageGameList(uri, limit, page, sort, filter)
+	manageGameList(uri, limit, page, sort, filters)
 		.then(res => {
 			if (!res.ok) {
 				return Promise.reject(res.statusText);
@@ -16,9 +16,9 @@ export const fetchCollection = (userId, limit, page, sort, filter) =>  dispatch 
 		});
 };
 
-export const fetchSingleEvent = (userId, limit, page, sort, filter) =>  dispatch => {
+export const fetchSingleEvent = (userId, limit, page, sort, filters) =>  dispatch => {
 	const uri = `events/${userId}/`;
-	manageGameList(uri,limit, page, sort, filter)
+	manageGameList(uri,limit, page, sort, filters)
 		.then(res => {
 			if (!res.ok) {
 				return Promise.reject(res.statusText);
@@ -30,7 +30,7 @@ export const fetchSingleEvent = (userId, limit, page, sort, filter) =>  dispatch
 		});
 };
 
-export const manageGameList = (uri, limit, page, sort, filter)  => {
+export const manageGameList = (uri, limit, page, sort, filters)  => {
 	const authToken = loadAuthToken();
 	// collectionType will be either 'events' or 'collections'
 	const url = new URL(`${API_BASE_URL}${uri}`);
@@ -40,13 +40,19 @@ export const manageGameList = (uri, limit, page, sort, filter)  => {
 		sortMethod = sort.method;
 		sortDirection = sort.direction;
 	}
+
 	const params = {
 		sortMethod,
 		sortDirection,
 		limit: limit || 25,
-		page: page || 1,
-		filter: filter || 'owned'
+		page: page || 1
 	};
+
+	if (filters && filters.length>0) filters.forEach(filter => {
+		params[filter.field] = `${filter.range.min}:${filter.range.max}`;
+	});
+
+
 	Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 
 	const thisHeaders = new Headers();
