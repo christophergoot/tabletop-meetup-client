@@ -26,6 +26,7 @@ class FilterOption extends Component {
 	}
 
 	render() {
+		// if filter is being edited
 		if (this.state.isEditing) {
 			return (
 				<div className='range-slider-filter-box'>
@@ -39,31 +40,40 @@ class FilterOption extends Component {
 						<button
 							className='range-slider-control-button clear'
 							onClick={() => this.setState({ isEditing: false })}>
-						X
-						</button>
+						<i className="material-icons">
+							clear
+						</i></button>
 						<button
 							className='range-slider-control-button clear'
 							onClick={e => this.onFilterApply(e)}>
-						SAVE
+						<i className="material-icons">
+							check
+						</i>
 						</button>
 					</div>			
 				</div>
 			);
 		}
+		// if filter is active, but not being edited
 		else if (this.props.value === true) return (
 			<div className='range-slider-filter-box'>
 				<a onClick={e => this.setState({ isEditing: true })}
 					className='range-slider-group'>
 					{this.state.name}
 				</a>
-				<button 
-					className='range-slider-button-group range-slider-control-button clear'
-					onClick={e => this.onClearFilter(e)}>
-					X
-				</button>
+				<div className='range-slider-button-group'>
+					<button 
+						className='range-slider-button-group range-slider-control-button clear'
+						onClick={e => this.onClearFilter(e)}>
+						<i className="material-icons">
+								clear
+						</i>
+					</button>
+				</div>
 			</div>
 		)
 
+		// if filter is inactive and not being edited
 		else return (
 			<a onClick={() => this.setState({ isEditing: true })}
 				className='range-slider-filter-box'>

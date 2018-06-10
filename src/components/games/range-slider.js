@@ -59,19 +59,21 @@ class RangeSlider extends Component {
 		// const { rangeSide } = side;
 		return (
 			<div className='range-slider-button-group'>
-			<button 
-				className='range-slider-control-button step'
-				onClick={e => this.stepValue(e,rangeSide,-1)} >
-				&lt;
-			</button>
-			<button 
-				className='range-slider-control-button step'
-				onClick={e => this.stepValue(e,rangeSide,1)} >
-				&gt;
-			</button>
-			<button className='range-slider-control-button clear'>clear</button>
-		</div>
-	
+				<button 
+					className='range-slider-control-button step'
+					onClick={e => this.stepValue(e,rangeSide,-1)} >
+					<i className="material-icons">
+						arrow_left
+					</i>
+				</button>
+				<button 
+					className='range-slider-control-button step'
+					onClick={e => this.stepValue(e,rangeSide,1)} >
+					<i className="material-icons">
+						arrow_right
+					</i>
+				</button>
+			</div>	
 		)
 	}
 
@@ -99,12 +101,16 @@ class RangeSlider extends Component {
 					<button
 						className='range-slider-control-button clear'
 						onClick={e => this.setState({ isEditing: false })}>
-						X
+						<i className="material-icons">
+							clear
+						</i>
 					</button>
 					<button
 						className='range-slider-control-button clear'
 						onClick={e => this.onFilterApply(e)}>
-						SAVE
+						<i className="material-icons">
+							check
+						</i>
 					</button>
 				</div>			
 			</div>
@@ -115,11 +121,15 @@ class RangeSlider extends Component {
 					className='range-slider-group'>
 					{this.state.range.min}-{this.state.range.max} {this.props.valueDescripter}
 				</a>
-				<button 
-					className='range-slider-button-group range-slider-control-button clear'
-					onClick={e => this.onClearFilter(e)}>
-					X
-				</button>
+				<div className='range-slider-button-group'>
+					<button 
+						className='range-slider-button-group range-slider-control-button clear'
+						onClick={e => this.onClearFilter(e)}>
+						<i className="material-icons">
+								clear
+						</i>
+					</button>
+				</div>
 			</div>
 		)
 		else return (

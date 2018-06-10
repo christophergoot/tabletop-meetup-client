@@ -11,6 +11,7 @@ import Footer from './footer';
 import Register from './register';
 import {refreshAuthToken} from '../../actions/auth';
 import Dashboard from './dashboard';
+import 'typeface-roboto';
 import './reset.css';
 import './app.css';
 import { LoginForm } from './login-form';
