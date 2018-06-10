@@ -49,7 +49,8 @@ export const manageGameList = (uri, limit, page, sort, filters)  => {
 	};
 
 	if (filters && filters.length>0) filters.forEach(filter => {
-		params[filter.field] = `${filter.range.min}:${filter.range.max}`;
+		if (filter.range) params[filter.field] = `${filter.range.min}:${filter.range.max}`;
+		else if (filter.value) params[filter.field] = filter.value;
 	});
 
 

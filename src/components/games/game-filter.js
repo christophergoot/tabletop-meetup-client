@@ -1,5 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types'; 
 import RangeSlider from './range-slider';
+import FilterOption from './filter-option';
 import './sort-container.css';
 
 export default function GameFilter(props) {
@@ -25,7 +27,7 @@ export default function GameFilter(props) {
 	};
 
 	const listItems = filterMethods.map((el,i) => {	
-		if (el.range) {
+		if (el.range) { 
 			let value = [];
 			let oldFilter = oldFilters.find(filter => el.field === filter.field);
 			if (oldFilter) value = [oldFilter.range.min, oldFilter.range.max];
@@ -44,14 +46,22 @@ export default function GameFilter(props) {
 				</li>
 			);
 		} 
-		else return (
-			<li className='sort' 
-				key={i} 
-				title={el.label} 
-				alt={el.label} >
-				{el.name}
-			</li>
-		);
+		else {
+			let value = false;
+			let prevFilter = oldFilters.find(filter => el.field === filter.field);
+			if (prevFilter) value = true;
+			return (
+				<li key={i}>
+					<FilterOption 
+						name={el.name}
+						field={el.field}
+						value={value}
+						applyFilter={applyFilter}
+						clearFilter={clearFilter}
+					/>
+				</li>
+			);
+		}
 	});
 
 	return (
@@ -63,3 +73,9 @@ export default function GameFilter(props) {
 		</div>
 	);
 }
+
+GameFilter.propTypes = {
+	collection: PropTypes.object.isRequired,
+	updateList: PropTypes.func.isRequired,
+	filterMethods: PropTypes.array.isRequired,
+};

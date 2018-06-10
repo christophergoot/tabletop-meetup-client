@@ -6,7 +6,7 @@ import GameList from './game-list';
 import GameSort from '../games/game-sort';
 import GamesPaginate from '../games/games-paginate';
 import requiresLogin from '../app/requires-login';
-
+import { FilterMethods } from '../games/filter-methods-base-set'
 
 export class Games extends React.Component {
 	componentDidMount() {
@@ -21,12 +21,24 @@ export class Games extends React.Component {
 	render() {
 		const { collection } = this.props;
 	
+		const filterMethods = [
+			...FilterMethods,
+			{
+				name: 'Number of Plays',
+				field: 'numPlays',
+				range: { min: 0, max: 1000},
+				step: 10,
+				valueDescripter: 'Plays'
+			},
+		]
+
 		return (
 			<section>
 				<h1>Manage Game List</h1>
 				<GameFilter 
 					collection={collection}
 					updateList={this.updateList}
+					filterMethods={filterMethods}
 				/>
 				<GameSort 
 					collection={collection}
@@ -53,8 +65,3 @@ const mapStateToProps = state => {
 };
 
 export default requiresLogin()(connect(mapStateToProps)(Games));
-
-// number of players
-//    ---[4]==[7]----
-//  [no min]=======[no max]
-//  [no min]====[5]---

@@ -5,6 +5,7 @@ import GameSort from '../games/game-sort';
 import GamesPaginate from '../games/games-paginate';
 import GameBallot from './game-ballot';
 import { fetchSingleEvent } from  '../../actions/collections';
+import { FilterMethods } from '../games/filter-methods-base-set';
 // import { connect } from 'react-redux';
 
 export default class EventGameList extends React.Component {
@@ -31,49 +32,10 @@ export default class EventGameList extends React.Component {
 				);
 			});
 		}
+
 		const filterMethods = [
-			{
-				name: 'Player Count',
-				field: 'minPlayers',
-				range: { min: 1, max: 10},
-				step: 1,
-				valueDescripter: 'Players'
-			},
-			{
-				name: 'Time',
-				field: 'playingTime',
-				range: { min: 0, max: 240},
-				step: 5,
-				valueDescripter: 'Minutes'
-			},
-			{
-				name: 'Rating',
-				field: 'averageRating',
-				range: { min: 0, max: 10},
-				step: 0.5,
-				valueDescripter: 'Rating'
-			},
-			{
-				name: 'BGG Rank',
-				field: 'rank',
-				range: { min: 0, max: 10000},
-				step: 100,
-				valueDescripter: 'Game Rank'
-			},
-			{
-				name: 'Year Published',
-				field: 'yearPublished',
-				range: { min: 1954, max: new Date().getFullYear() + 1},
-				step: 1,
-				valueDescripter: 'Year Published'
-			},
-			// {
-			// 	name: 'RSVP',
-			// 	label: 'filter by RSVP Status',
-			// 	method: 'rsvp',
-			// 	type: 'radio'
-			// },
-		];
+			...FilterMethods,
+		]
 	
 		return (
 			<section>

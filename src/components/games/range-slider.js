@@ -109,7 +109,7 @@ class RangeSlider extends Component {
 				</div>			
 			</div>
 		);
-		else if (this.props.value[0] && this.props.value[1]) return (
+		else if (this.props.value.length === 2) return (
 			<div className='range-slider-filter-box'>
 				<a onClick={e => this.setState({ isEditing: true })}
 					className='range-slider-group'>
