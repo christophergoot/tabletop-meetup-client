@@ -15,21 +15,20 @@ export const length = length => value => {
 	}
 };
 export const matches = field => (value, allValues) => {
-	console.log(field, value, allValues);
 	return field in allValues && value.trim() === allValues[field].trim()
 		? undefined
 		: 'Does not match';
 };
 
-export const isBggUser = bggUsername => {
-	// const url = `https://www.boardgamegeek.com/xmlapi2/user?name=${bggUsername}`;
-	const url = 'https://www.boardgamegeek.com/xmlapi2/user?name=goot';
-	return fetch(url)
-		.then(res => res.text())
-		// .then(res => parseString(res))
-		// .then(res => parser.toJson(res))
-		.then(res => JSON.stringify(res))
-		.then(res => {
-			if (res.user.id === '') return 'Invalid BGG Username';
-		});	
-};
+// export const isBggUser = bggUsername => {
+// 	// const url = `https://www.boardgamegeek.com/xmlapi2/user?name=${bggUsername}`;
+// 	const url = 'https://www.boardgamegeek.com/xmlapi2/user?name=goot';
+// 	return fetch(url)
+// 		.then(res => res.text())
+// 		// .then(res => parseString(res))
+// 		// .then(res => parser.toJson(res))
+// 		.then(res => JSON.stringify(res))
+// 		.then(res => {
+// 			if (res.user.id === '') return 'Invalid BGG Username';
+// 		});	
+// };

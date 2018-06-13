@@ -13,7 +13,9 @@ import {
 // import Input from './input';
 import { Button } from '@material-ui/core';
 
-import {required, nonEmpty, matches, length, isTrimmed, isBggUser} from '../../validators';
+import {required, nonEmpty, matches, length, isTrimmed, 
+	// isBggUser
+} from '../../validators';
 const passwordLength = length({min: 10, max: 72});
 const matchesPassword = matches('password');
 
@@ -33,50 +35,65 @@ export class RegistrationForm extends React.Component {
 				onSubmit={this.props.handleSubmit(values =>
 					this.onSubmit(values)
 				)}>
-				<Field 
-					floatingLabelText='First Name'
-					component={TextField}
-					type="text" 
-					name="firstName" />
-				<Field 
-					floatingLabelText='Last Name'
-					component={TextField}
-					type="text" 
-					name="lastName" />
-				<Field
-					floatingLabelText='BGG Username'
-					component={TextField}
-					type="text"
-					name="bggUsername"
-					// validate={isBggUser}
-				/>
-				<Field
-					floatingLabelText='Username *'
-					component={TextField}
-					type="text"
-					name="username"
-					validate={[required, nonEmpty, isTrimmed]}
-				/>
-				<Field
-					floatingLabelText='Password *'
-					component={TextField}
-					type="password"
-					name="password"
-					validate={[required, passwordLength, isTrimmed]}
-				/>
-				<Field
-					floatingLabelText='Confirm Password *'
-					component={TextField}
-					type="password"
-					name="passwordConfirm"
-					validate={[required, nonEmpty, matchesPassword]}
-				/>
-				<Button
-					type="submit"
-					variant='raised'
-					disabled={this.props.pristine || this.props.submitting}>
-						Register
-				</Button>
+				<div>
+					<Field 
+						floatingLabelText='First Name'
+						component={TextField}
+						type="text" 
+						name="firstName" />
+
+				</div>
+				<div>
+					<Field 
+						floatingLabelText='Last Name'
+						component={TextField}
+						type="text" 
+						name="lastName" />
+				</div>
+				<div>
+					<Field
+						floatingLabelText='BGG Username'
+						component={TextField}
+						type="text"
+						name="bggUsername"
+						// validate={isBggUser}
+					/>
+				</div>
+				<div>
+					<Field
+						floatingLabelText='Username *'
+						component={TextField}
+						type="text"
+						name="username"
+						validate={[required, nonEmpty, isTrimmed]}
+					/>
+				</div>
+				<div>
+					<Field
+						floatingLabelText='Password *'
+						component={TextField}
+						type="password"
+						name="password"
+						validate={[required, passwordLength, isTrimmed]}
+					/>
+				</div>
+				<div>
+					<Field
+						floatingLabelText='Confirm Password *'
+						component={TextField}
+						type="password"
+						name="passwordConfirm"
+						validate={[required, nonEmpty, matchesPassword]}
+					/>
+				</div>
+				<div>
+					<Button
+						type="submit"
+						variant='raised'
+						disabled={this.props.pristine || this.props.submitting}>
+							Register
+					</Button>
+				</div>
 			</form>
 		);
 	}

@@ -1,6 +1,8 @@
 import React from 'react';
 import { Field, reduxForm, focus } from 'redux-form';
-import Input from './input';
+// import Input from './input';
+import { TextField } from 'redux-form-material-ui';
+import Button from '@material-ui/core/Button';
 import { login } from '../../actions/auth';
 import { required, nonEmpty } from '../../validators';
 
@@ -25,25 +27,34 @@ export class LoginForm extends React.Component {
 					this.onSubmit(values))}
 			>
 				{error}
-				<label htmlFor="username">Username</label>
-				<Field
-					component={Input}
-					type="text"
-					name="username"
-					id="username"
-					validate={[required, nonEmpty]}
-				/>
-				<label htmlFor="password">Password</label>
-				<Field
-					component={Input}
-					type="password"
-					name="password"
-					id="password"
-					validate={[required, nonEmpty]}
-				/>
-				<button disabled={this.props.pristine || this.props.submitting}>
-                    Log in
-				</button>
+				<div>
+					<Field
+						floatingLabelText='Username'
+						component={TextField}
+						type="text"
+						name="username"
+						id="username"
+						validate={[required, nonEmpty]}
+					/>
+				</div>
+				<div>
+					<Field
+						floatingLabelText='Password'
+						component={TextField}
+						type="password"
+						name="password"
+						id="password"
+						validate={[required, nonEmpty]}
+					/>
+				</div>
+				<div>
+					<Button 
+						type="submit"
+						variant='raised'
+						disabled={this.props.pristine || this.props.submitting}>
+	                    Log in
+					</Button>
+				</div>
 			</form>
 		);
 	}

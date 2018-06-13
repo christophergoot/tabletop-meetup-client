@@ -1,5 +1,5 @@
 import { API_BASE_URL } from '../config';
-import {loadAuthToken} from '../local-storage';
+import { loadAuthToken } from '../local-storage';
 
 export const FETCH_EVENTS_SUCCESS = 'FETCH_EVENT_SUCCESS';
 export const fetchEventsSuccess = events => ({
