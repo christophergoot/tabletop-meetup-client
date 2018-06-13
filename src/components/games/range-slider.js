@@ -18,10 +18,10 @@ class RangeSlider extends Component {
 				min: this.props.range.min,
 				max: this.props.range.max
 			}
-		}
+		};
 	}
 
-	onRangeChange = (value) => {
+	onRangeChange(value) {
 		this.setState({
 			range: {
 				min: value[0],
@@ -38,25 +38,25 @@ class RangeSlider extends Component {
 			}
 		});
 	}
-	onFilterApply = event => {
+	onFilterApply(event) {
+		event.preventDefault();
 		this.props.applyFilter({
 			field: this.props.field,
 			range: {
 				min: this.state.range.min,
 				max: this.state.range.max
 			}
-		})
-		this.setState({ isEditing: false })
+		});
+		this.setState({ isEditing: false });
 	}
-	onClearFilter = event => {
+	onClearFilter(event) {
 		event.preventDefault();
 		this.props.clearFilter(
 			this.props.field
-		)
+		);
 	}
 
-	buttonControlGroup = (rangeSide) => {
-		// const { rangeSide } = side;
+	buttonControlGroup(rangeSide) {
 		return (
 			<div className='range-slider-button-group'>
 				<button 
@@ -74,7 +74,7 @@ class RangeSlider extends Component {
 					</i>
 				</button>
 			</div>	
-		)
+		);
 	}
 
 	render() {
@@ -100,7 +100,7 @@ class RangeSlider extends Component {
 				<div className='range-slider-button-group'>
 					<button
 						className='range-slider-control-button clear'
-						onClick={e => this.setState({ isEditing: false })}>
+						onClick={() => this.setState({ isEditing: false })}>
 						<i className="material-icons">
 							clear
 						</i>
@@ -117,7 +117,7 @@ class RangeSlider extends Component {
 		);
 		else if (this.props.value.length === 2) return (
 			<div className='range-slider-filter-box'>
-				<a onClick={e => this.setState({ isEditing: true })}
+				<a onClick={() => this.setState({ isEditing: true })}
 					className='range-slider-group'>
 					{this.state.range.min}-{this.state.range.max} {this.props.valueDescripter}
 				</a>
@@ -131,13 +131,13 @@ class RangeSlider extends Component {
 					</button>
 				</div>
 			</div>
-		)
+		);
 		else return (
-			<a onClick={e => this.setState({ isEditing: true })}
+			<a onClick={() => this.setState({ isEditing: true })}
 				className='range-slider-filter-box'>
 				{this.props.name}
 			</a>
-		)
+		);
 	}
 }
 

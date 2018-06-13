@@ -19,11 +19,11 @@ a {
 	cursor: pointer;
 }
 
-button {
+/* button {
 	height: 1em;
 	background-color: #e7e7e7;
 	display: inline-block;
-}
+} */
 
 /* 
 section ul {
@@ -44,16 +44,16 @@ form {
 	padding: 0 60px;
 } */
 
-input {
+/* input {
 	display: block;
 	margin: 5px auto;
 	padding: 5px;
 	width: 100%;
-}
-
+} */
+/* 
 input[type=date], input[type=time] {
 	width: auto;
-}
+} */
 
 .rating {
 	background-color: lightgray;
