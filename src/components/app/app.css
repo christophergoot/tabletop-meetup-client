@@ -54,6 +54,13 @@ form {
 input[type=date], input[type=time] {
 	width: auto;
 } */
+.login-form {
+	margin: 0 0 1.5em 0;
+}
+
+.login-form button {
+	margin-top: 1.5em;
+}
 
 .rating {
 	background-color: lightgray;

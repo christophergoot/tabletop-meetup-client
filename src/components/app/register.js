@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Link, Redirect} from 'react-router-dom';
+import { Redirect} from 'react-router-dom';
 
 import RegistrationForm from './registration-form';
 
@@ -14,7 +14,6 @@ export function Register(props) {
 		<div className="home">
 			<h2>Register for Tabletop Meetup</h2>
 			<RegistrationForm />
-			<Link to="/">Login</Link>
 		</div>
 	);
 }

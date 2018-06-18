@@ -1,0 +1,26 @@
+.new-event>.section {
+	box-shadow: 2px 2px 2px rgba(128, 128, 128, 0.486);
+	margin: 1.5em;
+	padding: .5em;
+	border-radius: 3px;
+	background-color: rgb(235, 235, 235);
+}
+
+.date-time-group {
+	display: flex;
+	flex-direction: row;
+	/* justify-items: baseline; */
+	/* justify-content: baseline; */
+	align-content: space-between;
+	margin: inherit auto;
+	/* text-align: center; */
+}
+
+.date-time-group>a {
+	margin-top: auto;
+}
+
+.date-time-input {
+	width: 40%;
+	/* overflow: hidden; */
+}

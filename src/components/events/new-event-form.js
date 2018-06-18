@@ -1,0 +1,156 @@
+import React from 'react';
+import NewLocation from './add-location';
+import { Field, reduxForm, focus } from 'redux-form';
+import { createNewEvent } from '../../actions/events';
+import { TextField, TimePicker, DatePicker } from 'redux-form-material-ui';
+// import Input from './input';
+import { Button } from '@material-ui/core';
+import { required } from '../../validators';
+import './new-event-form.css';
+import AddGuestsForm from './add-guests-form';
+
+class EndDateTime extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state=({
+			addEndTime: false,
+			addEndDate: false
+		});
+	}
+	render() {
+		let fields = [];
+		if (this.state.addEndDate) fields.push(
+			<div className='date-time-input'>
+				<Field
+					floatingLabelText='End Date'
+					component={DatePicker}
+					type="text"
+					name="endDate"
+				/>
+				<a onClick={() => this.setState({ addEndDate: false })}>
+					X
+				</a>
+			</div>
+		);
+		else fields.push(
+			<a onClick={() => this.setState({ addEndDate: true })}>
+				+ End Date
+			</a>
+		);
+
+		if (this.state.addEndTime) fields.push(
+			<div className='date-time-input'>
+				<Field
+					floatingLabelText='End Time'
+					component={TimePicker}
+					type="text"
+					name="endTime"
+				/>
+				<a onClick={() => this.setState({ addEndTime: false })}>
+					X
+				</a>
+			</div>
+		);
+		else fields.push(
+			<a onClick={() => this.setState({addEndTime: true})}>
+				+ End Time
+			</a>
+		);
+		const keyedFields = fields.map((el, i) => {
+			return {...el, key:i+1};
+		});
+		return (
+			<div className='date-time-group'>
+				{keyedFields}
+			</div>	
+		);
+
+	}
+}
+
+export class NewEventForm extends React.Component {
+	onSubmit(values) {
+		const event = {...values};
+		return this.props.dispatch(createNewEvent(event));
+	}
+
+	render() {
+		return (
+			<form
+				className='login-form new-event'
+				onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}
+			>
+				<div className='section'>
+					<div>
+						<Field
+							floatingLabelText='Optional Event Name'
+							component={TextField}
+							type="text"
+							name="name"
+							// validate={[required, nonEmpty]}
+						/>
+					</div>
+					<div className='date-time-group'>
+						<div className='date-time-input'>
+							<Field
+								hintText='Start Date'
+								component={DatePicker}
+								format={null}
+								name="startDate"
+								validate={required}
+							/>
+						</div>
+						<div className='date-time-input'>
+							<Field
+								hintText='Start Time'
+								component={TimePicker}
+								name="startTime"
+								format={null}
+								validate={required}
+							/>
+						</div>
+					</div>
+					<EndDateTime />
+
+				</div>
+
+				<div className='section'>
+					<h3>Location</h3>
+					<NewLocation />
+
+				</div>					
+				<div className='section'>
+	
+					<h3>Guests to Invite</h3>
+					<AddGuestsForm 
+						host='this event host'
+					/>
+
+				</div>
+
+				<div>
+					<Field
+						floatingLabelText='Additional Information'
+						component={TextField}
+						type="textArea"
+						name="additionalInfo"
+					/>
+				</div>
+				<div>
+					<Button
+						type="submit"
+						variant='outlined'
+						disabled={this.props.pristine || this.props.submitting}>
+								Create new event
+					</Button>
+				</div>
+			</form>
+		);
+	}
+}
+
+export default reduxForm({
+	form: 'newEvent',
+	onsSubmitFail: (errors, dispatch) => 
+		dispatch(focus('newEvent', Object.keys(errors)[0]))
+})(NewEventForm);

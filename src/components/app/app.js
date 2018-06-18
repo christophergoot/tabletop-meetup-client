@@ -6,7 +6,7 @@ import Landing from './landing-page';
 import Games from '../collections/games';
 import Events from '../events/events';
 import SingleEvent from '../events/single-event';
-import NewEvent from '../events/new-event';
+import CreateNewEvent from '../events/create-new-event';
 import Footer from './footer';
 import Register from './register';
 import {refreshAuthToken} from '../../actions/auth';
@@ -59,7 +59,7 @@ export class App extends React.Component {
 						<Route exact path="/login" component={LoginForm} />
 						<Route exact path="/events" component={Events} />
 						<Route exact path="/games" component={Games} />
-						<Route exact path="/events/new" component={NewEvent} />
+						<Route exact path="/events/new" component={CreateNewEvent} />
 						<Route exact path="/event/:eventId" component={SingleEvent} />
 					</main>
 					<Footer />

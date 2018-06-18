@@ -89,7 +89,7 @@ export class RegistrationForm extends React.Component {
 				<div>
 					<Button
 						type="submit"
-						variant='raised'
+						variant='outlined'
 						disabled={this.props.pristine || this.props.submitting}>
 							Register
 					</Button>

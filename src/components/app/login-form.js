@@ -50,9 +50,9 @@ export class LoginForm extends React.Component {
 				<div>
 					<Button 
 						type="submit"
-						variant='raised'
+						variant='outlined'
 						disabled={this.props.pristine || this.props.submitting}>
-	                    Log in
+						Log in
 					</Button>
 				</div>
 			</form>

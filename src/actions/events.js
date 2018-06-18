@@ -13,6 +13,32 @@ export const fetchSingleEventSuccess = event => ({
 	event
 });
 
+export const CREATE_NEW_EVENT_SUCCESS = 'CREATE_NEW_EVENT_SUCCESS';
+export const createNewEventSuccess = event => ({
+	type: CREATE_NEW_EVENT_SUCCESS,
+	event
+});
+
+export const createNewEvent = newEvent => dispatch => {
+	const authToken = loadAuthToken();
+	return fetch(`${API_BASE_URL}events/`, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+			'Authorization': 'Bearer ' + authToken
+		},
+		body: JSON.stringify(newEvent)
+	}).then(res => {
+		if (!res.ok) {
+			return Promise.reject(res.statusText);
+		}
+		return res.json();
+	}).then(res => {
+		dispatch(createNewEventSuccess(res));
+	});	
+
+};
+
 export const fetchSingleEvent = (eventId) => dispatch => {
 	const authToken = loadAuthToken();
 	return fetch(`${API_BASE_URL}events/${eventId}`, {

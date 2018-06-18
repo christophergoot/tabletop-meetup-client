@@ -1,82 +1,46 @@
 import React from 'react';
-import { Formik } from 'formik';
+// import { Formik } from 'formik';
+import { TextField } from 'redux-form-material-ui';
+import { Field } from 'redux-form';
+// import { Button } from '@material-ui/core';
 
 function NewLocation() {
 	return (
+		// <form>
+		// 	<p>Add Location</p>
 		<div>
-			<p>Add Location</p>
-			<Formik 
-				initialValues={{
-					name: '',
-					address: '',
-					description: ''
-				}}
-				validate={values => {
-					let errors = {};
-					if (!values.name) {
-						errors.name = 'Required';
-					} 
-					return errors;
-				}}
-				onSubmit={(
-					values,
-					{ setSubmitting, setErrors }
-				) => {
-					alert(values)
-						.then(() => {
-							setSubmitting(false);
-						},
-						errors => {
-							setSubmitting(false);
-							// Maybe transform your API's errors into the same shape as Formik's
-							setErrors(alert(errors));
-						});
-				}
-				}
-				render={({
-					values,
-					errors,
-					touched,
-					handleChange,
-					handleBlur,
-					handleSubmit,
-					isSubmitting,
-				}) => (
-					<form onSubmit={handleSubmit}>
-						<input
-							type="text"
-							placeholder="Location Name"
-							name="name"
-							onChange={handleChange}
-							onBlur={handleBlur}
-							value={values.name}
-						/>
-						{touched.name && errors.name && <div>{errors.name}</div>}
-						<input
-							type="text"
-							placeholder="Address"
-							name="address"
-							onChange={handleChange}
-							onBlur={handleBlur}
-							value={values.address}
-						/>
-						{touched.address && errors.address && <div>{errors.address}</div>}
-						<input
-							type="textArea"
-							placeholder="Description"
-							name="description"
-							onChange={handleChange}
-							onBlur={handleBlur}
-							value={values.description}
-						/>
-						{touched.description && errors.description && <div>{errors.description}</div>}
-						<button type="submit" disabled={isSubmitting}>
-						Submit
-						</button>
-					</form>
-				)}
-			/>
+			<div>
+				<Field
+					floatingLabelText='Location Name'
+					component={TextField}
+					type="text"
+					name="locationName"
+				/>
+			</div>
+			<div>
+				<Field
+					floatingLabelText='Address'
+					component={TextField}
+					type="text"
+					name="locationAddress"
+				/>
+			</div>
+			<div>
+				<Field
+					floatingLabelText='Description'
+					component={TextField}
+					type="text"
+					name="locationDescription"
+				/>
+			</div>
+			{/* <Button
+				type="submit"
+				variant='outlined'
+			>
+					Submit
+			</Button> */}
 		</div>
+		// </form>
 	);
 
 }
