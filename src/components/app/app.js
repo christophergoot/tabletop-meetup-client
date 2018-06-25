@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Header from './header';
 import Landing from './landing-page';
@@ -12,7 +12,8 @@ import Register from './register';
 import {refreshAuthToken} from '../../actions/auth';
 import Dashboard from './dashboard';
 import 'typeface-roboto';
-// import './reset.css';
+import './reset.css';
+import 'tachyons/css/tachyons.min.css';
 import './app.css';
 import { LoginForm } from './login-form';
 
@@ -25,6 +26,9 @@ export class App extends React.Component {
 		} else if (prevProps.loggedIn && !this.props.loggedIn) {
 			// Stop refreshing when we log out
 			this.stopPeriodicRefresh();
+		}
+		if (this.props.redirect) {
+			<Redirect to={this.props.redirect} />;
 		}
 	}
 
@@ -71,7 +75,8 @@ export class App extends React.Component {
 
 const mapStateToProps = state => ({
 	hasAuthToken: state.auth.authToken !== null,
-	loggedIn: state.auth.currentUser !== null
+	loggedIn: state.auth.currentUser !== null,
+	redirect: state.events.redirect
 });
 
 export default connect(mapStateToProps)(App);

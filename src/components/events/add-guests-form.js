@@ -1,49 +1,52 @@
 import React, { Component } from 'react';
+import { AutoComplete } from 'redux-form-material-ui';
+import { AutoComplete as MUIAutoComplete } from 'material-ui';
 import { Field } from 'redux-form';
-import { TextField } from 'redux-form-material-ui';
-
-function guestField(props,i) {
-	return (
-		<Field
-			floatingLabelText='Guest'
-			value={props.host}
-			component={TextField}
-			type="text"
-			name={'guest-' + i}
-		/>
-	);
-}
 
 class AddGuestsForm extends Component {
-	constructor(props) {
-		super(props);
-		this.state = ({
-			guestFields: [
-				(<div key='0'>
-					{guestField(props,0)}
-				</div>)
-			]
-		});
-	}
 	addGuestField(){
-		this.setState({
-			guestFields: [
-				...this.state.guestFields,
-				(
-					<div key={this.state.guestFields.length}>
-						{guestField(this.props, this.state.guestFields.length)}
-					</div>
-				)
-			]
-		});
+		// write to the store new array
+		this.props.addGuest();
+	}
+	fuzzyFilter(searchQuery, key) {
+		const compareString = key.toLowerCase();
+		let searchText = '';
+		if (searchQuery) searchText = searchQuery.toLowerCase()
+		let searchTextIndex = 0;
+		for (let index = 0; index < key.length; index++) {
+			if (compareString[index] === searchText[searchTextIndex]) {
+				searchTextIndex += 1;
+			}
+		}
+		return searchTextIndex === searchText.length;
 	}
 
+
+	guestFields(guests, allUsers) {
+		const markup = guests.map((guest,i) => 
+			<div key={i}>
+				<Field
+					name={'guest-' + i}
+					component={AutoComplete}
+					floatingLabelText="Add User"
+					openOnFocus
+					filter={this.fuzzyFilter}
+					dataSourceConfig={{text: 'displayName', value: 'userId'}}
+					dataSource={allUsers}
+				/>
+				<button onClick={() => this.props.removeGuest(i)}>
+					X
+				</button>
+			</div>
+		);
+		return markup;
+	}
 	render() {
 
 		return (
 			<div>
-				{this.state.guestFields}
-				<a onClick={() => this.addGuestField()}>Add Additional Guest</a>
+				{this.guestFields(this.props.guestList, this.props.allUsers)}
+				<a onClick={() => this.props.addGuest()}>Add Additional Guest</a>
 			</div>
 		);
 	}

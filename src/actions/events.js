@@ -1,5 +1,8 @@
 import { API_BASE_URL } from '../config';
 import { loadAuthToken } from '../local-storage';
+import React from 'react';
+import { Redirect } from 'react-router';
+
 
 export const FETCH_EVENTS_SUCCESS = 'FETCH_EVENT_SUCCESS';
 export const fetchEventsSuccess = events => ({
@@ -19,6 +22,12 @@ export const createNewEventSuccess = event => ({
 	event
 });
 
+export const REDIRECT_TO_URL = 'REDIRECT_TO_URL';
+export const redirectToUrl = url => ({
+	type: REDIRECT_TO_URL,
+	url
+});
+
 export const createNewEvent = newEvent => dispatch => {
 	const authToken = loadAuthToken();
 	return fetch(`${API_BASE_URL}events/`, {
@@ -34,7 +43,8 @@ export const createNewEvent = newEvent => dispatch => {
 		}
 		return res.json();
 	}).then(res => {
-		dispatch(createNewEventSuccess(res));
+		const url = '/event/' + res._id;
+		dispatch(redirectToUrl(url));
 	});	
 
 };
@@ -72,3 +82,20 @@ export const fetchEvents = () => dispatch => {
 		dispatch(fetchEventsSuccess(res));
 	});
 };
+
+export const ADD_ADDITIONAL_GUEST = 'ADD_ADDITIONAL_GUEST';
+export const addAdditionalGuest = () => ({
+	type: ADD_ADDITIONAL_GUEST
+});
+
+export const INITIALIZE_GUESTLIST = 'INITIALIZE_GUESTLIST';
+export const initializeGuestList = host => ({
+	type: INITIALIZE_GUESTLIST,
+	host
+});
+
+export const REMOVE_GUEST = 'REMOVE_GUEST';
+export const removeGuestFromGuestList = i => ({
+	type: REMOVE_GUEST,
+	i
+});

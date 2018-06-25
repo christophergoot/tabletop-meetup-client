@@ -1,13 +1,17 @@
 import React from 'react';
-import NewLocation from './add-location';
 import { Field, reduxForm, focus } from 'redux-form';
-import { createNewEvent } from '../../actions/events';
 import { TextField, TimePicker, DatePicker } from 'redux-form-material-ui';
 // import Input from './input';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import { Button } from '@material-ui/core';
 import { required } from '../../validators';
 import './new-event-form.css';
+
+import NewLocation from './add-location';
 import AddGuestsForm from './add-guests-form';
+import { getAllUsers } from '../../actions/users';
+import { createNewEvent, addAdditionalGuest, initializeGuestList, removeGuestFromGuestList, redirectToUrl } from '../../actions/events';
 
 class EndDateTime extends React.Component {
 	constructor(props) {
@@ -24,6 +28,7 @@ class EndDateTime extends React.Component {
 				<Field
 					floatingLabelText='End Date'
 					component={DatePicker}
+					format={null}
 					type="text"
 					name="endDate"
 				/>
@@ -42,6 +47,7 @@ class EndDateTime extends React.Component {
 			<div className='date-time-input'>
 				<Field
 					floatingLabelText='End Time'
+					format={null}
 					component={TimePicker}
 					type="text"
 					name="endTime"
@@ -69,12 +75,36 @@ class EndDateTime extends React.Component {
 }
 
 export class NewEventForm extends React.Component {
+	componentDidMount() {
+		this.props.dispatch(getAllUsers());
+		const host = {
+			userId: this.props.currentUser.userId,
+			displayName: this.props.currentUser.displayName
+		};
+		this.props.dispatch(initializeGuestList(host));
+	}
+	// componentDidUpdate() {
+	// 	if (this.props.redirect) {
+	// 		<Redirect to={this.props.redirect} />;
+	// 	}
+	// }
+
 	onSubmit(values) {
 		const event = {...values};
 		return this.props.dispatch(createNewEvent(event));
 	}
-
+	// addGuest() {
+	// 	this.props.dispatch(addAdditionalGuest());
+	// }
+	redirect() {
+		if (this.props.redirect) {
+			this.props.dispatch(redirectToUrl(null));
+			return <Redirect to={this.props.redirect} />;
+		}
+	}
 	render() {
+		const addGuest = () => this.props.dispatch(addAdditionalGuest());
+		const removeGuest = (i) => this.props.dispatch(removeGuestFromGuestList(i));
 		return (
 			<form
 				className='login-form new-event'
@@ -123,7 +153,11 @@ export class NewEventForm extends React.Component {
 	
 					<h3>Guests to Invite</h3>
 					<AddGuestsForm 
-						host='this event host'
+						// getAllUsers={this.getAllUsers}
+						removeGuest={removeGuest}
+						addGuest={addGuest}
+						allUsers={this.props.allUsers}
+						guestList={this.props.guestList}
 					/>
 
 				</div>
@@ -144,13 +178,48 @@ export class NewEventForm extends React.Component {
 								Create new event
 					</Button>
 				</div>
+				{this.redirect()}
 			</form>
 		);
 	}
 }
+
+
+const mapStateToProps = (state) => ({
+	allUsers: state.events.allUsers,
+	currentUser: state.auth.currentUser,
+	guestList: state.events.guestList,
+	redirect: state.events.redirect
+});
+
+NewEventForm = connect(mapStateToProps)(NewEventForm);
 
 export default reduxForm({
 	form: 'newEvent',
 	onsSubmitFail: (errors, dispatch) => 
 		dispatch(focus('newEvent', Object.keys(errors)[0]))
 })(NewEventForm);
+
+
+
+
+// TODO connect this form the redux store
+// map state to props users: users.guests
+
+// // https://redux-form.com/6.7.0/examples/initializefromstate/
+
+// // Decorate with reduxForm(). It will read the initialValues prop provided by connect()
+// InitializeFromStateForm = reduxForm({
+// 	form: 'initializeFromState' // a unique identifier for this form
+//   })(InitializeFromStateForm)
+  
+//   // You have to connect() to any reducers that you wish to connect to yourself
+//   InitializeFromStateForm = connect(
+// 	state => ({
+// 	  initialValues: state.account.data // pull initial values from account reducer
+// 	}),
+// 	{load: loadAccount} // bind account loading action creator
+//   )(InitializeFromStateForm)
+  
+//   export default InitializeFromStateForm
+  
