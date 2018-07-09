@@ -28,7 +28,7 @@ export class App extends React.Component {
 			this.stopPeriodicRefresh();
 		}
 		if (this.props.redirect) {
-			<Redirect to={this.props.redirect} />;
+			return <Redirect to={this.props.redirect} />;
 		}
 	}
 

@@ -12,19 +12,13 @@ export class Dashboard extends React.Component {
 	componentDidMount() {
 		const { userId } = this.props;
 		// this.props.dispatch(loadAuthToken());
-		this.props.dispatch(fetchCollection(userId));
+		this.props.dispatch(fetchCollection(userId,'100000'));
 		this.props.dispatch(fetchEvents(userId));
 	}
 
 	render() {
-		let displayName = '';
-		if (this.props.name.trim() !== '') displayName = `Name: ${this.props.name}`;
 		return (
 			<div className="dashboard">
-				<div className="dashboard-user">
-					<p>Username: {this.props.username}</p>
-					<p>{displayName}</p>
-				</div>
 				<GameListSummary collection={this.props.collection} />
 				<Events events={this.props.events}/>
 			</div>

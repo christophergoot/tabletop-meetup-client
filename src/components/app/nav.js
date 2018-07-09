@@ -18,7 +18,7 @@ export class Nav extends React.Component {
 				<ul>
 					<li><Link to="/events">My Events</Link></li>
 					<li><Link to="/games">My Games</Link></li>
-					<li><a onClick={() => this.logOut()}>Log out</a></li>
+					<li><a onClick={() => this.logOut()}>Log out ({this.props.currentUser.displayName})</a></li>
 				</ul>
 			</nav>
 		);} else { return (
@@ -34,7 +34,8 @@ export class Nav extends React.Component {
 }
 
 const mapStateToProps = state => ({
-	loggedIn: state.auth.currentUser !== null
+	loggedIn: state.auth.currentUser !== null,
+	currentUser: state.auth.currentUser
 });
 
 export default connect(mapStateToProps)(Nav);

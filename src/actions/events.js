@@ -1,7 +1,5 @@
 import { API_BASE_URL } from '../config';
 import { loadAuthToken } from '../local-storage';
-import React from 'react';
-import { Redirect } from 'react-router';
 
 
 export const FETCH_EVENTS_SUCCESS = 'FETCH_EVENT_SUCCESS';

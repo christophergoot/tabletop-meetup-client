@@ -18,7 +18,6 @@ const muiTheme = getMuiTheme({
 	// 	floatingLabelColor: 'green'
 	// },
 });
-  
 
 ReactDOM.render(
 	<Provider store={store}>

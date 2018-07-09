@@ -199,27 +199,3 @@ export default reduxForm({
 	onsSubmitFail: (errors, dispatch) => 
 		dispatch(focus('newEvent', Object.keys(errors)[0]))
 })(NewEventForm);
-
-
-
-
-// TODO connect this form the redux store
-// map state to props users: users.guests
-
-// // https://redux-form.com/6.7.0/examples/initializefromstate/
-
-// // Decorate with reduxForm(). It will read the initialValues prop provided by connect()
-// InitializeFromStateForm = reduxForm({
-// 	form: 'initializeFromState' // a unique identifier for this form
-//   })(InitializeFromStateForm)
-  
-//   // You have to connect() to any reducers that you wish to connect to yourself
-//   InitializeFromStateForm = connect(
-// 	state => ({
-// 	  initialValues: state.account.data // pull initial values from account reducer
-// 	}),
-// 	{load: loadAccount} // bind account loading action creator
-//   )(InitializeFromStateForm)
-  
-//   export default InitializeFromStateForm
-  
