@@ -1,4 +1,5 @@
 import React from 'react';
+import AddGame from '../games/add-game';
 import { Link } from 'react-router-dom';
 
 export default function GameListSummary(props) {
@@ -19,8 +20,7 @@ export default function GameListSummary(props) {
 	return (
 		<div className="dashboard-gamelist-summary">
 			{summary}
-			<a>AddGame component</a>
-
+			<AddGame />
 		</div>
 	);
 }

@@ -1,6 +1,7 @@
 import { loadAuthToken } from '../local-storage';
 import { API_BASE_URL } from '../config';
 import { fetchSingleEventSuccess } from './events';
+import xml2json from 'xml2json';
 
 export const fetchCollection = (userId, limit, page, sort, filters) =>  dispatch => {
 	const uri = `collections/${userId}/`;
@@ -79,21 +80,6 @@ export const sortGamesSuccess = games => ({
 	games
 });
 
-// export const sortGames = (listType, listId, sortMethod) =>  dispatch => {
-// //will get a reference to a gamelist, and a sort method
-// //if collection, launch fetchCollection
-// //	need to make sure eftchCollectionSuccess updates sort in the state
-// // (userId, limit, page, sort, filter) 
-// 	if (listType === 'collection') {
-// 		// const sort 
-// 		dispatch(fetchCollection(listId,limit,sort,filter));
-// 	}
-// 	if (listType === 'event') dispatch(fetchEvent(listId,limit,sort,filter));
-// //if event gameList, launch get event
-// //	save sort, filter, etc in state
-
-// };
-
 export const EDIT_GAME = 'EDIT_GAME';
 export const editGame = (gameId) => ({
 	type: EDIT_GAME,
@@ -105,3 +91,15 @@ export const removeGame = (gameId) => ({
 	type: REMOVE_GAME,
 	gameId
 }); 
+
+export const ADD_GAME_EDIT = 'ADD_GAME_EDIT';
+export const addGameEdit = () => ({
+	type: ADD_GAME_EDIT
+});
+
+export const searchBggForGame = query => {
+	const url = `https://www.boardgamegeek.com/xmlapi/search?search=${query}`;
+	fetch(url)
+		.then(res => xml2json(res.body))
+		.then(res => console.log('bgg response is ' + res));
+};

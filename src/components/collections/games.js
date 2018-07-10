@@ -7,6 +7,7 @@ import GameSort from '../games/game-sort';
 import GamesPaginate from '../games/games-paginate';
 import requiresLogin from '../app/requires-login';
 import { FilterMethods } from '../games/filter-methods-base-set'
+import AddGame from '../games/add-game';
 
 export class Games extends React.Component {
 	componentDidMount() {
@@ -35,6 +36,7 @@ export class Games extends React.Component {
 		return (
 			<section>
 				<h1>Manage Game List</h1>
+				<AddGame />
 				<GameFilter 
 					collection={collection}
 					updateList={this.updateList}

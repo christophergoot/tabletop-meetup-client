@@ -1,9 +1,13 @@
 import { 
 	FETCH_COLLECTION_SUCCESS, 
-	SORT_GAMES_SUCCESS
+	SORT_GAMES_SUCCESS,
+	ADD_GAME_EDIT
 } from '../actions/collections';
 
 const initialState = ({
+	addGame: {
+		isEditing: false
+	},
 	list: {
 		userId: '',
 		sort: {
@@ -31,6 +35,14 @@ export default function collectionsReducer(state=initialState, action) {
 		return {
 			...state,
 			list: action.collection
+		};
+
+	case ADD_GAME_EDIT:
+		return {
+			...state,
+			addGame: {
+				isEditing: !state.addGame.isEditing
+			}
 		};
 
 	default: 
