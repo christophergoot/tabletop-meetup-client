@@ -1,0 +1,14 @@
+.add-game-dropdown {
+	background-color: white;
+	position: absolute;
+	z-index: 1;
+	max-width: 50%;
+	max-height: 20em;
+	overflow: scroll;
+	margin: 0 25%;
+}
+
+.add-game-dropdown>li:hover {
+	background-color: rgb(240, 240, 240);
+	cursor: pointer;
+}

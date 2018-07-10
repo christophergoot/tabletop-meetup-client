@@ -1,7 +1,8 @@
 import { loadAuthToken } from '../local-storage';
 import { API_BASE_URL } from '../config';
 import { fetchSingleEventSuccess } from './events';
-import xml2json from 'xml2json';
+// import xml2json from 'xml2json';
+import { parseString } from 'xml2js';
 
 export const fetchCollection = (userId, limit, page, sort, filters) =>  dispatch => {
 	const uri = `collections/${userId}/`;
@@ -97,9 +98,47 @@ export const addGameEdit = () => ({
 	type: ADD_GAME_EDIT
 });
 
+export const HANDLE_GAME_SEARCH_SUCCESS = 'HANDLE_GAME_SEARCH_SUCCESS';
+export const handleGameSearchSuccess = gameSearchResults => ({
+	type: HANDLE_GAME_SEARCH_SUCCESS,
+	gameSearchResults
+});
+
+export const handleGameSearch = query => dispatch => {
+	searchBggForGame(query)
+		.then(res => {
+			dispatch(handleGameSearchSuccess(res));
+		});	
+};
+
 export const searchBggForGame = query => {
-	const url = `https://www.boardgamegeek.com/xmlapi/search?search=${query}`;
-	fetch(url)
-		.then(res => xml2json(res.body))
-		.then(res => console.log('bgg response is ' + res));
+	const url = 'http://cors-anywhere.herokuapp.com/' 
+		+ 'https://www.boardgamegeek.com/xmlapi2/search?'
+		+ `query=${query}`
+		+ '&type=boardgame'
+		+ '&exact=1';
+	return fetch(url)
+		.then(res => res.text())
+		.then(res => {
+			let gameList =[];
+			parseString(res, (err, result) => {
+				if (err) console.log(err);
+				if (result.items && result.items.item) result.items.item.forEach(game => {
+					let name = '', yearPublished = '';
+					if (game.name[0]) name = game.name[0].$.value;
+					if (game.yearpublished) yearPublished = game.yearpublished[0].$.value;
+					gameList.push({
+						id: game.$.id,
+						name,
+						yearPublished
+					});
+				});
+			});
+			return gameList;	
+		});
+};
+
+export const addGameById = gameId => {
+	console.log('you selected game with id ' + gameId);
+	return gameId;
 };

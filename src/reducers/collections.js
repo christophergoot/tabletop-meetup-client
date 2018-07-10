@@ -1,11 +1,13 @@
 import { 
 	FETCH_COLLECTION_SUCCESS, 
 	SORT_GAMES_SUCCESS,
-	ADD_GAME_EDIT
+	ADD_GAME_EDIT,
+	HANDLE_GAME_SEARCH_SUCCESS
 } from '../actions/collections';
 
 const initialState = ({
 	addGame: {
+		gameSearchResults: [],
 		isEditing: false
 	},
 	list: {
@@ -42,6 +44,15 @@ export default function collectionsReducer(state=initialState, action) {
 			...state,
 			addGame: {
 				isEditing: !state.addGame.isEditing
+			}
+		};
+
+	case HANDLE_GAME_SEARCH_SUCCESS:
+		return {
+			...state,
+			addGame: {
+				...state.addGame,
+				gameSearchResults: action.gameSearchResults
 			}
 		};
 
