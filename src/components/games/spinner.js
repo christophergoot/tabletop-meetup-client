@@ -6,15 +6,14 @@ class Spinner extends Component {
 		const title = this.props.tooltip || 'loading...';
 
 		return (
-			<div 
-				className="lds-css ng-scope"
-				style={{width:'1em', height:'1em'}}
-			>
-				<div 
-					title={title}
-					className="lds-eclipse"
-				>
-					<div></div>
+			<div title={title} className="lds-css ng-scope" style={{position:'relative'}}>
+				<div style={{width:'100%',height:'100%'}} className="lds-disk">
+					<div>
+						<div>
+						</div>
+						<div>
+						</div>
+					</div>
 				</div>
 			</div>
 		);
@@ -22,3 +21,4 @@ class Spinner extends Component {
 }
 
 export default Spinner;
+

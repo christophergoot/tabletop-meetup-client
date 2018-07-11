@@ -12,3 +12,12 @@
 	background-color: rgb(240, 240, 240);
 	cursor: pointer;
 }
+
+.center-horrizonal {
+	/* padding: 10px 0; */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	/* margin: 0 auto; */
+	/* text-align: center; */
+}

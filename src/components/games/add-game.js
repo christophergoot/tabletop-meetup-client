@@ -4,13 +4,23 @@ import { handleGameSearch, addGameById } from '../../actions/collections';
 import './add-game.css';
 import GameBoxtop from './game-boxtop';
 import Spinner from './spinner';
+import _ from 'lodash';
 // import TextField from '@material-ui/core/TextField';
 
 class AddGame extends Component {
+	constructor(props) {
+		super(props);
+		this.debounceChange = _.debounce(
+			query => this.props.dispatch(handleGameSearch(query)), 
+			1000)
+	}
+
+	
+
 	handleChange = () => event => {
 		const query = event.target.value.trim().toLowerCase();
-		console.log('TODO: add a spinner starting at AddGame.handleChange');
-		this.props.dispatch(handleGameSearch(query));
+		this.debounceChange(query);
+		// this.props.dispatch(handleGameSearch(query));
 	}
 	
 	selectGameById = gameId => {
@@ -50,21 +60,26 @@ class AddGame extends Component {
 
 	spinner = () => {
 		if (this.props.currentSearches > 0) 
-			return <Spinner tooltip='BoardGameGeek is really this slow' />
+			return <Spinner 
+				tooltip='waiting on BoardGameGeek.com'
+				style={{}} />
 		else return ''
 	}
 
 	render() {
 			return (
 				<form>
-					<div>
+					<div
+						style={{height:'30px',dispaly:'flex'}}
+						className='center-horrizonal'
+					>
 						<input 
 							id='game-search-input'
 							type='text'
 							placeholder='Add a Game'
 							onChange={this.handleChange()}
 						/>
-						{this.spinner()}
+						<div style={{width:'40px'}}>{this.spinner()}</div>
 					</div>
 					{this.dropdown()}
 				</form>
