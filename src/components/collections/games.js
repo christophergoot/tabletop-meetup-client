@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { fetchCollection } from '../../actions/collections';
 import GameFilter from '../games/game-filter';
 import GameList from './game-list';
+import GameListSummary from './game-list-summary';
 import GameSort from '../games/game-sort';
 import GamesPaginate from '../games/games-paginate';
 import requiresLogin from '../app/requires-login';

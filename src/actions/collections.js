@@ -104,19 +104,26 @@ export const handleGameSearchSuccess = gameSearchResults => ({
 	gameSearchResults
 });
 
+export const GAME_SEARCH_START = 'GAME_SEARCH_START';
+export const gameSearchStart = () => ({
+	type: GAME_SEARCH_START
+});
+
 export const handleGameSearch = query => dispatch => {
+	dispatch(gameSearchStart());
 	searchBggForGame(query)
 		.then(res => {
 			dispatch(handleGameSearchSuccess(res));
 		});	
 };
 
+
 export const searchBggForGame = query => {
 	const url = 'http://cors-anywhere.herokuapp.com/' 
 		+ 'https://www.boardgamegeek.com/xmlapi2/search?'
 		+ `query=${query}`
 		+ '&type=boardgame'
-		+ '&exact=1';
+		+ '&exact=0';
 	return fetch(url)
 		.then(res => res.text())
 		.then(res => {
@@ -139,6 +146,7 @@ export const searchBggForGame = query => {
 };
 
 export const addGameById = gameId => {
-	console.log('you selected game with id ' + gameId);
+	console.log('you selected game with id ' + gameId);	
+
 	return gameId;
 };
