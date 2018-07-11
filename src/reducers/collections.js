@@ -3,14 +3,17 @@ import {
 	SORT_GAMES_SUCCESS,
 	ADD_GAME_EDIT,
 	HANDLE_GAME_SEARCH_SUCCESS,
-	GAME_SEARCH_START
+	GAME_SEARCH_START,
+	GAME_SELECT_START,
+	FETCH_GAME_SUCCESS
 } from '../actions/collections';
 
 const initialState = ({
 	addGame: {
 		gameSearchResults: [],
 		gameSearchDrop: 'search',
-		currentSearches: 0
+		currentSearches: 0,
+		selectedGame: {}
 	},
 	list: {
 		userId: '',
@@ -64,7 +67,29 @@ export default function collectionsReducer(state=initialState, action) {
 			...state,
 			addGame: {
 				...state.addGame,
-				currentSearches: state.addGame.currentSearches + 1
+				currentSearches: state.addGame.currentSearches + 1,
+				gameSearchDrop: 'search'
+			}
+		};
+
+	case GAME_SELECT_START:
+		return {
+			...state,
+			addGame: {
+				...state.addGame,
+				currentSearches: state.addGame.currentSearches + 1,
+				selectedGame: action.game,
+				gameSearchDrop: 'select'
+			}
+		};
+
+	case FETCH_GAME_SUCCESS:
+		return {
+			...state,
+			addGame: {
+				...state.addGame,
+				currentSearches: state.addGame.currentSearches - 1,
+				selectedGame: action.game
 			}
 		};
 

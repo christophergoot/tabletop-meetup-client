@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { handleGameSearch, addGameById } from '../../actions/collections';
+import { handleGameSearch, selectGameByGame } from '../../actions/collections';
 import './add-game.css';
 import GameBoxtop from './game-boxtop';
 import Spinner from './spinner';
 import _ from 'lodash';
+import GameCard from '../collections/game-card';
 // import TextField from '@material-ui/core/TextField';
 
 class AddGame extends Component {
@@ -23,29 +24,42 @@ class AddGame extends Component {
 		// this.props.dispatch(handleGameSearch(query));
 	}
 	
-	selectGameById = gameId => {
+	handleGameSelect = game => {
 		// console.log('you selected game with id ' + gameId);
+		const tempGame = {
+			gameId: game.id,
+			name: game.name,
+			yearPublished: game.yearPublished, 
+			thumbnail: '', 
+			averageRating: 0, 
+			minPlayers: 0, 
+			maxPlayers: 0, 
+			playingTime: 0
+		};
 
-
+		this.props.dispatch(selectGameByGame(tempGame));
 		// do nothing to the input
-		// update state with collections.addGame.gameSearchDrop: 'select'
+		// update state.collections.addGame.gameSearchDrop: 'select'
 		
+
 		// if game exists in collection, open boxtop with existing values
 
-		return <GameBoxtop />
 
 	}
 
 	dropdown = () => {
 		if (this.props.drop === 'search') return this.searchResults()
-		else if (this.props.drop === 'select') return <GameBoxtop />
+		else if (this.props.drop === 'select') return (
+			<div className='select-game-dropdown'>
+				<GameCard game={this.props.selectedGame}/>
+			</div>)
 		return 'this should be empty'
 	}
 
 	searchResults = () => {
 		const results = this.props.gameSearchResults.map((game,i) => (
 			<li key={i}
-				onClick={e => this.selectGameById(game.id)}
+				onClick={e => this.handleGameSelect(game)}
 			>
 				{game.name} ({game.yearPublished})
 			</li>
@@ -91,7 +105,8 @@ function mapStateToProps(state) {
 	return {
 		gameSearchResults: state.collections.addGame.gameSearchResults,
 		drop: state.collections.addGame.gameSearchDrop,
-		currentSearches: state.collections.addGame.currentSearches
+		currentSearches: state.collections.addGame.currentSearches,
+		selectedGame: state.collections.addGame.selectedGame
 	};
 }
 

@@ -117,7 +117,6 @@ export const handleGameSearch = query => dispatch => {
 		});	
 };
 
-
 export const searchBggForGame = query => {
 	const url = 'http://cors-anywhere.herokuapp.com/' 
 		+ 'https://www.boardgamegeek.com/xmlapi2/search?'
@@ -145,8 +144,31 @@ export const searchBggForGame = query => {
 		});
 };
 
-export const addGameById = gameId => {
-	console.log('you selected game with id ' + gameId);	
+export const fetchGameFromBgg = tempGame => {
+	const url = `http://bgg-json.azurewebsites.net/thing/${tempGame.gameId}`;
+	return fetch(url)
+		.then(res => {
+			console.log(res);
+			return res.json();
+		});
+};
 
-	return gameId;
+export const GAME_SELECT_START = 'GAME_SELECT_START';
+export const gameSelectStart = game => ({
+	type: GAME_SELECT_START,
+	game
+});
+
+export const FETCH_GAME_SUCCESS = 'FETCH_GAME_SUCCESS';
+export const fetchGameSuccess = game => ({
+	type: FETCH_GAME_SUCCESS,
+	game
+});
+
+
+export const selectGameByGame = tempGame => dispatch => {
+	console.log('you selected game with id ' + tempGame.id);
+	dispatch(gameSelectStart(tempGame));
+	fetchGameFromBgg(tempGame)
+		.then(game => dispatch(fetchGameSuccess(game)));
 };
