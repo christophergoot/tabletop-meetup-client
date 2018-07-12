@@ -1,8 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import './collection-details.css';
-import { updateGame } from '../../actions/collections';
+import { updateGame, removeGame, fetchCollection } from '../../actions/collections';
 
-export default class CollectionDetails extends React.Component {
+export class CollectionDetails extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -17,8 +18,13 @@ export default class CollectionDetails extends React.Component {
 				updatedGame[field.id] = field.checked;
 			}
 			this.props.dispatch(updateGame(updatedGame));
-
 			this.setState({editing: false});
+		};
+
+		this.handleRemove = (e, game) => {
+			e.preventDefault();
+			this.props.dispatch(removeGame(game));
+			this.setState({editing:false});			
 		};
 
 		this.createCheckbox = (label, labelId, checked) => {
@@ -76,6 +82,9 @@ export default class CollectionDetails extends React.Component {
 					<button onClick={() => this.setState({editing: false})}>
 						Cancel
 					</button>
+					<button onClick={e => this.handleRemove(e,game)}>
+						Remove Game
+					</button>
 				</form>
 			</div>			
 		);
@@ -88,3 +97,12 @@ export default class CollectionDetails extends React.Component {
 		);
 	}
 }
+
+
+function mapStateToProps(state) {
+	return {
+		collection: state.collections.list
+	};
+}
+
+export default connect(mapStateToProps)(CollectionDetails);

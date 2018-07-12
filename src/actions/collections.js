@@ -87,11 +87,37 @@ export const editGame = (gameId) => ({
 	gameId
 });
 
-export const REMOVE_GAME = 'REMOVE_GAME';
-export const removeGame = (gameId) => ({
-	type: REMOVE_GAME,
+export const REMOVE_GAME_SUCCESS = 'REMOVE_GAME_SUCCESS';
+export const removeGameSucess = (gameId) => ({
+	type: REMOVE_GAME_SUCCESS,
 	gameId
 }); 
+
+export const removeGameFromDB = game => {
+	const authToken = loadAuthToken();
+	const thisHeaders = new Headers();
+	thisHeaders.append('Authorization', `Bearer ${authToken}`);
+	const url = new URL(`${API_BASE_URL}collections/game/${game.gameId}`);
+
+	return fetch(url, {
+		'method': 'DELETE',
+		'mode': 'cors',
+		'headers': thisHeaders
+	});
+};
+
+export const refreshCollection = () => (dispatch, getState) => {
+	const { userId, limit, page, sort, filters } = getState().collections.list;
+	dispatch(fetchCollection(userId, limit, page, sort, filters));
+};
+
+export const removeGame = game => dispatch => {
+	removeGameFromDB(game)
+		.then(() => {
+			dispatch(removeGameSucess(game.gameId));
+			dispatch(refreshCollection());
+		});
+};
 
 export const ADD_GAME_EDIT = 'ADD_GAME_EDIT';
 export const addGameEdit = () => ({
@@ -206,7 +232,6 @@ export const updateGame = game => dispatch  => {
 	postGame(game)
 		.then(() => {
 			dispatch(updateGameSuccess(game));
-			// const { userId, limit, page, sort, filters } = getState().collections;
-			// dispatch(fetchCollection(userId, limit, page, sort, filters));
+			dispatch(refreshCollection());
 		});
 };
