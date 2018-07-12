@@ -28,6 +28,7 @@ export default class gameBallot extends React.Component{
 		];
 
 		const voteActions = votes.map((el, i) => {
+			
 			return (
 				<a 
 					key={i}

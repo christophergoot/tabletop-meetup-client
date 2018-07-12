@@ -1,9 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import GameBoxtop from '../games/game-boxtop';
 import EditGame from './edit-game';
 import CollectionDetails from './collection-details';
 
-export default class GameCard extends React.Component {
+export class GameCard extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -34,7 +35,9 @@ export default class GameCard extends React.Component {
 		else return (
 			<GameBoxtop 
 				game={this.props.game} 
-				listManager={<CollectionDetails game={this.props.game} />}
+				listManager={<CollectionDetails 
+					game={this.props.game} 
+					dispatch={this.props.dispatch}/>}
 				editCollectionDetails={this.editGame} 
 				dispatch={this.props.dispatch} 
 				// toggleEditing={this.toggleEditing}
@@ -43,14 +46,11 @@ export default class GameCard extends React.Component {
 	}
 }
 
-// const mapDispatchToProps = {
-// 	removeGame
-// 	// game: this.props.game,
-// 	// editGame: 
-// };
+function mapStateToProps(state) {
+	return {
 
-// const mapPropsStateToProps = {
-// 	editing: this.state.editing
-// }
+	};
+}
 
-// export default connect(mapPropsStateToProps, mapDispatchToProps)(GameCard);
+
+export default connect(mapStateToProps)(GameCard);

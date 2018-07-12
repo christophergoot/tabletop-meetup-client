@@ -17,3 +17,11 @@
 	/* display: inline; */
 	background-color: white;
 }
+.game-ballot>a:hover {
+	background-color: gray;
+	color: white;
+}
+.game-ballot>a.selected {
+	background-color: gray;
+	color: white;	
+}

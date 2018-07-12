@@ -7,7 +7,7 @@ export default () => Component => {
 	function RequiresLogin(props) {
 		const {authenticating, loggedIn, error, ...passThroughProps} = props;
 		if (authenticating) {
-			return <div><Spinner /> Logging in...</div>;
+			return <div>Logging in... <Spinner /></div>;
 		} else if (!loggedIn || error) {
 			return <Redirect to="/" />;
 		}

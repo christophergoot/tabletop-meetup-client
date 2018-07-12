@@ -1,5 +1,6 @@
 import React from 'react';
 import './collection-details.css';
+import { updateGame } from '../../actions/collections';
 
 export default class CollectionDetails extends React.Component {
 	constructor(props) {
@@ -8,9 +9,15 @@ export default class CollectionDetails extends React.Component {
 			editing: false
 		};
 	
-		this.updateCollection = (e) => {
+		this.updateCollection = (e, game) => {
 			e.preventDefault();
-			alert('updating collection');
+			const updatedGame = game;
+			for (let i=0; i<e.currentTarget.length-2; i++) {
+				const field = e.currentTarget[i];
+				updatedGame[field.id] = field.checked;
+			}
+			this.props.dispatch(updateGame(updatedGame));
+
 			this.setState({editing: false});
 		};
 
@@ -61,7 +68,7 @@ export default class CollectionDetails extends React.Component {
 		});
 		if (this.state.editing) return (
 			<div className='collection-details editing'>
-				<form onSubmit={e => this.updateCollection(e)}>
+				<form onSubmit={e => this.updateCollection(e,game)}>
 					{checkBoxes}
 					<button type='submit'>
 						Save

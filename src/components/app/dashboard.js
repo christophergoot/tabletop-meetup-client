@@ -11,9 +11,12 @@ import { loadAuthToken } from '../../local-storage';
 export class Dashboard extends React.Component {
 	componentDidMount() {
 		const { userId } = this.props;
-		// this.props.dispatch(loadAuthToken());
 		this.props.dispatch(fetchCollection(userId,'100000'));
 		this.props.dispatch(fetchEvents(userId));
+	}
+	componentDidUpdate() {
+		const { userId } = this.props;
+		this.props.dispatch(fetchCollection(userId,'100000'));
 	}
 
 	render() {

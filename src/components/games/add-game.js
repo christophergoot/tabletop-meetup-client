@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { handleGameSearch, selectGameByGame } from '../../actions/collections';
 import './add-game.css';
-import GameBoxtop from './game-boxtop';
 import Spinner from './spinner';
 import _ from 'lodash';
 import GameCard from '../collections/game-card';
@@ -48,12 +47,12 @@ class AddGame extends Component {
 	}
 
 	dropdown = () => {
-		if (this.props.drop === 'search') return this.searchResults()
+		if (this.props.drop === 'search' && this.props.gameSearchResults.length > 0) return this.searchResults()
 		else if (this.props.drop === 'select') return (
 			<div className='select-game-dropdown'>
 				<GameCard game={this.props.selectedGame}/>
 			</div>)
-		return 'this should be empty'
+		return ''
 	}
 
 	searchResults = () => {
@@ -82,7 +81,7 @@ class AddGame extends Component {
 
 	render() {
 			return (
-				<form>
+				<div>
 					<div
 						style={{height:'30px',dispaly:'flex'}}
 						className='center-horrizonal'
@@ -91,12 +90,13 @@ class AddGame extends Component {
 							id='game-search-input'
 							type='text'
 							placeholder='Add a Game'
+							autoComplete='off'
 							onChange={this.handleChange()}
 						/>
 						<div style={{width:'40px'}}>{this.spinner()}</div>
 					</div>
 					{this.dropdown()}
-				</form>
+				</div>
 			);
 	}
 }

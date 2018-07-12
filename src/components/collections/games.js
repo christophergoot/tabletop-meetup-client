@@ -3,18 +3,23 @@ import { connect } from 'react-redux';
 import { fetchCollection } from '../../actions/collections';
 import GameFilter from '../games/game-filter';
 import GameList from './game-list';
-import GameListSummary from './game-list-summary';
 import GameSort from '../games/game-sort';
 import GamesPaginate from '../games/games-paginate';
 import requiresLogin from '../app/requires-login';
 import { FilterMethods } from '../games/filter-methods-base-set'
 import AddGame from '../games/add-game';
 
+
+
 export class Games extends React.Component {
 	componentDidMount() {
 		const { userId } = this.props;
 		this.props.dispatch(fetchCollection(userId));
 	}
+	// componentDidUpdate() {
+	// 	const { userId, limit, page, sort, filter } = this.props.collection;
+	// 	this.props.dispatch(fetchCollection(userId, limit, page, sort, filter));
+	// }
 
 	updateList = (limit,page,sort,filter) => {
 		this.props.dispatch(fetchCollection(this.props.userId, limit, page, sort, filter))

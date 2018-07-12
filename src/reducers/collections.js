@@ -5,7 +5,8 @@ import {
 	HANDLE_GAME_SEARCH_SUCCESS,
 	GAME_SEARCH_START,
 	GAME_SELECT_START,
-	FETCH_GAME_SUCCESS
+	FETCH_GAME_SUCCESS,
+	UPDATE_GAME_SUCCESS
 } from '../actions/collections';
 
 const initialState = ({
@@ -92,6 +93,24 @@ export default function collectionsReducer(state=initialState, action) {
 				selectedGame: action.game
 			}
 		};
+
+	case UPDATE_GAME_SUCCESS:
+		return {
+			...state,
+			addGame: {
+				...state.addGame,
+				gameSearchDrop: 'search',
+				gameSearchResults: []
+			},
+			// list: {
+			// 	...state.list,
+			// 	games: [
+			// 		...state.list.games,
+			// 		action.game
+			// 	]	
+			// }
+		};
+
 
 	default: 
 		return state;

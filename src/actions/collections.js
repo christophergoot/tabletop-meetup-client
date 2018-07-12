@@ -148,8 +148,12 @@ export const fetchGameFromBgg = tempGame => {
 	const url = `http://bgg-json.azurewebsites.net/thing/${tempGame.gameId}`;
 	return fetch(url)
 		.then(res => {
-			console.log(res);
+			if (!res.ok) return Promise.reject(res.statusText);
 			return res.json();
+		})
+		.catch(err => {
+			console.log('error fetching bgg game', err);
+			return tempGame;
 		});
 };
 
@@ -167,8 +171,42 @@ export const fetchGameSuccess = game => ({
 
 
 export const selectGameByGame = tempGame => dispatch => {
-	console.log('you selected game with id ' + tempGame.id);
 	dispatch(gameSelectStart(tempGame));
 	fetchGameFromBgg(tempGame)
 		.then(game => dispatch(fetchGameSuccess(game)));
+};
+
+export const UPDATE_GAME_START = 'UPDATE_GAME_START';
+export const updateGameStart = game => ({
+	type: UPDATE_GAME_START,
+	game
+});
+
+export const UPDATE_GAME_SUCCESS = 'UPDATE_GAME_SUCCESS';
+export const updateGameSuccess = game => ({
+	type: UPDATE_GAME_SUCCESS,
+	game
+});
+
+export const postGame = game => {
+	const authToken = loadAuthToken();
+	const url = new URL(`${API_BASE_URL}collections/add-game`);
+	return fetch(url, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+			'Authorization': 'Bearer ' + authToken
+		},
+		body: JSON.stringify(game)
+	}).then(res => res.json());
+};
+
+export const updateGame = game => dispatch  => {
+	dispatch(updateGameStart(game));
+	postGame(game)
+		.then(() => {
+			dispatch(updateGameSuccess(game));
+			// const { userId, limit, page, sort, filters } = getState().collections;
+			// dispatch(fetchCollection(userId, limit, page, sort, filters));
+		});
 };
