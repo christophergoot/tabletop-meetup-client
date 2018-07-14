@@ -38,6 +38,8 @@ export default function GameSort(props) {
 		if (el.method === sort.method) {
 			className = 'sort selected';
 			sortDirection = sort.direction * -1;
+			if (sortDirection === 1) className += ' asc';
+			else if (sortDirection === -1) className += ' desc';
 		}
 		return (
 			<li key={i}

@@ -11,3 +11,11 @@
 	background-color: grey;
 	color: white;
 }
+
+.sort.selected.asc::after {
+	content: " ⇧"
+}
+
+.sort.selected.desc::after {
+	content: " ⇩"
+}
