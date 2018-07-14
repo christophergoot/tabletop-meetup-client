@@ -235,3 +235,27 @@ export const updateGame = game => dispatch  => {
 			dispatch(refreshCollection());
 		});
 };
+
+export const FETCH_USER_WANT_TO_PLAY_LIST_SUCCESS = 'FETCH_USER_WANT_TO_PLAY_LIST_SUCCESS';
+export const fetchUserWantToPlayListSuccess = (userId, userWantToPlayList) => ({
+	type: FETCH_USER_WANT_TO_PLAY_LIST_SUCCESS,
+	userId,
+	userWantToPlayList
+});
+
+export const getUserPlayList = userId => {
+	const authToken = loadAuthToken();
+	const url = new URL(`${API_BASE_URL}collections/${userId}/want-to-play`);
+	return fetch(url, {
+		method: 'GET',
+		headers: {
+			'Content-Type': 'application/json',
+			'Authorization': 'Bearer ' + authToken
+		}
+	}).then(res => res.json());
+};
+
+export const fetchUserWantToPlayList = userId => dispatch => {
+	getUserPlayList(userId)
+		.then(list => dispatch(fetchUserWantToPlayListSuccess(userId, list)));
+};

@@ -6,7 +6,8 @@ import {
 	GAME_SEARCH_START,
 	GAME_SELECT_START,
 	FETCH_GAME_SUCCESS,
-	UPDATE_GAME_SUCCESS
+	UPDATE_GAME_SUCCESS,
+	FETCH_USER_WANT_TO_PLAY_LIST_SUCCESS
 } from '../actions/collections';
 
 const initialState = ({
@@ -26,7 +27,8 @@ const initialState = ({
 		page: 1,
 		limit: 25,
 		games:[]
-	}
+	},
+	wantToPlayLists: []
 });
 
 export default function collectionsReducer(state=initialState, action) {
@@ -102,13 +104,18 @@ export default function collectionsReducer(state=initialState, action) {
 				gameSearchDrop: 'search',
 				gameSearchResults: []
 			},
-			// list: {
-			// 	...state.list,
-			// 	games: [
-			// 		...state.list.games,
-			// 		action.game
-			// 	]	
-			// }
+		};
+
+	case FETCH_USER_WANT_TO_PLAY_LIST_SUCCESS:
+		return {
+			...state,
+			wantToPlayLists: [
+				...state.wantToPlayLists.filter(list => list.userId !== action.userId),
+				{
+					userId: action.userId,
+					list: action.userWantToPlayList
+				}
+			]
 		};
 
 

@@ -5,6 +5,7 @@ import GameSort from '../games/game-sort';
 import GamesPaginate from '../games/games-paginate';
 import GameBallot from './game-ballot';
 import { fetchSingleEvent } from  '../../actions/collections';
+import { castVote } from '../../actions/events';
 import { FilterMethods } from '../games/filter-methods-base-set';
 // import { connect } from 'react-redux';
 
@@ -19,6 +20,11 @@ export default class EventGameList extends React.Component {
 			filters))
 	}
 
+	handleVote = (event, ballot) => {
+		event.preventDefault();
+		this.props.dispatch(castVote(ballot));
+	}
+
 	render() {
 		const { event } = this.props;
 		let gameList = '';
@@ -26,7 +32,14 @@ export default class EventGameList extends React.Component {
 			gameList = event.games.map((game, i) => {
 				return (
 					<GameBoxtop
-						listManager={<GameBallot game={game} />}
+						listManager={<GameBallot 
+							game={game}
+							handleVote={this.handleVote}
+							eventId={event.eventId}
+							gameVotes={event.gameVotes} 
+							userId={this.props.userId}
+							userWantToPlayList={this.props.userWantToPlayList}
+							/>}
 						game={game} 
 						key={i} />
 				);
@@ -34,7 +47,7 @@ export default class EventGameList extends React.Component {
 		}
 
 		const filterMethods = [
-			...FilterMethods,
+			...FilterMethods
 		]
 	
 		return (

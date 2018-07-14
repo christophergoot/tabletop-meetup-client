@@ -1,5 +1,6 @@
 import { API_BASE_URL } from '../config';
 import { loadAuthToken } from '../local-storage';
+import { updateGame, postGame } from './collections';
 
 
 export const FETCH_EVENTS_SUCCESS = 'FETCH_EVENT_SUCCESS';
@@ -97,3 +98,40 @@ export const removeGuestFromGuestList = i => ({
 	type: REMOVE_GUEST,
 	i
 });
+
+export const CAST_VOTE_SUCCESS = 'CAST_VOTE_SUCCESS';
+export const castVoteSuccess = ballot => ({
+	type: CAST_VOTE_SUCCESS,
+	ballot
+});
+
+export const castVote = ballot => dispatch => {
+	if (ballot.vote === 'yes' | ballot.vote === 'no') {
+		const authToken = loadAuthToken();
+		return fetch(`${API_BASE_URL}events/${ballot.eventId}/cast-vote`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				'Authorization': 'Bearer ' + authToken
+			},
+			body: JSON.stringify(ballot)
+		}).then(res => {
+			if (!res.ok) {
+				return Promise.reject(res.statusText);
+			}
+			return res.json();
+		}).then(() => {
+			dispatch(castVoteSuccess(ballot));
+			dispatch(fetchSingleEvent(ballot.eventId));
+		});	
+
+	// } else if (ballot.vote === 'wantToPlay') {
+	// 	const game = {
+	// 		gameId: ballot.game,
+	// 		wantToPlay: true
+	// 	};
+	// 	dispatch(updateGame(game));
+	// } else if (ballot.vote === 'hide') {
+	// 	// alert('We\'ll hide this from you in the future');
+	} 
+};
