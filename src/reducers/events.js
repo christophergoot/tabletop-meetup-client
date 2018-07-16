@@ -15,6 +15,20 @@ const initialState = ({
 			userId: ''
 		}
 	],
+	current: {
+		eventId: '',
+		location: '',
+		sort: {
+			method: 'name',
+			direction: 1
+		},
+		filters: [],
+		page: 1,
+		pageCount: 5,
+		limit: 25,
+		games: [],
+		guests: []
+	},
 	list: [
 		{
 			eventId: '',
@@ -50,7 +64,8 @@ export default function eventsReducer(state=initialState, action) {
 			...state,
 			list: [
 				action.event
-			] 
+			],
+			current: action.event
 		};
 
 	case FETCH_ALL_USERS_SUCCESS: 
@@ -102,7 +117,7 @@ export default function eventsReducer(state=initialState, action) {
 			// 			}
 			// 		]
 			// ]
-			// action.ballot
+			// action.ballot (looks like): { gameId, eventId, vote }
 		};
 
 	default: 

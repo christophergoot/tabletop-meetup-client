@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:sketch="http://www.bohemiancoding.com/sketch/ns"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   viewBox="0 0 100 100"
+   version="1.1"
+   x="0px"
+   y="0px"
+   id="svg2"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="filter-icon.svg"
+   width="100"
+   height="100">
+  <metadata
+     id="metadata20">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>Slice 2</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs18" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="856"
+     inkscape:window-height="627"
+     id="namedview16"
+     showgrid="false"
+     inkscape:zoom="1.888"
+     inkscape:cx="50"
+     inkscape:cy="37.5"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg2"
+     fit-margin-top="10"
+     fit-margin-left="5"
+     fit-margin-right="5"
+     fit-margin-bottom="10" />
+  <title
+     id="title4">Slice 2</title>
+  <desc
+     id="desc6">Created with Sketch Beta.</desc>
+  <g
+     sketch:type="MSPage"
+     id="g8"
+     style="fill:none;fill-rule:evenodd;stroke:none;stroke-width:1">
+    <path
+       d="M 34.844453,51.904762 C 33.951807,57.30993 29.324368,61.428571 23.75,61.428571 c -5.574368,0 -10.201806,-4.118641 -11.094453,-9.523809 l -5.7550038,0 C 5.8619005,51.904762 5,51.051971 5,50 5,48.940695 5.8509022,48.095238 6.9005432,48.095238 l 5.7550038,0 C 13.548194,42.69007 18.175632,38.571429 23.75,38.571429 c 5.574368,0 10.201807,4.118641 11.094453,9.523809 l 58.255004,0 C 94.138099,48.095238 95,48.948029 95,50 c 0,1.059305 -0.850902,1.904762 -1.900543,1.904762 l -58.255004,0 0,0 z m 28.436094,28.571429 -56.3800038,0 C 5.8619005,80.476191 5,79.6234 5,78.571429 5,77.512124 5.8509022,76.666667 6.9005432,76.666667 l 56.3800038,0 c 0.892646,-5.405169 5.520085,-9.52381 11.094453,-9.52381 5.574368,0 10.201807,4.118641 11.094453,9.52381 l 7.630004,0 c 1.038642,0 1.900543,0.852791 1.900543,1.904762 0,1.059305 -0.850902,1.904762 -1.900543,1.904762 l -7.630004,0 C 84.576807,85.881359 79.949368,90 74.375,90 68.800632,90 64.173193,85.881359 63.280547,80.476191 l 0,0 z m -18.75,-57.142858 -37.6300038,0 C 5.8619005,23.333333 5,22.480542 5,21.428571 5,20.369266 5.8509022,19.523809 6.9005432,19.523809 l 37.6300038,0 C 45.423193,14.118641 50.050632,10 55.625,10 c 5.574368,0 10.201807,4.118641 11.094453,9.523809 l 26.380004,0 C 94.138099,19.523809 95,20.3766 95,21.428571 c 0,1.059305 -0.850902,1.904762 -1.900543,1.904762 l -26.380004,0 c -0.892646,5.405169 -5.520085,9.52381 -11.094453,9.52381 -5.574368,0 -10.201807,-4.118641 -11.094453,-9.52381 l 0,0 z M 55.625,29.047619 c 4.142136,0 7.5,-3.411164 7.5,-7.619048 0,-4.207883 -3.357864,-7.619047 -7.5,-7.619047 -4.142136,0 -7.5,3.411164 -7.5,7.619047 0,4.207884 3.357864,7.619048 7.5,7.619048 z m 18.75,57.142857 c 4.142136,0 7.5,-3.411164 7.5,-7.619047 0,-4.207884 -3.357864,-7.619048 -7.5,-7.619048 -4.142136,0 -7.5,3.411164 -7.5,7.619048 0,4.207883 3.357864,7.619047 7.5,7.619047 z M 23.75,57.619048 c 4.142136,0 7.5,-3.411164 7.5,-7.619048 0,-4.207884 -3.357864,-7.619048 -7.5,-7.619048 -4.142136,0 -7.5,3.411164 -7.5,7.619048 0,4.207884 3.357864,7.619048 7.5,7.619048 z"
+       sketch:type="MSShapeGroup"
+       id="path10"
+       inkscape:connector-curvature="0"
+       style="fill:#000000" />
+  </g>
+</svg>

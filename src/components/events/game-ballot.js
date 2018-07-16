@@ -32,8 +32,7 @@ export default class gameBallot extends React.Component{
 		['yes','no'].forEach(opt => { 
 			if (currentGameVotes && currentGameVotes[opt].includes(userId)) userVote = opt; 
 		});
-			
-		
+
 		const voteActions = votes.map((el, i) => {
 			let className = '';
 			if (userWantToPlayList.includes(game.gameId) && el.field === 'wantToPlay') className = 'selected';

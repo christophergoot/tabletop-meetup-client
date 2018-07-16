@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types'; 
 import RangeSlider from './range-slider';
 import FilterOption from './filter-option';
+import FilterIcon from '../../../src/filter-icon.svg';
 import './sort-container.css';
 
 class GameFilter extends React.Component {
@@ -86,10 +87,27 @@ class GameFilter extends React.Component {
 		else return (
 			<div>
 				<h3 onClick={() => this.setState({ isOpen: true })}>
-					Filters  
-					<i className="material-icons">
-						edit_attributes
-					</i>
+					Filters 
+
+					{/* <svg 
+						xmlns="http://www.w3.org/2000/svg" 
+						// xmlns:xlink="http://www.w3.org/1999/xlink">       
+					>
+						<image xlinkHref="../filter-icon.svg" height="25" width="25" />    
+					</svg> */}
+
+					{/* <FilterIcon /> */}
+
+
+					{/* <image 
+						src='./src/filter-icon.svg' 
+						alt='open filters'
+						// title='open filters'
+						style={{
+							height: '1em',
+							width: '1em'
+						}}
+					/> */}
 				</h3>
 			</div>
 		);

@@ -14,7 +14,7 @@ import {
 import { Button } from '@material-ui/core';
 
 import {required, nonEmpty, matches, length, isTrimmed, 
-	// isBggUser
+	isBggUser
 } from '../../validators';
 const passwordLength = length({min: 10, max: 72});
 const matchesPassword = matches('password');
@@ -56,7 +56,7 @@ export class RegistrationForm extends React.Component {
 						component={TextField}
 						type="text"
 						name="bggUsername"
-						// validate={isBggUser}
+						validate={isBggUser}
 					/>
 				</div>
 				<div>

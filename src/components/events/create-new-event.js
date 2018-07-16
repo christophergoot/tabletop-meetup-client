@@ -3,12 +3,6 @@ import { connect } from 'react-redux';
 import requiresLogin from '../app/requires-login';
 import NewEventForm from './new-event-form';
 
-function mapStateToProps(state) {
-	return {
-		userId: state.auth.currentUser.userId
-	};
-}
-
 class CreateNewEvent extends Component {
 	render() {
 		return (
@@ -18,6 +12,13 @@ class CreateNewEvent extends Component {
 			</main>
 		);
 	}
+}
+
+
+function mapStateToProps(state) {
+	return {
+		userId: state.auth.currentUser.userId
+	};
 }
 
 export default requiresLogin()(connect(mapStateToProps)(CreateNewEvent));

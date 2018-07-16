@@ -37,11 +37,13 @@ export const createNewEvent = newEvent => dispatch => {
 		},
 		body: JSON.stringify(newEvent)
 	}).then(res => {
+		// console.log()
 		if (!res.ok) {
 			return Promise.reject(res.statusText);
 		}
 		return res.json();
 	}).then(res => {
+		// dispatch();
 		const url = '/event/' + res._id;
 		dispatch(redirectToUrl(url));
 	});	
@@ -134,4 +136,20 @@ export const castVote = ballot => dispatch => {
 	// } else if (ballot.vote === 'hide') {
 	// 	// alert('We\'ll hide this from you in the future');
 	} 
+};
+
+export const deleteEvent = eventId => dispatch => {
+	const authToken = loadAuthToken();
+	return fetch(`${API_BASE_URL}events/delete/${eventId}`, {
+		method: 'DELETE',
+		headers: {
+			'Content-Type': 'application/json',
+			'Authorization': 'Bearer ' + authToken
+		}
+	})
+		// .then(res => res.json())
+		.then(() => dispatch(redirectToUrl('/events')))
+		.catch(err => {
+			console.log('error', err);
+		});
 };

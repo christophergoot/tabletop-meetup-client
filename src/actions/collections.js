@@ -259,3 +259,38 @@ export const fetchUserWantToPlayList = userId => dispatch => {
 	getUserPlayList(userId)
 		.then(list => dispatch(fetchUserWantToPlayListSuccess(userId, list)));
 };
+
+
+export const handleBggUserSearch = query => dispatch => {
+	const url = 'http://cors-anywhere.herokuapp.com/' 
+	+ 'https://www.boardgamegeek.com/xmlapi2/user?'
+	+ `name=${query}`
+	+ '&domain=boardgame';
+	return fetch(url)
+		.then(res => res.text())
+		.then(res => {
+			parseString(res, (err, result) => {
+				if (err) console.log(err);
+				if (result) return (result);
+				else return;
+				// if (result.items && result.items.item) result.items.item.forEach(game => {
+				// 	let name = '', yearPublished = '';
+				// 	if (game.name[0]) name = game.name[0].$.value;
+				// 	if (game.yearpublished) yearPublished = game.yearpublished[0].$.value;
+				// 	gameList.push({
+				// 		id: game.$.id,
+				// 		name,
+				// 		yearPublished
+				// 	});
+			});
+		})
+		.then(res => {
+			dispatch(handleBggUserSearchSuccess(res));
+		});	
+};
+
+export const HANDLE_BGG_USER_SEARCH_SUCCESS = 'HANDLE_BGG_USER_SEARCH_SUCCESS';
+export const handleBggUserSearchSuccess = bggUser => ({
+	type: HANDLE_BGG_USER_SEARCH_SUCCESS,
+	bggUser
+});

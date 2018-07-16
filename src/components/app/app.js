@@ -27,9 +27,7 @@ export class App extends React.Component {
 			// Stop refreshing when we log out
 			this.stopPeriodicRefresh();
 		}
-		if (this.props.redirect) {
-			return <Redirect to={this.props.redirect} />;
-		}
+
 	}
 
 	componentWillUnmount() {
@@ -51,11 +49,19 @@ export class App extends React.Component {
 		clearInterval(this.refreshInterval);
 	}
 
+	redirect() {
+		if (this.props.redirect) {
+			return <Redirect to={this.props.redirect} />;
+		} else return;
+	}
+
+
 	render() {
 		return (
 			<Router>
 				<div className="app">
 					<Header />
+					{this.redirect()}
 					<main>
 						<Route exact path="/" component={Landing} />
 						<Route exact path="/dashboard" component={Dashboard} />

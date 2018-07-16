@@ -1,3 +1,5 @@
+import { handleBggUserSearch } from './actions/collections';
+
 // import { parseString } from 'xml2js';
 // import {parser} from 'xml2json';
 
@@ -20,15 +22,11 @@ export const matches = field => (value, allValues) => {
 		: 'Does not match';
 };
 
-// export const isBggUser = bggUsername => {
-// 	// const url = `https://www.boardgamegeek.com/xmlapi2/user?name=${bggUsername}`;
-// 	const url = 'https://www.boardgamegeek.com/xmlapi2/user?name=goot';
-// 	return fetch(url)
-// 		.then(res => res.text())
-// 		// .then(res => parseString(res))
-// 		// .then(res => parser.toJson(res))
-// 		.then(res => JSON.stringify(res))
-// 		.then(res => {
-// 			if (res.user.id === '') return 'Invalid BGG Username';
-// 		});	
-// };
+export const isBggUser = value => {
+	const searchValue = value || '';
+	return handleBggUserSearch(searchValue)
+		.then(res => {
+			console.log(res);
+			if (res.user.id === '') return 'Invalid BGG Username';
+		});	
+};

@@ -83,19 +83,12 @@ export class NewEventForm extends React.Component {
 		};
 		this.props.dispatch(initializeGuestList(host));
 	}
-	// componentDidUpdate() {
-	// 	if (this.props.redirect) {
-	// 		<Redirect to={this.props.redirect} />;
-	// 	}
-	// }
 
 	onSubmit(values) {
 		const event = {...values};
 		return this.props.dispatch(createNewEvent(event));
 	}
-	// addGuest() {
-	// 	this.props.dispatch(addAdditionalGuest());
-	// }
+
 	redirect() {
 		if (this.props.redirect) {
 			this.props.dispatch(redirectToUrl(null));
