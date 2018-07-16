@@ -1,6 +1,7 @@
 import React from 'react';
 import ListEvent from './list-event';
 import EventGameList from './event-game-list';
+import EventTopGames from './event-top-games';
 import { connect } from 'react-redux';
 // import { Redirect } from 'react-router-dom';
 import { fetchSingleEvent, deleteEvent } from '../../actions/events';
@@ -39,6 +40,7 @@ export class SingleEvent extends React.Component {
 			<div>
 				<ListEvent event={thisEvent} />
 				{this.deleteButton(isHost,eventId)}
+				<EventTopGames />
 				<EventGameList 
 					event={thisEvent}
 					userId={this.props.user.userId}

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types'; 
 import RangeSlider from './range-slider';
 import FilterOption from './filter-option';
+import './game-filter.css';
 import './sort-container.css';
 
 
@@ -35,6 +36,17 @@ class GameFilter extends React.Component {
 			this.props.updateList(limit,page,sort,filters);
 		};
 
+		const filterTitle = type => (
+			<div className={'game-filter-title ' + type}>
+			Filters
+				<img src="http://localhost:3000/filter-icon.svg" 
+					alt='filter icon'
+					style={{
+						height: '1em',
+						width: '1em',
+						marginLeft: '1em'}} />
+			</div>
+		);
 		const listItems = filterMethods.map((el,i) => {	
 			if (el.range) { 
 				let value = [];
@@ -76,27 +88,20 @@ class GameFilter extends React.Component {
 		if (this.state.isOpen) return (
 			<div >
 				<h3 onClick={() => this.setState({ isOpen: false })}>
-					Filters  
-					<i className="material-icons">
-						edit_attributes
-					</i>
+					{filterTitle('open')}
 				</h3>
-				<ul>
+				<ul className='game-filter-container open'>
 					{listItems}
 				</ul>
 			</div>);
 		else return (
 			<div>
 				<h3 onClick={() => this.setState({ isOpen: true })}>
-					Filters 
-
-					<img src="http://localhost:3000/filter-icon.svg" 
-						style={{
-							height: '1em',
-							width: '1em',
-							marginLeft: '1em'}} />    
-
+					{filterTitle('closed')}
 				</h3>
+				<ul className='game-filter-container closed'>
+					{listItems}
+				</ul>
 			</div>
 		);
 	}
