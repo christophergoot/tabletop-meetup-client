@@ -16,6 +16,7 @@ import './reset.css';
 import 'tachyons/css/tachyons.min.css';
 import './app.css';
 import { LoginForm } from './login-form';
+import { clearRedirect } from '../../actions/events';
 
 
 export class App extends React.Component {
@@ -51,6 +52,7 @@ export class App extends React.Component {
 
 	redirect() {
 		if (this.props.redirect) {
+			// this.props.dispatch(clearRedirect());
 			return <Redirect to={this.props.redirect} />;
 		} else return;
 	}

@@ -1,5 +1,5 @@
 import { FETCH_EVENTS_SUCCESS, FETCH_SINGLE_EVENT_SUCCESS, INITIALIZE_GUESTLIST, 
-	ADD_ADDITIONAL_GUEST, REMOVE_GUEST, REDIRECT_TO_URL, CAST_VOTE_SUCCESS } from '../actions/events';
+	ADD_ADDITIONAL_GUEST, REMOVE_GUEST, REDIRECT_TO_URL, CAST_VOTE_SUCCESS, CLEAR_REDIRECT } from '../actions/events';
 import { FETCH_ALL_USERS_SUCCESS } from '../actions/users';
 
 const initialState = ({
@@ -118,6 +118,12 @@ export default function eventsReducer(state=initialState, action) {
 			// 		]
 			// ]
 			// action.ballot (looks like): { gameId, eventId, vote }
+		};
+
+	case CLEAR_REDIRECT:
+		return {
+			...state,
+			redirect: null
 		};
 
 	default: 

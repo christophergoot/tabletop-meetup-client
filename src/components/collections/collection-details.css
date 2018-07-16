@@ -16,7 +16,7 @@
 	background-color: white;
 	margin: 10px;;
 	width: 150px;
-
+	z-index: 1;
 }
 
 .collection-details.editing>form {

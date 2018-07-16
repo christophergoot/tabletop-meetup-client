@@ -8,23 +8,23 @@ export default class gameBallot extends React.Component{
 			{
 				field: 'yes',
 				description: 'strongly want to play',
-				button: 'Yes'
+				button: 'Want at this Event'
 			},
 			{
 				field: 'wantToPlay',
-				description: 'like to play',
-				button: 'Maybe'
+				description: 'add to Want to Play list',
+				button: 'Want to Play'
 			},
 			{
 				field: 'no',
 				description: 'not interested',
-				button: 'No'
+				button: 'Do Not Want at Event'
 			},
-			{
-				field: 'hide',
-				description: 'never show this game again',
-				button: 'Never'
-			},
+			// {
+			// 	field: 'hide',
+			// 	description: 'never show this game again',
+			// 	button: 'Never'
+			// },
 		];
 
 		const currentGameVotes = gameVotes.filter(vote => vote.gameId === game.gameId)[0];
@@ -41,7 +41,7 @@ export default class gameBallot extends React.Component{
 				<a className={className}
 					onClick={e => this.props.handleVote(e,{
 						eventId,
-						gameId: game.gameId,
+						game,
 						vote: el.field
 					})}
 					key={i}

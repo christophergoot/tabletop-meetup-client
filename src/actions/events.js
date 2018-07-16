@@ -1,6 +1,6 @@
 import { API_BASE_URL } from '../config';
 import { loadAuthToken } from '../local-storage';
-import { updateGame, postGame } from './collections';
+import { updateGame, postGame, fetchUserWantToPlayList } from './collections';
 
 
 export const FETCH_EVENTS_SUCCESS = 'FETCH_EVENT_SUCCESS';
@@ -27,6 +27,17 @@ export const redirectToUrl = url => ({
 	url
 });
 
+export const CLEAR_REDIRECT = 'CLEAR_REDIRECT';
+export const clearRedirect = () => ({
+	type: CLEAR_REDIRECT
+});
+
+export const redirect = url => dispatch => {
+	dispatch(redirectToUrl(url));
+	dispatch(clearRedirect());
+	// .then(() => dispatch(clearRedirect()));
+};
+
 export const createNewEvent = newEvent => dispatch => {
 	const authToken = loadAuthToken();
 	return fetch(`${API_BASE_URL}events/`, {
@@ -45,7 +56,7 @@ export const createNewEvent = newEvent => dispatch => {
 	}).then(res => {
 		// dispatch();
 		const url = '/event/' + res._id;
-		dispatch(redirectToUrl(url));
+		dispatch(redirect(url));
 	});	
 
 };
@@ -107,7 +118,7 @@ export const castVoteSuccess = ballot => ({
 	ballot
 });
 
-export const castVote = ballot => dispatch => {
+export const castVote = ballot => (dispatch, getState) => {
 	if (ballot.vote === 'yes' | ballot.vote === 'no') {
 		const authToken = loadAuthToken();
 		return fetch(`${API_BASE_URL}events/${ballot.eventId}/cast-vote`, {
@@ -127,12 +138,24 @@ export const castVote = ballot => dispatch => {
 			dispatch(fetchSingleEvent(ballot.eventId));
 		});	
 
-	// } else if (ballot.vote === 'wantToPlay') {
-	// 	const game = {
-	// 		gameId: ballot.game,
-	// 		wantToPlay: true
-	// 	};
-	// 	dispatch(updateGame(game));
+	} else if (ballot.vote === 'wantToPlay') {
+		let wantToPlay = true;
+		const userId = getState().auth.currentUser.userId;
+		const wantList = getState().collections.wantToPlayLists.find(list => list.userId === userId).list;
+		// const wantExists = wantList.contains(ballot.game.gameId);
+		if (wantList.includes(ballot.game.gameId)) wantToPlay = false;
+		const game = {
+			...ballot.game,
+			wantToPlay
+		};
+		// return updateGame(game)
+		postGame(game)
+		// return dispatch(updateGame(game))
+			.then(() => {
+				const userId = getState().auth.currentUser.userId;
+				dispatch(fetchUserWantToPlayList(userId));
+				// dispatch(fetchSingleEvent(ballot.eventId));
+			});
 	// } else if (ballot.vote === 'hide') {
 	// 	// alert('We\'ll hide this from you in the future');
 	} 
@@ -148,7 +171,7 @@ export const deleteEvent = eventId => dispatch => {
 		}
 	})
 		// .then(res => res.json())
-		.then(() => dispatch(redirectToUrl('/events')))
+		.then(() => dispatch(redirect('/events')))
 		.catch(err => {
 			console.log('error', err);
 		});

@@ -31,17 +31,20 @@ export default class EventGameList extends React.Component {
 		if (event.games) {
 			gameList = event.games.map((game, i) => {
 				return (
-					<GameBoxtop
-						listManager={<GameBallot 
-							game={game}
-							handleVote={this.handleVote}
-							eventId={event.eventId}
-							gameVotes={event.gameVotes} 
-							userId={this.props.userId}
-							userWantToPlayList={this.props.userWantToPlayList}
-							/>}
-						game={game} 
-						key={i} />
+					<div key={i}>
+						<GameBoxtop
+							listManager={<GameBallot 
+								game={game}
+								handleVote={this.handleVote}
+								eventId={event.eventId}
+								gameVotes={event.gameVotes} 
+								userId={this.props.userId}
+								userWantToPlayList={this.props.userWantToPlayList}
+								/>}
+							game={game} 
+							key={i} />
+							owned by: {game.owners.length} user(s)
+					</div>
 				);
 			});
 		}
