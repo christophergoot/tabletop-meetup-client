@@ -113,24 +113,35 @@ export default function GamesPaginate(props) {
 			<option key={i} value={opt.value}>{opt.label}</option>
 		);
 	});
-	return (
-		<div className='sort-container'>
-			<ul>
-				{pages}
-			</ul> 
-			<select 
-				defaultValue={limit}
-				name="limit"
-				onChange={(e) => {
-					const newLimit = e.target.value;
-					const newPage = Math.floor(limit * page / newLimit);
-					props.updateList(
-						newLimit, newPage, sort, filters
-					);
-				}}
-			>
-				{options}
-			</select>
-		</div>
-	);
+
+	if (props.view === 'pagination only') {
+		return (
+			<div className='sort-container'>
+				<ul>
+					{pages}
+				</ul> 
+			</div>
+		);
+	} else {
+		return (
+			<div className='sort-container'>
+				<ul>
+					{pages}
+				</ul> 
+				<select 
+					defaultValue={limit}
+					name="limit"
+					onChange={(e) => {
+						const newLimit = e.target.value;
+						const newPage = Math.floor(limit * page / newLimit);
+						props.updateList(
+							newLimit, newPage, sort, filters
+						);
+					}}
+				>
+					{options}
+				</select>
+			</div>
+		);
+	}
 }

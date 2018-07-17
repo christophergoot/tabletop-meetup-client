@@ -4,7 +4,9 @@ import React from 'react';
 import './game-boxtop.css';
 
 export default function GameBoxtop(props) {
-	const { gameId, name, thumbnail, yearPublished, averageRating, minPlayers, maxPlayers, playingTime } = props.game;
+	const { gameId, name, thumbnail, yearPublished, averageRating, 
+		minPlayers, maxPlayers, playingTime, rank } = props.game;
+	const { owners } = props;
 	const externalLink = `https://boardgamegeek.com/boardgame/${gameId}/`;
 	const divStyle = {
 		background:
@@ -22,14 +24,28 @@ export default function GameBoxtop(props) {
 		}
 		else return (`${minPlayers} to ${maxPlayers} Players`);
 	};
-
+	let ownerReport = '';
+	if (owners && owners.length === 1) ownerReport = <span>Owned by {owners}</span>;
+	else if (owners && owners.length > 1) {
+		ownerReport = 'Owned by ';
+		for(let i=0; i<owners.length-1; i++) {
+			ownerReport += `${owners[i]} & `;
+		}
+		ownerReport += owners[owners.length-1];
+	}
+	let yearReport = '';
+	if (yearPublished > 0) yearReport = `(${yearPublished})`;
+	let rankReport = '';
+	if (rank && rank > 0) rankReport = <span>BGG Rank: {rank}</span>;
 	return (
 		<div className='game-card' style={divStyle}>
-			<h3><a href={externalLink}>{name}</a> ({yearPublished})</h3>
+			<h3><a href={externalLink}>{name}</a> {yearReport}</h3>
 			{props.listManager}
+			{rankReport}
 			<span>{averageRating.toFixed(2)} Average Rating</span>
 			<span>{playerCount(minPlayers, maxPlayers)}</span>
 			<span>{playingTime} Min Playing Time</span>
+			{ownerReport}
 		</div>
 	);
 }

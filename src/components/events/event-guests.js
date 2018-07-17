@@ -32,6 +32,12 @@ export default function EventGuests(props) {
 				class: 'rsvp confirmed'
 			};
 			break;
+		case 'host':
+			status = {
+				status: 'Host',
+				class: 'rsvp confirmed'
+			};
+			break;
 		default: 
 			status = {
 				status: '',

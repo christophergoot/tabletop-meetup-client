@@ -2,6 +2,7 @@ import React from 'react';
 // import Register from './register';
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
+import './landing-page.css';
 
 import LoginForm from './login-form';
 
@@ -15,7 +16,9 @@ export function Landing(props) {
 	return (
 		<section>
 			<h2>Introduction</h2>
-			<p>Tabletop Meetup is a progressive web app designed to help a group of tabletop gamers decide which games to get to the table at their next meetup</p>
+			<div className='landing-page section'>
+				Tabletop Meetup is a progressive web app designed to help a group of tabletop gamers decide which games to get to the table at their next meetup
+			</div>
 
 			<h2>Getting started is easy:</h2>
 			<ul>
@@ -23,10 +26,14 @@ export function Landing(props) {
 				<li>Invite Guests</li>
 				<li>Let them tell you which games they are interested in playing</li>
 			</ul>
-			<h2>Give it a Go</h2>
-			<p><Link to='/register'>Register for an account</Link> and start planning your next Tabletop Meetup now</p>
-			<LoginForm />
-			{/* <Register /> */}
+			<div className='landing-page section'>
+				<h2>Give it a Go</h2>
+				<p>
+					<button>
+						<Link to='/register'>Register</Link>
+					</button> for an account and start planning your next Tabletop Meetup now
+				</p>
+			</div>				<LoginForm />
 		</section>
 	);
 }

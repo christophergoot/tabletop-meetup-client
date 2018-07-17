@@ -1,6 +1,6 @@
 import { API_BASE_URL } from '../config';
 import { loadAuthToken } from '../local-storage';
-import { updateGame, postGame, fetchUserWantToPlayList } from './collections';
+import { postGame, fetchUserWantToPlayList } from './collections';
 
 
 export const FETCH_EVENTS_SUCCESS = 'FETCH_EVENT_SUCCESS';

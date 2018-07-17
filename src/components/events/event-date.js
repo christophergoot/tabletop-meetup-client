@@ -10,14 +10,21 @@ export default function EventDate(props) {
 	const timeString = date => {
 		let hours = date.getHours();
 		let period = 'AM';
-		if (hours > 12) {
+		if (hours === 0) {
+			hours = 12;
+		}
+		else if (hours > 12) {
 			hours = hours - 12;
 			period = 'PM';
 		}
-		const minutes = date.getMinutes();
+		let minutes = date.getMinutes().toString();
+		if (minutes.length < 2) minutes = `${minutes}0`;
+
 		return (`${hours}:${minutes}${period}`);
 	};
-	return (
+	if (endDate) { return (
 		<span>{startDateString} from {timeString(start)} - {timeString(end)}</span>
-	);
+	);} else { return (
+		<span>{startDateString} at {timeString(start)}</span>
+	);}
 }

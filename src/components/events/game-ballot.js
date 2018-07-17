@@ -7,7 +7,8 @@ export default class gameBallot extends React.Component{
 		const votes = [
 			{
 				field: 'yes',
-				description: 'strongly want to play',
+				description: 'strongly want to play at this event',
+				selectedDescription: 'retract vote',
 				button: 'Want at this Event',
 				icon: '👍',
 				src: 'http://localhost:3000/media/thumbs-up.svg'
@@ -15,13 +16,15 @@ export default class gameBallot extends React.Component{
 			{
 				field: 'wantToPlay',
 				description: 'add to Want to Play list',
+				selectedDescription: 'remove from Want to Play List',
 				button: 'Want to Play',
 				icon: '☑',
 				src: 'http://localhost:3000/media/thumbs-middle.svg'
 			},
 			{
 				field: 'no',
-				description: 'not interested',
+				description: 'not interested in playing at this event',
+				selectedDescription: 'retract vote',
 				button: 'Do Not Want at Event',
 				icon: '👎',
 				src: 'http://localhost:3000/media/thumbs-down.svg'
@@ -40,9 +43,16 @@ export default class gameBallot extends React.Component{
 		});
 
 		const voteActions = votes.map((el, i) => {
-			let className = '';
-			if (userWantToPlayList.includes(game.gameId) && el.field === 'wantToPlay') className = 'selected';
-			if (userVote === el.field) className = 'selected';
+			let className = '',
+				description = el.description;
+			if (userWantToPlayList.includes(game.gameId) && el.field === 'wantToPlay') {
+				className = 'selected';
+				description = el.selectedDescription;
+			} 
+			if (userVote === el.field) {
+				className = 'selected';
+				description = el.selectedDescription;
+			} 
 			return (
 				<a 
 					className={className}
@@ -53,6 +63,8 @@ export default class gameBallot extends React.Component{
 						vote: el.field
 					})}
 					key={i}
+					alt={description} 
+					title={description}
 				>
 					{el.icon}
 					{/* <img src={el.src} 

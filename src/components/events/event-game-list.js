@@ -30,9 +30,14 @@ export default class EventGameList extends React.Component {
 		let gameList = '';
 		if (event.games) {
 			gameList = event.games.map((game, i) => {
+				const owners = game.owners.map(ownerId => 
+					event.guests.find(guest => guest.userId === ownerId).user[0].username
+				);
 				return (
 					<div key={i}>
 						<GameBoxtop
+							owners={owners}
+							game={game} 
 							listManager={<GameBallot 
 								game={game}
 								handleVote={this.handleVote}
@@ -40,10 +45,8 @@ export default class EventGameList extends React.Component {
 								gameVotes={event.gameVotes} 
 								userId={this.props.userId}
 								userWantToPlayList={this.props.userWantToPlayList}
-								/>}
-							game={game} 
-							key={i} />
-							owned by: {game.owners.length} user(s)
+							/>}
+						 />
 					</div>
 				);
 			});
@@ -55,12 +58,8 @@ export default class EventGameList extends React.Component {
 	
 		return (
 			<section>
-				<h2>Event Game List</h2>
-				<GameFilter 
-					collection={event}
-					updateList={this.updateList}
-					filterMethods={filterMethods}
-				/>
+				<h2>All Games Owned</h2>
+				<span>by guests either invited or attending</span>
 				<GameSort 
 					collection={event}
 					updateList={this.updateList}
@@ -69,7 +68,18 @@ export default class EventGameList extends React.Component {
 					collection={event}
 					updateList={this.updateList}
 				/>
+				<GameFilter 
+					collection={event}
+					updateList={this.updateList}
+					filterMethods={filterMethods}
+				/>
 				<span className="game-list">{gameList}</span>
+				<GamesPaginate 
+					collection={event}
+					updateList={this.updateList}
+					view='pagination only'
+					/>
+
 			</section>
 		);
 	}

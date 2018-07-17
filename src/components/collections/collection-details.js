@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import './collection-details.css';
-import { updateGame, removeGame, fetchCollection } from '../../actions/collections';
+import { updateGame, removeGame } from '../../actions/collections';
 
 export class CollectionDetails extends React.Component {
 	constructor(props) {

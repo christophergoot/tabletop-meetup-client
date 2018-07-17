@@ -43,11 +43,6 @@ export class Games extends React.Component {
 			<section>
 				<h1>Manage Game List</h1>
 				<AddGame />
-				<GameFilter 
-					collection={collection}
-					updateList={this.updateList}
-					filterMethods={filterMethods}
-				/>
 				<GameSort 
 					collection={collection}
 					updateList={this.updateList}
@@ -56,8 +51,18 @@ export class Games extends React.Component {
 					collection={collection}
 					updateList={this.updateList}
 				/>
+				<GameFilter 
+					collection={collection}
+					updateList={this.updateList}
+					filterMethods={filterMethods}
+				/>
 				<GameList 
 					games={collection.games}
+				/>
+				<GamesPaginate 
+					collection={collection}
+					updateList={this.updateList}
+					view='pagination only'
 				/>
 			</section>
 		);

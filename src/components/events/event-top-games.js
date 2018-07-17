@@ -55,11 +55,15 @@ class EventTopGames extends Component {
 				if (a.eventVotes > b.eventVotes) return -1;
 				if (a.eventVotes < b.eventVotes) return 1;
 				return 0;
-			})
-
-		return sortedList.map((game, i) => (
+			});
+		
+		return sortedList.map((game, i) => {
+			let yearReport = '';
+			if (game.yearPublished && game.yearPublished > 0) 
+				yearReport = `(${game.yearPublished})`;
+			return (
 			<div key={i} className='event-top-game'>
-				{game.name} has {game.eventVotes} votes
+				{game.name} {yearReport}
 				<GameBallot 
 					game={game} 
 					eventId={event.eventId} 
@@ -67,13 +71,14 @@ class EventTopGames extends Component {
 					userId={userId} 
 					userWantToPlayList={userWantToPlayList} 
 					handleVote={this.handleVote} />
-			</div>
-		))
+			</div>);
+		});
 	}
 
 	render() {
 		return (
 			<div>
+				<h2>Games with the Most Interest</h2>
 				<this.rankedGames />
 			</div>
 		);

@@ -1,0 +1,7 @@
+.landing-page.section {
+	/* border: 1px solid grey; */
+	border-radius: 5px;
+	background-color: lightgrey;
+	padding: 1em 2em;
+	margin: .5em 2em;
+}
