@@ -4,6 +4,7 @@ import { fetchUserWantToPlayList } from '../../actions/collections';
 import { castVote } from '../../actions/events';
 import GameBallot from './game-ballot';
 import './event-top-games.css';
+import MoreInfo from '../games/more-info';
 
 class EventTopGames extends Component {
 	componentDidMount() {
@@ -78,7 +79,9 @@ class EventTopGames extends Component {
 	render() {
 		return (
 			<div>
-				<h2>Games with the Most Interest</h2>
+				<h2>Games with the Most Interest <MoreInfo 
+					info='Each 👍 = 1 vote, 👎 = minus 1, and 1 vote for each user with the game on their Want to Play list (☑)' />
+				</h2>
 				<this.rankedGames />
 			</div>
 		);

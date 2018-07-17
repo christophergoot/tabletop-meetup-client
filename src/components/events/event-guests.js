@@ -2,8 +2,16 @@ import React from 'react';
 import './event-guests.css';
 
 export default function EventGuests(props) {
-	const guests = props.guests;
+	const { guests, userId } = props;
 	const guestList = guests.map((guest, i) => {
+		let inviteResponse = '';
+		if (guest.userId === userId) inviteResponse = (
+			<button>
+				RSVP
+			</button>
+		);
+
+
 		const user = guest.user[0];
 		const userName = user.firstName + user.lastName || user.username;
 		let status;
@@ -49,6 +57,7 @@ export default function EventGuests(props) {
 			<div key={i}>
 				{userName} <span
 					className={status.class}>({status.status})</span>
+				{inviteResponse}
 			</div>
 		);
 	});

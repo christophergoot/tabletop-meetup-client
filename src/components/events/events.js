@@ -11,9 +11,9 @@ export class Events extends React.Component {
 		this.props.dispatch(fetchEvents());
 	}
 	render() {
-		const { events } = this.props;
+		const { events, userId } = this.props;
 		const eventList = events.map((event, i) =>
-			<ListEvent event={event} key={i} />);
+			<ListEvent event={event} key={i} userId={userId} />);
 		return (
 			<section>
 				<h2>List of Events</h2>
@@ -26,8 +26,8 @@ export class Events extends React.Component {
 
 const mapStateToProps = state => {
 	return ({
-		events: state.events.list
-		// events: state.events.list.filter(event => event.guests.userId === state.auth.currentUser.userId)
+		events: state.events.list,
+		userId: state.auth.currentUser.userId
 	});
 };
 

@@ -7,6 +7,7 @@ import GameBallot from './game-ballot';
 import { fetchSingleEvent } from  '../../actions/collections';
 import { castVote } from '../../actions/events';
 import { FilterMethods } from '../games/filter-methods-base-set';
+import MoreInfo from '../games/more-info';
 // import { connect } from 'react-redux';
 
 export default class EventGameList extends React.Component {
@@ -58,8 +59,7 @@ export default class EventGameList extends React.Component {
 	
 		return (
 			<section>
-				<h2>All Games Owned</h2>
-				<span>by guests either invited or attending</span>
+				<h2>All Games Owned <MoreInfo info='by guests either invited or attending' /></h2>
 				<GameSort 
 					collection={event}
 					updateList={this.updateList}
