@@ -8,17 +8,23 @@ export default class gameBallot extends React.Component{
 			{
 				field: 'yes',
 				description: 'strongly want to play',
-				button: 'Want at this Event'
+				button: 'Want at this Event',
+				icon: '👍',
+				src: 'http://localhost:3000/media/thumbs-up.svg'
 			},
 			{
 				field: 'wantToPlay',
 				description: 'add to Want to Play list',
-				button: 'Want to Play'
+				button: 'Want to Play',
+				icon: '☑',
+				src: 'http://localhost:3000/media/thumbs-middle.svg'
 			},
 			{
 				field: 'no',
 				description: 'not interested',
-				button: 'Do Not Want at Event'
+				button: 'Do Not Want at Event',
+				icon: '👎',
+				src: 'http://localhost:3000/media/thumbs-down.svg'
 			},
 			// {
 			// 	field: 'hide',
@@ -38,17 +44,25 @@ export default class gameBallot extends React.Component{
 			if (userWantToPlayList.includes(game.gameId) && el.field === 'wantToPlay') className = 'selected';
 			if (userVote === el.field) className = 'selected';
 			return (
-				<a className={className}
+				<a 
+					className={className}
+					// type="image" 
 					onClick={e => this.props.handleVote(e,{
 						eventId,
 						game,
 						vote: el.field
 					})}
 					key={i}
-					alt={el.description} 
-					title={el.description}
 				>
-					{el.button}
+					{el.icon}
+					{/* <img src={el.src} 
+						alt={el.description} 
+						// title={el.description}
+						style={{
+							height: '1em',
+							width: '1em'
+						}}
+					/> */}
 				</a>
 			);
 		});

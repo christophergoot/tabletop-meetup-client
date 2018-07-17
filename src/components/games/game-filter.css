@@ -11,9 +11,16 @@
 .game-filter-title.open{
 	border-bottom-left-radius: 0px;
 	border-bottom-right-radius: 0px;
-
 }
-
+.game-filter-title.open>img {
+	transform: rotate(180deg);	
+	transition: transform .5s;
+}
+.game-filter-title.closed>img {
+	transform: rotate(-180deg);	
+	transition: transform .5s;
+	/* filter: hue-rotate(90deg); */
+}
 .game-filter-container {
 	padding: 0 1em;
 	overflow: scroll;

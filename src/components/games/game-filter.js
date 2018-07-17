@@ -39,7 +39,7 @@ class GameFilter extends React.Component {
 		const filterTitle = type => (
 			<div className={'game-filter-title ' + type}>
 			Filters
-				<img src="http://localhost:3000/filter-icon.svg" 
+				<img src="http://localhost:3000/media/filter-icon.svg" 
 					alt='filter icon'
 					style={{
 						height: '1em',

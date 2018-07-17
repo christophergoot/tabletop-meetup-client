@@ -1,14 +1,22 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchUserWantToPlayList } from '../../actions/collections';
+import { castVote } from '../../actions/events';
+import GameBallot from './game-ballot';
+import './event-top-games.css';
 
 class EventTopGames extends Component {
 	componentDidMount() {
 		this.props.event.guests.forEach(guest => this.props.dispatch(fetchUserWantToPlayList(guest.userId)));
 	}
+	handleVote = (event, ballot) => {
+		event.preventDefault();
+		this.props.dispatch(castVote(ballot));
+	}
 
 	rankedGames = () => {
-		const { event, wantToPlayLists } = this.props;
+		const { event, wantToPlayLists, user } = this.props;
+		const { userId } = user;
 		const gameList = event.games;
 		const userLists	= wantToPlayLists.filter(list => {
 			return event.guests.map(guest => guest.userId).includes(list.userId)
@@ -32,16 +40,33 @@ class EventTopGames extends Component {
 				eventVotes: yesVotes + usersWhoWantToPlay - noVotes
 			});
 		})
-		
-		const sortedList = rankedList.sort((a,b) => {
-			if (a.eventVotes < b.eventVotes) return -1;
-			if (a.eventVotes < b.eventVotes) return 1;
-			return 0;
-		});
+		let userWantToPlayList = [];
+		const userList = this.props.wantToPlayLists.filter(list => list.userId === userId);
+		if (userList.length>0) userWantToPlayList = userList[0].list;
 
-		return sortedList.filter(game => game.eventVotes > 0).map((game, i) => (
-			<div key={i}>
+		const sortedList = rankedList
+			.filter(game => game.eventVotes > 0)
+			.sort((a,b) => {
+				if (a.averageRating > b.averageRating) return -1;
+				if (a.averageRating < b.averageRating) return 1;
+				return 0;				
+			})
+			.sort((a,b) => {
+				if (a.eventVotes > b.eventVotes) return -1;
+				if (a.eventVotes < b.eventVotes) return 1;
+				return 0;
+			})
+
+		return sortedList.map((game, i) => (
+			<div key={i} className='event-top-game'>
 				{game.name} has {game.eventVotes} votes
+				<GameBallot 
+					game={game} 
+					eventId={event.eventId} 
+					gameVotes={event.gameVotes} 
+					userId={userId} 
+					userWantToPlayList={userWantToPlayList} 
+					handleVote={this.handleVote} />
 			</div>
 		))
 	}
@@ -49,7 +74,7 @@ class EventTopGames extends Component {
 	render() {
 		return (
 			<div>
-				{this.rankedGames()}
+				<this.rankedGames />
 			</div>
 		);
 	}
@@ -58,7 +83,8 @@ class EventTopGames extends Component {
 function mapStateToProps(state) {
 	return {
 		event: state.events.current,
-		wantToPlayLists: state.collections.wantToPlayLists
+		wantToPlayLists: state.collections.wantToPlayLists,
+		user:	state.auth.currentUser
 	};
 }
 
