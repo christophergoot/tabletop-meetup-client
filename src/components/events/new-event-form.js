@@ -8,7 +8,6 @@ import { Button } from '@material-ui/core';
 import { required } from '../../validators';
 import './new-event-form.css';
 
-import NewLocation from './add-location';
 import AddGuestsForm from './add-guests-form';
 import { getAllUsers } from '../../actions/users';
 import { createNewEvent, addAdditionalGuest, initializeGuestList, removeGuestFromGuestList, redirectToUrl } from '../../actions/events';
@@ -139,8 +138,32 @@ export class NewEventForm extends React.Component {
 
 				<div className='section'>
 					<h3>Location</h3>
-					<NewLocation />
-
+					<div>
+						<div>
+							<Field
+								floatingLabelText='Location Name'
+								component={TextField}
+								type="text"
+								name="locationName"
+							/>
+						</div>
+						<div>
+							<Field
+								floatingLabelText='Address'
+								component={TextField}
+								type="text"
+								name="locationAddress"
+							/>
+						</div>
+						<div>
+							<Field
+								floatingLabelText='Description'
+								component={TextField}
+								type="text"
+								name="locationDescription"
+							/>
+						</div>
+					</div>
 				</div>					
 				<div className='section'>
 	

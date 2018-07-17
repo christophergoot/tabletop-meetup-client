@@ -6,12 +6,16 @@ import './list-event.css';
 
 export default function ListEvent(props) {
 	const { guests, eventId } = props.event;
-	const { userId } = props;
+	const { userId, dispatch } = props;
 
 	return (
 		<Link to={`/event/${eventId}`} className="list-event">
 			<EventDetails event={props.event} />
-			<EventGuests guests={guests} userId={userId} />
+			<EventGuests 
+				guests={guests} 
+				userId={userId} 
+				dispatch={dispatch}
+				eventId={eventId} />
 		</Link>
 	);
 }

@@ -176,3 +176,27 @@ export const deleteEvent = eventId => dispatch => {
 			console.log('error', err);
 		});
 };
+
+export const changeRsvp = (eventId, rsvp) => (dispatch, getState) => {
+	const authToken = loadAuthToken();
+	return fetch(`${API_BASE_URL}events/${eventId}/rsvp`, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+			'Authorization': 'Bearer ' + authToken
+		},
+		body: JSON.stringify({rsvp})
+	})
+		.then(res => res.json())
+		.then(event => dispatch(fetchSingleEvent(event.eventId)))
+		.catch(err => {
+			console.log('error', err);
+		});
+};
+
+export const CHANGE_RSVP_SUCCESS = 'CHANGE_RSVP_SUCCESS';
+export const changeRsvpSuccess = (userId, rsvp) => ({
+	type: CHANGE_RSVP_SUCCESS,
+	userId,
+	rsvp
+});

@@ -4,6 +4,7 @@ import RangeSlider from './range-slider';
 import FilterOption from './filter-option';
 import './game-filter.css';
 import './sort-container.css';
+import { STATIC_MEDIA_FOLDER } from '../../config';
 
 
 
@@ -39,7 +40,7 @@ class GameFilter extends React.Component {
 		const filterTitle = type => (
 			<div className={'game-filter-title ' + type}>
 			Filters
-				<img src="http://localhost:3000/media/filter-icon.svg" 
+				<img src={STATIC_MEDIA_FOLDER+'filter-icon.svg'}
 					alt='filter icon'
 					style={{
 						height: '1em',

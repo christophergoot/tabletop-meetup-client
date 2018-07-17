@@ -1,14 +1,16 @@
-.event-guests {
+.event-guestlist {
 	background-color: grey;
 	color: lightgrey;
 	/* float: right; */
 	margin: 5px;
-	margin-left: auto;
 	padding: 5px;
 	border-radius: 5px;
 	width: 200px;
 }
+.event-guests-wrapper {
+	margin-left: auto;
 
+}
 .rsvp {
 	font-size: .75em;
 }
@@ -23,4 +25,11 @@
 
 .rsvp.invited {
 	color: rgb(222, 226, 158);
+}
+.change-rsvp {
+	line-height: 1em;
+	font-size: .9em;
+}
+.change-rsvp:hover {
+	color: white;
 }

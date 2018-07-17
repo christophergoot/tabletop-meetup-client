@@ -13,7 +13,12 @@ export class Events extends React.Component {
 	render() {
 		const { events, userId } = this.props;
 		const eventList = events.map((event, i) =>
-			<ListEvent event={event} key={i} userId={userId} />);
+			<ListEvent 
+				event={event} 
+				key={i} 
+				userId={userId} 
+				dispatch={this.props.dispatch}
+			/>);
 		return (
 			<section>
 				<h2>List of Events</h2>

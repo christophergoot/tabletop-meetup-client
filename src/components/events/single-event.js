@@ -39,7 +39,10 @@ export class SingleEvent extends React.Component {
 		return (
 			<div>
 				{this.deleteButton(isHost,eventId)}
-				<ListEvent event={thisEvent} userId={this.props.user.userId}/>
+				<ListEvent 
+					event={thisEvent} 
+					userId={this.props.user.userId}
+					dispatch={this.props.dispatch} />
 				<EventTopGames />
 				<EventGameList 
 					event={thisEvent}
