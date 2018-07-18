@@ -3,14 +3,14 @@ import { Field, reduxForm, focus } from 'redux-form';
 import { TextField, TimePicker, DatePicker } from 'redux-form-material-ui';
 // import Input from './input';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+// import { Redirect } from 'react-router-dom';
 import { Button } from '@material-ui/core';
 import { required } from '../../validators';
 import './new-event-form.css';
 
 import AddGuestsForm from './add-guests-form';
 import { getAllUsers } from '../../actions/users';
-import { createNewEvent, addAdditionalGuest, initializeGuestList, removeGuestFromGuestList, redirectToUrl } from '../../actions/events';
+import { createNewEvent, addAdditionalGuest, initializeGuestList, removeGuestFromGuestList } from '../../actions/events';
 
 class EndDateTime extends React.Component {
 	constructor(props) {

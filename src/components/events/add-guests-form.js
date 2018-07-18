@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { AutoComplete, TextField } from 'redux-form-material-ui';
+import {  TextField } from 'redux-form-material-ui';
 // import { AutoComplete as MUIAutoComplete } from 'material-ui';
 import { Field, FieldArray } from 'redux-form';
-import { getAllUsers } from '../../actions/users';
-import { isRegisteredUser } from '../../validators';
+// import { getAllUsers } from '../../actions/users';
+// import { isRegisteredUser } from '../../validators';
 
 class AddGuestsForm extends Component {
 	// componentDidMount() {

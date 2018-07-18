@@ -1,5 +1,5 @@
 import { handleBggUserSearch } from './actions/collections';
-import { checkUsername } from './actions/users';
+// import { checkUsername } from './actions/users';
 
 // import { parseString } from 'xml2js';
 // import {parser} from 'xml2json';
@@ -30,14 +30,14 @@ export const matches = field => (value, allValues) => {
 // 		: 'Invalid Tabletop Meetup Username';
 // };
 
-export const isRegisteredUser = (values /*, dispatch */) => {
-	return checkUsername
-		.then(res => {
-			if (!res) {
-				throw { username: 'That username is taken' };
-			}
-		});
-};
+// export const isRegisteredUser = (values /*, dispatch */) => {
+// 	return checkUsername
+// 		.then(res => {
+// 			if (!res) {
+// 				throw new Error({ username: 'That username is taken' });
+// 			}
+// 		});
+// };
 
 export const isBggUser = value => {
 	const searchValue = value || '';

@@ -67,7 +67,9 @@ export const createNewEvent = newEvent => dispatch => {
 	})
 		.catch(async err => {
 			const resolvedError = await err;
-			const {reason, message, location} = resolvedError;
+			const {reason, message, 
+				// location
+			} = resolvedError;
 			if (reason === 'ValidationError') {
 			// Convert ValidationErrors into SubmissionErrors for Redux Form
 				return Promise.reject(
