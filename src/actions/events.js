@@ -1,3 +1,4 @@
+import { SubmissionError } from 'redux-form';
 import { API_BASE_URL } from '../config';
 import { loadAuthToken } from '../local-storage';
 import { postGame, fetchUserWantToPlayList } from './collections';
@@ -38,6 +39,11 @@ export const redirect = url => dispatch => {
 	// .then(() => dispatch(clearRedirect()));
 };
 
+// export CREATE_EVENT_ERROR = 'CREATE_EVENT_ERROR';
+// export const createEventError = (error) => {
+
+// }
+
 export const createNewEvent = newEvent => dispatch => {
 	const authToken = loadAuthToken();
 	return fetch(`${API_BASE_URL}events/`, {
@@ -50,15 +56,28 @@ export const createNewEvent = newEvent => dispatch => {
 	}).then(res => {
 		// console.log()
 		if (!res.ok) {
-			return Promise.reject(res.statusText);
+			// dispatch(createEventError(res));
+			return Promise.reject(res.json());
 		}
 		return res.json();
 	}).then(res => {
-		// dispatch();
-		const url = '/event/' + res._id;
+		const url = '/event/' + res.eventId;
+		if (!url) throw new Error('event was not created successfully');
 		dispatch(redirect(url));
-	});	
-
+	})
+		.catch(async err => {
+			const resolvedError = await err;
+			const {reason, message, location} = resolvedError;
+			if (reason === 'ValidationError') {
+			// Convert ValidationErrors into SubmissionErrors for Redux Form
+				return Promise.reject(
+					new SubmissionError({
+						// [location]: message
+						guests: {_error: message}
+					})
+				);
+			}
+		});
 };
 
 export const fetchSingleEvent = (eventId) => dispatch => {

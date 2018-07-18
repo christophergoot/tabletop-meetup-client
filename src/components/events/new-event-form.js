@@ -88,12 +88,12 @@ export class NewEventForm extends React.Component {
 		return this.props.dispatch(createNewEvent(event));
 	}
 
-	redirect() {
-		if (this.props.redirect) {
-			this.props.dispatch(redirectToUrl(null));
-			return <Redirect to={this.props.redirect} />;
-		}
-	}
+	// redirect() {
+	// 	if (this.props.redirect) {
+	// 		this.props.dispatch(redirectToUrl(null));
+	// 		return <Redirect to={this.props.redirect} />;
+	// 	}
+	// }
 	render() {
 		const addGuest = () => this.props.dispatch(addAdditionalGuest());
 		const removeGuest = (i) => this.props.dispatch(removeGuestFromGuestList(i));
@@ -194,7 +194,7 @@ export class NewEventForm extends React.Component {
 								Create new event
 					</Button>
 				</div>
-				{this.redirect()}
+				{/* {this.redirect()} */}
 			</form>
 		);
 	}
@@ -205,7 +205,7 @@ const mapStateToProps = (state) => ({
 	allUsers: state.events.allUsers,
 	currentUser: state.auth.currentUser,
 	guestList: state.events.guestList,
-	redirect: state.events.redirect
+	redirect: state.events.redirect,
 });
 
 NewEventForm = connect(mapStateToProps)(NewEventForm);

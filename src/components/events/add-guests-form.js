@@ -86,48 +86,49 @@ class AddGuestsForm extends Component {
 )
 
 	renderGuests = ({ fields, meta: { touched, error, submitFailed } }) => (
-		<ul>
-		  {fields.map((guest, i) => (
-			<li key={i}>
-			  <Field
-				name={`${guest}-${i}`}
-				type="text"
-				component={TextField}
-				floatingLabelText="Tabletop Meetup Username"
-				autoComplete='off'
-				// validate={isRegisteredUser}
-			  />
-			  <button
-				type="button"
-				title="Remove Guest"
-				onClick={() => fields.remove(i)}
-			  >X</button>
-			</li>
-		  ))}
-		<li>
-			<div 
-				style={{display: 'inline-block', width: '256px', cursor: 'pointer'}}
-				title='Add Registered User'
-				onClick={() => fields.push({})}
-			>
-				Add Registed User
-			</div>
-			<button 
-				type='button'
-				title='Add Registered User'
-				onClick={() => fields.push({})}
-			>+</button>
-			{(touched || submitFailed) && error && <span>{error}</span>}
-		</li>
+		<div>
+			<ul>
+			{(touched || submitFailed) && error && <span style={{ fontSize: '12px', lineHeight: '12px', color: 'rgb(244, 67, 54)' }}>{error}</span>}
+				{fields.map((member, i) => (
+					<li key={i}>
+						<Field
+							name={`${member}.username`} // sends field to server as '-0' 
+							type="text"
+							component={TextField}
+							floatingLabelText="Tabletop Meetup Username"
+							autoComplete='off'
+						// validate={isRegisteredUser}
+						/>
+						<button
+							type="button"
+							title="Remove Guest"
+							onClick={() => fields.remove(i)}
+						>X</button>
+					</li>
+				))}
+			</ul>
+					<div
+						style={{ display: 'inline-block', width: '256px', cursor: 'pointer' }}
+						title='Add Registered User'
+						onClick={() => fields.push({})}
+					>
+						Add Registed User
+					</div>
+					<button
+						type='button'
+						title='Add Registered User'
+						onClick={() => fields.push({})}
+					>+</button>
 
-		</ul>
-	  );
-	  	
+		</div>
+	);
+
 
 	render() {
 		// const formValues = this.props.form.registeredFields;
 		return (
 			<div>
+
 				{/* {this.guestFields(this.props.guestList, this.props.allUsers)}
 				<a onClick={() => this.props.addGuest()}>Add Additional Guest</a> */}
 				<FieldArray name="guests" component={this.renderGuests} />
