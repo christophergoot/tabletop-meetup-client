@@ -10,6 +10,32 @@ export const fetchAllUsersSuccess = allUsers => ({
 	allUsers
 });
 
+export const checkUsername = (username) => {
+	const authToken = loadAuthToken();
+	return fetch(`${API_BASE_URL}users/username/${username}`, {
+		headers: {
+			'Content-Type': 'application/json',
+			'Authorization': 'Bearer ' + authToken
+		}
+	})
+		.then(res => normalizeResponseErrors(res))
+		.then(res => res.json())
+		.then(() => true)
+		// .then(res => dispatch(checkUsernameSuccess(res)))
+		.catch(err => {
+			return false;
+			// const {reason, message, location} = err;
+			// if (reason === 'ValidationError') {
+			// 	// Convert ValidationErrors into SubmissionErrors for Redux Form
+			// 	return Promise.reject(
+			// 		new SubmissionError({
+			// 			[location]: message
+			// 		})
+			// 	);
+			// }
+		});
+
+};
 
 export const getAllUsers = () => dispatch => {
 	const authToken = loadAuthToken();

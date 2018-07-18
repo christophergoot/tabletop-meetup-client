@@ -56,7 +56,7 @@ export class RegistrationForm extends React.Component {
 						component={TextField}
 						type="text"
 						name="bggUsername"
-						validate={isBggUser}
+						// validate={isBggUser}
 					/>
 				</div>
 				<div>
