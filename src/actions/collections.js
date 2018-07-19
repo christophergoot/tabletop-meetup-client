@@ -262,7 +262,7 @@ export const fetchUserWantToPlayList = userId => dispatch => {
 };
 
 export const fetchBggUser = username => {
-	const url = 'http://cors-anywhere.herokuapp.com/' 
+	const url = 'https://cors-anywhere.herokuapp.com/' 
 	+ 'https://www.boardgamegeek.com/xmlapi2/user?'
 	+ `name=${username}`
 	+ '&domain=boardgame';

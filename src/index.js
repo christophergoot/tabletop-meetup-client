@@ -10,6 +10,14 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 import './index.css';
 
+import WebFont from 'webfontloader';
+
+WebFont.load({
+	google: {
+		families: ['Chela One', 'cursive']
+	}
+});
+
 const muiTheme = getMuiTheme({
 	// palette: {
 	// 	textColor: 'rgb(165, 252, 35)',

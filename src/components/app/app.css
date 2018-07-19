@@ -4,8 +4,7 @@
 }
 
 body {
-	font-family: "Open Sans",
-	sans-serif; 
+	font-family: 'Roboto', "Open Sans", sans-serif; 
 	font-size: 18px;
 	color: #444;
 	text-align: center;
@@ -34,6 +33,16 @@ section ul {
 section {
 	padding: 20px;
 }
+
+
+h2 {
+	font-size: 1.5em;
+	margin-bottom: .5em;
+}
+h3 {
+	font-size: 1.25em;
+}
+
 
 /*
 section:nth-child(even) {

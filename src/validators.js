@@ -54,7 +54,7 @@ export const matches = field => (value, allValues) => {
 
 export const isBggUser = value => {
 	// dispatch(startBggUserValidation());
-	const searchValue = value.bggUsername.trim() || '';
+	const searchValue = value.bggUsername || '';
 	// return new Promise((resolve) => {
 	return fetchBggUser(searchValue)
 		// handleBggUserSearch(searchValue)

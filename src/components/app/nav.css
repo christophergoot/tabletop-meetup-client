@@ -1,13 +1,19 @@
 
 nav>ul {
-	margin: 0 10px;
+	margin: 0 1.5em;
+	padding-bottom: .25em;
+	/* margin-left: auto; */
 	display: flex;
 	flex-direction: row;
-	justify-content: space-between;
+	justify-content: flex-end;
 	flex-wrap: wrap;
 }
 
 nav>ul>li {
 	list-style-type: none;
 	cursor: pointer;
+	margin-left: 1em;
+}
+nav>ul>li:hover {
+	color: lightgray;
 }

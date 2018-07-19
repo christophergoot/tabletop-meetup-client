@@ -7,7 +7,7 @@ import './header.css';
 export default function Header() {
 	return (
 		<header>
-			<h2><Link to="/">Tabletop Meetup</Link></h2>
+			<h1><Link to="/">TableTop MeetUp</Link></h1>
 			<Nav />
 		</header>
 	);

@@ -1,3 +1,6 @@
+import './reset.css';
+import 'tachyons/css/tachyons.min.css';
+import './app.css';
 import React from 'react';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -11,12 +14,8 @@ import Footer from './footer';
 import Register from './register';
 import {refreshAuthToken} from '../../actions/auth';
 import Dashboard from './dashboard';
-import 'typeface-roboto';
-import './reset.css';
-import 'tachyons/css/tachyons.min.css';
-import './app.css';
+// import 'typeface-roboto';
 import { LoginForm } from './login-form';
-
 
 export class App extends React.Component {
 	componentDidUpdate(prevProps) {

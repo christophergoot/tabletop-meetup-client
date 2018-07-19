@@ -5,3 +5,12 @@
 	padding: 1em 2em;
 	margin: .5em 2em;
 }
+.landing-page-list {
+	text-align: left;
+	margin: 0 4em;
+	margin-bottom: 1.5em;
+}
+
+.landing-page-list>li::before {
+	content: '⇒ '
+}
