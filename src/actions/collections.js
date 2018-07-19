@@ -145,7 +145,7 @@ export const handleGameSearch = query => dispatch => {
 };
 
 export const searchBggForGame = query => {
-	const url = 'http://cors-anywhere.herokuapp.com/' 
+	const url = 'https://cors-anywhere.herokuapp.com/' 
 		+ 'https://www.boardgamegeek.com/xmlapi2/search?'
 		+ `query=${query}`
 		+ '&type=boardgame'
@@ -172,7 +172,7 @@ export const searchBggForGame = query => {
 };
 
 export const fetchGameFromBgg = tempGame => {
-	const url = `http://bgg-json.azurewebsites.net/thing/${tempGame.gameId}`;
+	const url = `https://bgg-json.azurewebsites.net/thing/${tempGame.gameId}`;
 	return fetch(url)
 		.then(res => {
 			if (!res.ok) return Promise.reject(res.statusText);
