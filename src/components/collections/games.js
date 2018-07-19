@@ -41,7 +41,7 @@ export class Games extends React.Component {
 
 		return (
 			<section>
-				<h1>Manage Game List</h1>
+				<h2>Manage Game List</h2>
 				<AddGame />
 				<GameSort 
 					collection={collection}
