@@ -7,7 +7,10 @@ import {
 	GAME_SELECT_START,
 	FETCH_GAME_SUCCESS,
 	UPDATE_GAME_SUCCESS,
-	FETCH_USER_WANT_TO_PLAY_LIST_SUCCESS
+	FETCH_USER_WANT_TO_PLAY_LIST_SUCCESS,
+	HANDLE_BGG_USER_SEARCH_SUCCESS,
+	START_BGG_USER_VALIDATION,
+	END_BGG_USER_VALIDATION
 } from '../actions/collections';
 
 const initialState = ({
@@ -28,7 +31,11 @@ const initialState = ({
 		limit: 25,
 		games:[]
 	},
-	wantToPlayLists: []
+	wantToPlayLists: [],
+	bggUserSearch: {
+		results: '',
+		validating: false
+	}
 });
 
 export default function collectionsReducer(state=initialState, action) {
@@ -117,7 +124,31 @@ export default function collectionsReducer(state=initialState, action) {
 				}
 			]
 		};
-
+	
+	case HANDLE_BGG_USER_SEARCH_SUCCESS:
+		return {
+			...state, 
+			bggUserSearch: {
+				...state.bggUserSearch,
+				results: action.bggUser
+			}
+		};
+	case START_BGG_USER_VALIDATION:
+		return {
+			...state,
+			bggUserSearch: {
+				...state.bggUserSearch,
+				validating: true
+			}
+		};
+	case END_BGG_USER_VALIDATION:
+		return {
+			...state,
+			bggUserSearch: {
+				...state.bggUserSearch,
+				validating: false
+			}
+		};
 
 	default: 
 		return state;

@@ -1,6 +1,7 @@
 import { loadAuthToken } from '../local-storage';
 import { API_BASE_URL } from '../config';
 import { fetchSingleEventSuccess } from './events';
+import { SubmissionError } from 'redux-form';
 // import xml2json from 'xml2json';
 import { parseString } from 'xml2js';
 
@@ -260,33 +261,57 @@ export const fetchUserWantToPlayList = userId => dispatch => {
 		.then(list => dispatch(fetchUserWantToPlayListSuccess(userId, list)));
 };
 
-
-export const handleBggUserSearch = query => dispatch => {
+export const fetchBggUser = username => {
 	const url = 'http://cors-anywhere.herokuapp.com/' 
 	+ 'https://www.boardgamegeek.com/xmlapi2/user?'
-	+ `name=${query}`
+	+ `name=${username}`
 	+ '&domain=boardgame';
 	return fetch(url)
 		.then(res => res.text())
 		.then(res => {
+			let user;
 			parseString(res, (err, result) => {
 				if (err) console.log(err);
-				if (result) return (result);
+				if (result) user = { name: result.user.$.name, bggId: result.user.$.id };
 				else return;
-				// if (result.items && result.items.item) result.items.item.forEach(game => {
-				// 	let name = '', yearPublished = '';
-				// 	if (game.name[0]) name = game.name[0].$.value;
-				// 	if (game.yearpublished) yearPublished = game.yearpublished[0].$.value;
-				// 	gameList.push({
-				// 		id: game.$.id,
-				// 		name,
-				// 		yearPublished
-				// 	});
 			});
+			return user;
 		})
+}
+export const START_BGG_USER_VALIDATION = 'START_BGG_USER_VALIDATION';
+export const startBggUserValidation = () => ({
+	type: START_BGG_USER_VALIDATION
+})
+export const END_BGG_USER_VALIDATION = 'END_BGG_USER_VALIDATION';
+export const endBggUserValidation = () => ({
+	type: END_BGG_USER_VALIDATION
+})
+
+
+export const handleBggUserSearch = query => dispatch => {
+	return fetchBggUser(query)	
 		.then(res => {
-			dispatch(handleBggUserSearchSuccess(res));
-		});	
+			if (!res.bggId) throw new Error('Not a valid BGG username');
+			else {
+				dispatch(handleBggUserSearchSuccess(res));
+				return res;
+			}
+		})
+		.catch(async err => {
+			const resolvedError = await err;
+			const {reason, message, 
+				// location
+			} = resolvedError;
+			if (reason === 'ValidationError') {
+			// Convert ValidationErrors into SubmissionErrors for Redux Form
+				return Promise.reject(
+					new SubmissionError({
+						// [location]: message
+						guests: {_error: message}
+					})
+				);
+			}
+		});
 };
 
 export const HANDLE_BGG_USER_SEARCH_SUCCESS = 'HANDLE_BGG_USER_SEARCH_SUCCESS';

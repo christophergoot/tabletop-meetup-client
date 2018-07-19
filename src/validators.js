@@ -1,4 +1,6 @@
-import { handleBggUserSearch } from './actions/collections';
+import { fetchBggUser, 
+	// startBggUserValidation, endBggUserValidation 
+} from './actions/collections';
 // import { checkUsername } from './actions/users';
 
 // import { parseString } from 'xml2js';
@@ -39,11 +41,27 @@ export const matches = field => (value, allValues) => {
 // 		});
 // };
 
+// To provide asynchronous validation, provide redux-form with an 
+// asynchronous validation function (asyncValidate) that 
+// takes an object of form values, and the Redux dispatch function, 
+// and returns a promise that either rejects with an object of errors or resolves.
+
+// You will also need to specify which fields should fire the 
+// asynchronous validation when they are blurred with the 
+// asyncBlurFields config property.
+
+
+
 export const isBggUser = value => {
-	const searchValue = value || '';
-	return handleBggUserSearch(searchValue)
+	// dispatch(startBggUserValidation());
+	const searchValue = value.bggUsername.trim() || '';
+	// return new Promise((resolve) => {
+	return fetchBggUser(searchValue)
+		// handleBggUserSearch(searchValue)
 		.then(res => {
-			console.log(res);
-			if (res.user.id === '') return 'Invalid BGG Username';
+			// dispatch(endBggUserValidation());
+			if (res.bggId === '') throw new Error({ bggUsername: 'Invalid BGG Username' });
+			else return Promise.resolve;
 		});	
+
 };

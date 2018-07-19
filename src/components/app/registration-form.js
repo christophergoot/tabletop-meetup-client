@@ -1,20 +1,14 @@
 import React from 'react';
 import { Field, reduxForm, focus } from 'redux-form';
+import { connect } from 'react-redux';
 import { registerUser } from '../../actions/users';
 import { login } from '../../actions/auth';
-import {
-	// Checkbox,
-	// RadioButtonGroup,
-	// SelectField,
-	TextField,
-	// Toggle,
-	// DatePicker
-} from 'redux-form-material-ui';
-// import Input from './input';
+import { TextField } from 'redux-form-material-ui';
 import { Button } from '@material-ui/core';
+import Spinner from '../games/spinner';
 
 import {required, nonEmpty, matches, length, isTrimmed, 
-	// isBggUser
+	isBggUser
 } from '../../validators';
 const passwordLength = length({min: 10, max: 72});
 const matchesPassword = matches('password');
@@ -27,7 +21,10 @@ export class RegistrationForm extends React.Component {
 			.dispatch(registerUser(user))
 			.then(() => this.props.dispatch(login(username, password)));
 	}
-
+	validatingSpinner() {
+		if (this.props.bggUserSearch.validating) return <Spinner />;
+		else return;
+	}
 	render() {
 		return (
 			<form
@@ -58,6 +55,7 @@ export class RegistrationForm extends React.Component {
 						name="bggUsername"
 						// validate={isBggUser}
 					/>
+					{this.validatingSpinner()}
 				</div>
 				<div>
 					<Field
@@ -99,8 +97,20 @@ export class RegistrationForm extends React.Component {
 	}
 }
 
+
+function mapStateToProps(state) {
+	return {
+		bggUserSearch: state.collections.bggUserSearch
+	};
+}
+
+
+RegistrationForm = connect(mapStateToProps)(RegistrationForm);
+
 export default reduxForm({
 	form: 'registration',
+	asyncValidate: isBggUser,
+	asyncBlurFields: ['bggUsername'],
 	onSubmitFail: (errors, dispatch) =>
 		dispatch(focus('registration', Object.keys(errors)[0]))
 })(RegistrationForm);
