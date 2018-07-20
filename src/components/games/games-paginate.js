@@ -8,13 +8,13 @@ function generatePageList(collection, updateList) {
 	let prevPage = 0;
 	if (page !== 1) prevPage = page - 1;
 	if (prevPage) pages.push(
-		<li className="sort">
+		<li className="sort left">
 			<a onClick={() => updateList(limit, prevPage, sort, filters)} >
 				prev
 			</a>
 		</li>);
 	else pages.push(
-		<li className="sort selected">
+		<li className="sort selected left">
 			prev
 		</li>
 	);
@@ -70,13 +70,13 @@ function generatePageList(collection, updateList) {
 	let nextPage = 0;
 	if (page !== pageCount) nextPage = page + 1;
 	if (nextPage) pages.push(
-		<li className="sort">
+		<li className="sort right">
 			<a onClick={() => updateList(limit, nextPage, sort, filters)} >
 				next
 			</a>
 		</li>);
 	else pages.push(
-		<li className="sort selected">
+		<li className="sort selected right">
 			next
 		</li>
 	);

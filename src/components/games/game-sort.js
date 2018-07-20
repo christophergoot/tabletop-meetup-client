@@ -41,6 +41,8 @@ export default function GameSort(props) {
 			if (sortDirection === 1) className += ' asc';
 			else if (sortDirection === -1) className += ' desc';
 		}
+		if (i === 0) className += ' left';
+		else if (i === methods.length-1) className += ' right';
 		return (
 			<li key={i}
 				className={className}

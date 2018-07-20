@@ -1,4 +1,3 @@
-import { SubmissionError } from 'redux-form';
 import { fetchBggUser, 
 	// startBggUserValidation, endBggUserValidation 
 } from './actions/collections';
@@ -57,6 +56,7 @@ export const asyncValidateNewRegistration = value => {
 			// handleBggUserSearch(searchValue)
 			.then(res => {
 				// dispatch(endBggUserValidation());
+				// eslint-disable-next-line
 				if (res.bggId === '') throw { bggUsername: 'Invalid BGG Username' };
 			});
 		// .catch(err => {
