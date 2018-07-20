@@ -8,7 +8,7 @@ import { Button } from '@material-ui/core';
 import Spinner from '../games/spinner';
 
 import {required, nonEmpty, matches, length, isTrimmed, 
-	isBggUser
+	asyncValidateNewRegistration
 } from '../../validators';
 const passwordLength = length({min: 10, max: 72});
 const matchesPassword = matches('password');
@@ -109,7 +109,7 @@ RegistrationForm = connect(mapStateToProps)(RegistrationForm);
 
 export default reduxForm({
 	form: 'registration',
-	asyncValidate: isBggUser,
+	asyncValidate: asyncValidateNewRegistration,
 	asyncBlurFields: ['bggUsername'],
 	onSubmitFail: (errors, dispatch) =>
 		dispatch(focus('registration', Object.keys(errors)[0]))

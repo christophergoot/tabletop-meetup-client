@@ -1,3 +1,4 @@
+import { SubmissionError } from 'redux-form';
 import { fetchBggUser, 
 	// startBggUserValidation, endBggUserValidation 
 } from './actions/collections';
@@ -50,6 +51,20 @@ export const matches = field => (value, allValues) => {
 // asynchronous validation when they are blurred with the 
 // asyncBlurFields config property.
 
+export const asyncValidateNewRegistration = value => {
+	if (value.bggUsername) {
+		return fetchBggUser(value.bggUsername)
+			// handleBggUserSearch(searchValue)
+			.then(res => {
+				// dispatch(endBggUserValidation());
+				if (res.bggId === '') throw { bggUsername: 'Invalid BGG Username' };
+			});
+		// .catch(err => {
+		// 	throw { bggUsername: JSON.stringify(err) };
+		// });
+	}
+};
+
 
 
 export const isBggUser = value => {
@@ -60,8 +75,8 @@ export const isBggUser = value => {
 		// handleBggUserSearch(searchValue)
 		.then(res => {
 			// dispatch(endBggUserValidation());
-			if (res.bggId === '') throw new Error({ bggUsername: 'Invalid BGG Username' });
-			else return Promise.resolve;
+			if (res.bggId === '') throw new Error('Invalid BGG Username');
+			else return res;
 		});	
 
 };
