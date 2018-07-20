@@ -1,7 +1,13 @@
 footer {
-	position: sticky;
-	background-color: grey;
-	color: white;
+	/* position: sticky; */
+	background-color: #4f6457;
+	color: #75b1a9;	
 	padding: 20px 0;
 	font-size: .8em;
+	flex-shrink: 0;
+	margin-top: auto;
+	/* align-self: flex-end; */
+}
+footer>a:hover {
+	color: #d9b44a;
 }

@@ -19,9 +19,9 @@ WebFont.load({
 });
 
 const muiTheme = getMuiTheme({
-	// palette: {
-	// 	textColor: 'rgb(165, 252, 35)',
-	// },	
+	palette: {
+		type: 'dark',
+	},
 	// textField: {
 	// 	floatingLabelColor: 'green'
 	// },

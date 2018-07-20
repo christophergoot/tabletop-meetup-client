@@ -1,9 +1,10 @@
 .landing-page.section {
 	/* border: 1px solid grey; */
 	border-radius: 5px;
-	background-color: lightgrey;
+	background-color: #4F6457;
 	padding: 1em 2em;
 	margin: .5em 2em;
+	color: #ACD0C0;
 }
 .landing-page-list {
 	text-align: left;

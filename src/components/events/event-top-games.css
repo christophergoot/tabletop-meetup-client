@@ -1,6 +1,11 @@
 .event-top-game {
-	margin: .25em auto;
+	margin: 0 auto;
 	max-width: 80%;
-	border: 1px solid lightgray;
+	/* border: 1px solid lightgray; */
 	border-radius: 4px;
+	background-color: #acd0c0;
+}
+
+.event-top-game:nth-child(odd) {
+	background-color: #d9b44a;
 }

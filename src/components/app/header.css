@@ -1,16 +1,19 @@
 header {
-	background-color: grey;
-	color: white;
+	background-color: #4f6457;
+	color: #d9b44a;
 	padding: .5em 0;
 	font-size: 1em;
 	margin-bottom: 1.5em;
+}
+h1>a:hover {
+	color: #d9b44a;
 }
 
 h1 {
 	font-family: 'Chela One', cursive;
 	margin: 0;
 	font-weight: 100;
-	color: black;
+	color: #75b1a9;
 	/* text-shadow: .25em black; */
 	font-size: 2em;
 }

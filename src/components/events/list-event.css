@@ -1,7 +1,7 @@
 .list-event {
 	display: flex;
-	flex-flow: row;
-	background-color: lightgray;
+	flex-flow: column;
+	background-color: #75b1a9;
 	margin: 20px;
 	padding: 10px;
 	border-radius: 5px;

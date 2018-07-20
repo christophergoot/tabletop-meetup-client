@@ -1,7 +1,5 @@
 .event-guestlist {
-	background-color: grey;
-	color: lightgrey;
-	/* float: right; */
+	background-color: #d9b44a;
 	margin: 5px;
 	padding: 5px;
 	border-radius: 5px;
@@ -16,15 +14,15 @@
 }
 
 .rsvp.declined {
-	color: rgb(216, 163, 163);
+	color: rgb(160, 63, 63);
 }
 
 .rsvp.host, .rsvp.confirmed {
-	color: rgb(162, 201, 162);
+	color: rgb(9, 116, 9);
 }
 
-.rsvp.invited {
-	color: rgb(222, 226, 158);
+.rsvp.invited , .rsvp.maybe {
+	color: #002a32;
 }
 .change-rsvp {
 	line-height: 1em;

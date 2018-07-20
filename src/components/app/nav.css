@@ -7,6 +7,7 @@ nav>ul {
 	flex-direction: row;
 	justify-content: flex-end;
 	flex-wrap: wrap;
+	color: #75b1a9;
 }
 
 nav>ul>li {
@@ -15,5 +16,5 @@ nav>ul>li {
 	margin-left: 1em;
 }
 nav>ul>li:hover {
-	color: lightgray;
+	color: #d9b44a
 }
