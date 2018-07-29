@@ -16,4 +16,9 @@ h1 {
 	color: #75b1a9;
 	/* text-shadow: .25em black; */
 	font-size: 2em;
+	text-shadow:
+   -1px -1px 0 #002A32,  
+    1px -1px 0 #002A32,
+    -1px 1px 0 #002A32,
+     1px 1px 0 #002A32;
 }

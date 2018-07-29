@@ -10,8 +10,8 @@
 /build
 
 # local
-src/config.js
-/src/config.js
+# src/config.js
+# /src/config.js
 
 # misc
 .DS_Store
