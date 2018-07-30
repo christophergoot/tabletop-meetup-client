@@ -4,15 +4,17 @@ header {
 	padding: .5em 0;
 	font-size: 1em;
 	margin-bottom: 1.5em;
+	border-bottom: 1px solid #002a32;
 }
 h1>a:hover {
 	color: #d9b44a;
 }
 
 h1 {
-	font-family: 'Chela One', cursive;
+	/* font-family: 'Chela One', cursive; */
+	font-family: 'Lobster', serif;
 	margin: 0;
-	font-weight: 100;
+	font-weight: 700;
 	color: #75b1a9;
 	/* text-shadow: .25em black; */
 	font-size: 2em;

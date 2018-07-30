@@ -13,7 +13,6 @@ export default class EventGuests extends React.Component {
 		e.stopPropagation();
 		this.props.dispatch(changeRsvp(eventId, rsvp));
 		this.setState({isEditing: false});
-
 	}
 
 	handleEditRsvp = e => {
@@ -28,8 +27,9 @@ export default class EventGuests extends React.Component {
 		let inviteResponse = '';
 
 		guests.forEach((guest, i) => {
+			let userName = `Guest ${i+1}`;
 			const user = guest.user[0];
-			const userName = user.firstName + user.lastName || user.username;
+			if (user) userName = user.firstName + user.lastName || user.username;
 			let status;
 			switch (guest.rsvp) {
 			case 'invited':

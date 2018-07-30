@@ -16,7 +16,7 @@ export function Landing(props) {
 	return (
 		<section>
 			<div className='landing-page section'>
-				Tabletop Meetup is a progressive web app designed to help a group of tabletop gamers decide which games to get to the table at their next meetup
+				TableTop MeetUp is a progressive web app designed to help a group of tabletop gamers decide which games to get to the table at their next meetup
 			</div>
 
 			<h2>Getting started is easy:</h2>
@@ -30,9 +30,10 @@ export function Landing(props) {
 				<p>
 					<button>
 						<Link to='/register'>Register</Link>
-					</button> for an account and start planning your next Tabletop Meetup now
+					</button> for an account and start planning your next TableTop MeetUp now
 				</p>
-			</div>				<LoginForm />
+			</div>
+			<LoginForm />
 		</section>
 	);
 }
