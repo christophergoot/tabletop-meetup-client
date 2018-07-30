@@ -21,7 +21,7 @@
 
 .sort:hover, .sort.selected {
 	background-color: #D9B44A;
-	color: #ACD0C0;
+	color: #4F6457;
 }
 
 .sort.selected.asc::after {

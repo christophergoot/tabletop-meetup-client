@@ -26,6 +26,11 @@ export class LoginForm extends React.Component {
 				onSubmit={this.props.handleSubmit(values =>
 					this.onSubmit(values))}
 			>
+				To view a demo, login with
+				<ul>
+					<li>Username: demo-user</li>
+					<li>Password: demo-password</li>
+				</ul>
 				{error}
 				<div>
 					<Field
