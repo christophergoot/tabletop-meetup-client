@@ -31,15 +31,15 @@ class EndDateTime extends React.Component {
 					type="text"
 					name="endDate"
 				/>
-				<a onClick={() => this.setState({ addEndDate: false })}>
+				<button onClick={() => this.setState({ addEndDate: false })}>
 					X
-				</a>
+				</button>
 			</div>
 		);
 		else fields.push(
-			<a onClick={() => this.setState({ addEndDate: true })}>
+			<button onClick={() => this.setState({ addEndDate: true })}>
 				+ End Date
-			</a>
+			</button>
 		);
 
 		if (this.state.addEndTime) fields.push(
@@ -51,21 +51,21 @@ class EndDateTime extends React.Component {
 					type="text"
 					name="endTime"
 				/>
-				<a onClick={() => this.setState({ addEndTime: false })}>
+				<button onClick={() => this.setState({ addEndTime: false })}>
 					X
-				</a>
+				</button>
 			</div>
 		);
 		else fields.push(
-			<a onClick={() => this.setState({addEndTime: true})}>
+			<button onClick={() => this.setState({addEndTime: true})}>
 				+ End Time
-			</a>
+			</button>
 		);
 		const keyedFields = fields.map((el, i) => {
 			return {...el, key:i+1};
 		});
 		return (
-			<div className='date-time-group'>
+			<div>
 				{keyedFields}
 			</div>	
 		);
@@ -105,32 +105,30 @@ export class NewEventForm extends React.Component {
 				<div className='section'>
 					<div>
 						<Field
-							floatingLabelText='Optional Event Name'
+							floatingLabelText='Event Name'
 							component={TextField}
 							type="text"
 							name="name"
 							// validate={[required, nonEmpty]}
 						/>
 					</div>
-					<div className='date-time-group'>
-						<div className='date-time-input'>
-							<Field
-								hintText='Start Date'
-								component={DatePicker}
-								format={null}
-								name="startDate"
-								validate={required}
-							/>
-						</div>
-						<div className='date-time-input'>
-							<Field
-								hintText='Start Time'
-								component={TimePicker}
-								name="startTime"
-								format={null}
-								validate={required}
-							/>
-						</div>
+					<div className='date-time-input'>
+						<Field
+							hintText='Start Date'
+							component={DatePicker}
+							format={null}
+							name="startDate"
+							validate={required}
+						/>
+					</div>
+					<div className='date-time-input'>
+						<Field
+							hintText='Start Time'
+							component={TimePicker}
+							name="startTime"
+							format={null}
+							validate={required}
+						/>
 					</div>
 					<EndDateTime />
 
