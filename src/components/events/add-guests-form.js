@@ -7,74 +7,7 @@ import { Field, FieldArray } from 'redux-form';
 // import { isRegisteredUser } from '../../validators';
 
 class AddGuestsForm extends Component {
-	// componentDidMount() {
-	// 	this.props.dispatch(getAllUsers());
-	// }
-	// addGuestField(){
-	// 	// write to the store new array
-	// 	this.props.addGuest();
-	// }
 
-	// fuzzyFilter(searchQuery, key) {
-	// 	const compareString = key.toLowerCase();
-	// 	let searchText = '';
-	// 	if (searchQuery) searchText = searchQuery.toLowerCase();
-	// 	let searchTextIndex = 0;
-	// 	for (let index = 0; index < key.length; index++) {
-	// 		if (compareString[index] === searchText[searchTextIndex]) {
-	// 			searchTextIndex += 1;
-	// 		}
-	// 	}
-	// 	return searchTextIndex === searchText.length;
-	// }
-
-	// handleSearchByTextChange(text){
-
-	// 	console.log('autocomplete text change in add guests form', text);
-	// }
-	// guestFields(guests, allUsers) {
-	// 	const markup = guests.map((guest,i) => 
-	// 		<div key={i}>
-	// 			{/* <Field
-	// 				name={'guest-' + i}
-	// 				component={AutoComplete}
-	// 				floatingLabelText="Add User"
-	// 				openOnFocus
-	// 				filter={this.fuzzyFilter}
-	// 				dataSourceConfig={{text: 'displayName', value: 'userId'}}
-	// 				dataSource={allUsers}
-	// 			/> */}
-	// 			<Field
-	// 				name={'guest-' + i}
-	// 				label="Search Suggestions"
-	// 				component={AutoComplete}
-	// 				floatingLabelText="Search By Suggestions"
-	// 				openOnFocus
-	// 				filter={this.fuzzyFilter}
-	// 				dataSourceConfig={{text: 'displayName', value: 'userId'}}
-	// 				dataSource={allUsers}
-	// 				onChange={this.handleSearchByTextChange} //handle the onChange event by handleSearchByTextChange func
-	// 				onBlur={() => {}}
-	// 				// value:
-	// 			/>
-	// 			<button onClick={() => this.props.removeGuest(i)}>
-	// 				X
-	// 			</button>
-	// 		</div>
-	// 	);
-	// 	return markup;
-	// }
-
-	// renderField = ({ input, label, type, meta: { touched, error } }) => (
-	// 	<div>
-	// 	  <label>{label}</label>
-	// 	  <div>
-	// 		<input {...input} type={type} placeholder={label} />
-	// 		{touched && error && <span>{error}</span>}
-	// 	  </div>
-	// 	</div>
-	//   );
-	  
 	renderField = ({ input, label, type, meta: { asyncValidating, touched, error } }) => (
 		<div>
 			<label>{label}</label>
@@ -96,6 +29,7 @@ class AddGuestsForm extends Component {
 							type="text"
 							component={TextField}
 							floatingLabelText="Tabletop Meetup Username"
+							floatingLabelFocusStyle={{color: '#002A32'}} 
 							autoComplete='off'
 						// validate={isRegisteredUser}
 						/>

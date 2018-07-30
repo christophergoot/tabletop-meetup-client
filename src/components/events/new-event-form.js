@@ -109,12 +109,13 @@ export class NewEventForm extends React.Component {
 							component={TextField}
 							type="text"
 							name="name"
+							floatingLabelFocusStyle={{color: '#002A32'}} 
 							// validate={[required, nonEmpty]}
 						/>
 					</div>
 					<div className='date-time-input'>
 						<Field
-							hintText='Start Date'
+							floatingLabelText='Start Date'
 							component={DatePicker}
 							format={null}
 							name="startDate"
@@ -123,7 +124,7 @@ export class NewEventForm extends React.Component {
 					</div>
 					<div className='date-time-input'>
 						<Field
-							hintText='Start Time'
+							floatingLabelText='Start Time'
 							component={TimePicker}
 							name="startTime"
 							format={null}
@@ -143,6 +144,7 @@ export class NewEventForm extends React.Component {
 								component={TextField}
 								type="text"
 								name="locationName"
+								floatingLabelFocusStyle={{color: '#002A32'}} 
 							/>
 						</div>
 						<div>
@@ -150,6 +152,7 @@ export class NewEventForm extends React.Component {
 								floatingLabelText='Address'
 								component={TextField}
 								type="text"
+								floatingLabelFocusStyle={{color: '#002A32'}} 
 								name="locationAddress"
 							/>
 						</div>
@@ -158,6 +161,7 @@ export class NewEventForm extends React.Component {
 								floatingLabelText='Description'
 								component={TextField}
 								type="text"
+								floatingLabelFocusStyle={{color: '#002A32'}} 
 								name="locationDescription"
 							/>
 						</div>

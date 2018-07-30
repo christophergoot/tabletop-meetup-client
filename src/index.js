@@ -21,10 +21,19 @@ WebFont.load({
 const muiTheme = getMuiTheme({
 	palette: {
 		type: 'dark',
+		floatingLabelFocusStyle: {
+			color: 'red'
+		}
+
 	},
-	// textField: {
-	// 	floatingLabelColor: 'green'
-	// },
+	floatingLabelFocusStyle: {
+		color: 'red'
+	},
+	textField: {
+		floatingLabelColor: '#d9b44a',
+		labelColor: '#d9b44a',
+
+	},
 });
 
 ReactDOM.render(

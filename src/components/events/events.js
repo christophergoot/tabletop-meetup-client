@@ -12,6 +12,8 @@ export class Events extends React.Component {
 	}
 	render() {
 		const { events, userId } = this.props;
+		let eventTitle = 'List of Events';
+		if (events.length < 1) eventTitle = 'Events';
 		const eventList = events.map((event, i) =>
 			<ListEvent 
 				event={event} 
@@ -21,8 +23,10 @@ export class Events extends React.Component {
 			/>);
 		return (
 			<section>
-				<h2>List of Events</h2>
-				<Link to="events/new">Add New Event</Link>
+				<h2>{eventTitle}</h2>
+				<button>
+					<Link to="events/new">Add New Event</Link>
+				</button>
 				{eventList}
 			</section>
 		);
