@@ -1,7 +1,7 @@
 import React from 'react';
 import './game-ballot.css';
-// import { STATIC_MEDIA_FOLDER } from '../../config';
-const STATIC_MEDIA_FOLDER = 'http://localhost:3000/media/';
+import { STATIC_MEDIA_FOLDER } from '../../config';
+// const STATIC_MEDIA_FOLDER = 'http://localhost:3000/media/';
 
 export default class gameBallot extends React.Component{
 	render() {

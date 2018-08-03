@@ -19,6 +19,7 @@
 	width: 100%;
 	padding: .5em;
 	background-color: #acd0c07c;
+	transition: all .15s ease-out;
 }
 
 .game-card:nth-child(odd) {
@@ -27,7 +28,7 @@
 
 .game-card:hover {
 	/* box-shadow: 1px 1px 3px 0px rgb(190, 190, 190); */
-	transform: scale(1.05);
+	transform: scale(1.02);
 }
 
 .game-card-title {

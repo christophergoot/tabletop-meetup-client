@@ -36,6 +36,7 @@ export default class EventGameList extends React.Component {
 				);
 				return (
 						<GameBoxtop
+							key={i}
 							owners={owners}
 							game={game} 
 							listManager={<GameBallot 

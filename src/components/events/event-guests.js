@@ -15,6 +15,12 @@ export default class EventGuests extends React.Component {
 		this.setState({isEditing: false});
 	}
 
+	cancelRsvp = e => {
+		e.preventDefault();
+		e.stopPropagation();
+		this.setState({isEditing: false});		
+	}
+
 	handleEditRsvp = e => {
 		e.preventDefault();
 		e.stopPropagation();
@@ -29,7 +35,7 @@ export default class EventGuests extends React.Component {
 		guests.forEach((guest, i) => {
 			let userName = `Guest ${i+1}`;
 			const user = guest.user[0];
-			if (user) userName = user.firstName + user.lastName || user.username;
+			if (user) userName = (user.firstName+' '+user.lastName).trim() || user.username;
 			let status;
 			switch (guest.rsvp) {
 			case 'invited':
@@ -69,25 +75,26 @@ export default class EventGuests extends React.Component {
 				};
 			}
 
-			if (guest.userId === userId) {
+			if (guest.userId === userId && guest.rsvp !== 'host') {
 				if (this.state.isEditing === false) inviteResponse = (
-					<span 
+					<button 
 						onClick={e => this.handleEditRsvp(e)}
 						className='change-rsvp'
 						>
 					Update RSVP
-					</span>
+					</button>
 				);
 				else if (this.state.isEditing === true) {
 					const possibleChoices = ['maybe', 'yes', 'no']; 
 					inviteResponse = possibleChoices.map((opt, i) => 
-						<div 
+						<button 
 							className='change-rsvp'	
 							onClick={e => this.handleRsvp(eventId, opt, e)} 
 							key={i} >
 							{opt}
-						</div>
+						</button>
 					);
+					inviteResponse.push(<button key={inviteResponse.length} onClick={e => this.cancelRsvp(e)}>Cancel</button>);
 				}
 				guestList.splice(0,0,(
 					<div key={i}>
@@ -105,12 +112,10 @@ export default class EventGuests extends React.Component {
 		});
 		return (
 			<div className="event-guests-wrapper">
-				<div>
-					{inviteResponse}
-				</div>
 				<div className="event-guestlist">
 					{guestList}
 				</div>
+				{inviteResponse}
 			</div>
 		);
 	}
