@@ -1,6 +1,6 @@
 
 .game-list {
-	display: flex;
+	/* display: flex; */
 	flex-direction: row;
 	flex-wrap: wrap;
 	justify-content: center;

@@ -1,17 +1,20 @@
 import React from 'react';
 import './game-ballot.css';
+// import { STATIC_MEDIA_FOLDER } from '../../config';
+const STATIC_MEDIA_FOLDER = 'http://localhost:3000/media/';
 
 export default class gameBallot extends React.Component{
 	render() {
 		const { game, eventId, gameVotes, userId, userWantToPlayList } = this.props;
 		const votes = [
 			{
-				field: 'yes',
-				description: 'strongly want to play at this event',
+				field: 'no',
+				description: 'not interested in playing at this event',
 				selectedDescription: 'retract vote',
-				button: 'Want at this Event',
-				icon: '👍',
-				src: 'http://localhost:3000/media/thumbs-up.svg'
+				button: 'Do Not Want at Event',
+				icon: '👎',
+				src: 'thumbs-down.png',
+				class: 'down'
 			},
 			{
 				field: 'wantToPlay',
@@ -19,16 +22,19 @@ export default class gameBallot extends React.Component{
 				selectedDescription: 'remove from Want to Play List',
 				button: 'Want to Play',
 				icon: '☑',
-				src: 'http://localhost:3000/media/thumbs-middle.svg'
+				src: 'thumbs-middle.png',
+				class: 'middle'
 			},
 			{
-				field: 'no',
-				description: 'not interested in playing at this event',
+				field: 'yes',
+				description: 'strongly want to play at this event',
 				selectedDescription: 'retract vote',
-				button: 'Do Not Want at Event',
-				icon: '👎',
-				src: 'http://localhost:3000/media/thumbs-down.svg'
+				button: 'Want at this Event',
+				icon: '👍',
+				src: 'thumbs-up.png',
+				class: 'up'
 			},
+			
 			// {
 			// 	field: 'hide',
 			// 	description: 'never show this game again',
@@ -66,21 +72,13 @@ export default class gameBallot extends React.Component{
 					alt={description} 
 					title={description}
 				>
-					{el.icon}
-					{/* <img src={el.src} 
-						alt={el.description} 
-						// title={el.description}
-						style={{
-							height: '1em',
-							width: '1em'
-						}}
-					/> */}
+					<img src={STATIC_MEDIA_FOLDER + el.src} className={el.class} alt={description}/>
 				</a>
 			);
 		});
 
 		return (
-			<div className='collection-details game-ballot'>
+			<div className='game-ballot'>
 				{voteActions}
 			</div>
 		);

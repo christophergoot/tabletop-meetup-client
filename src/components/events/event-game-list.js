@@ -35,7 +35,6 @@ export default class EventGameList extends React.Component {
 					event.guests.find(guest => guest.userId === ownerId).user[0].username
 				);
 				return (
-					<div key={i}>
 						<GameBoxtop
 							owners={owners}
 							game={game} 
@@ -48,7 +47,6 @@ export default class EventGameList extends React.Component {
 								userWantToPlayList={this.props.userWantToPlayList}
 							/>}
 						 />
-					</div>
 				);
 			});
 		}

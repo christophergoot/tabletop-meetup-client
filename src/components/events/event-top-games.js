@@ -77,13 +77,23 @@ class EventTopGames extends Component {
 	}
 
 	render() {
-		return (
+		if (this.rankedGames().length>0) return (
 			<div>
-				<h2>Games with the Most Interest <MoreInfo 
+				<h2>Top Games <MoreInfo 
 					info='Each 👍 = 1 vote, 👎 = minus 1, and 1 vote for each user with the game on their Want to Play list (☑)' />
 				</h2>
 				<this.rankedGames />
 			</div>
+		);
+		else return (
+			<div>
+				<h2>No Games of Interest <MoreInfo 
+					info='Each 👍 = 1 vote, 👎 = minus 1, and 1 vote for each user with the game on their Want to Play list (☑)' />
+				</h2>
+				<p>Express interest by upvoting games and/or adding them to your Want to Play List</p>
+				<this.rankedGames />
+			</div>
+
 		);
 	}
 }

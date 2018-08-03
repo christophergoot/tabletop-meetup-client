@@ -14,7 +14,7 @@ import WebFont from 'webfontloader';
 
 WebFont.load({
 	google: {
-		families: ['Roboto Slab', 'Arimo', 'Lobster', 'serif', 'Chela One', 'cursive']
+		families: ['Roboto Slab', 'Noto Emoji', 'Arimo', 'Lobster', 'serif', 'Chela One', 'cursive']
 	}
 });
 

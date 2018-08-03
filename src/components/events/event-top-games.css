@@ -1,9 +1,10 @@
 .event-top-game {
 	margin: 0 auto;
 	max-width: 80%;
-	/* border: 1px solid lightgray; */
-	/* border-radius: 4px; */
 	background-color: #acd0c07c;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
 }
 
 .event-top-game:nth-child(odd) {
