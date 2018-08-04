@@ -88,18 +88,18 @@ class GameFilter extends React.Component {
 
 		if (this.state.isOpen) return (
 			<div >
-				<h3 onClick={() => this.setState({ isOpen: false })}>
+				<h4 onClick={() => this.setState({ isOpen: false })}>
 					{filterTitle('open')}
-				</h3>
+				</h4>
 				<ul className='game-filter-container open'>
 					{listItems}
 				</ul>
 			</div>);
 		else return (
 			<div>
-				<h3 onClick={() => this.setState({ isOpen: true })}>
+				<h4 onClick={() => this.setState({ isOpen: true })}>
 					{filterTitle('closed')}
-				</h3>
+				</h4>
 				<ul className='game-filter-container closed'>
 					{listItems}
 				</ul>

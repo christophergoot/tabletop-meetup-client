@@ -127,6 +127,7 @@ export default function eventsReducer(state=initialState, action) {
 		return {
 			...state,
 			current: {
+				...state.current,
 				guests: [
 					...state.current.guests,
 					{

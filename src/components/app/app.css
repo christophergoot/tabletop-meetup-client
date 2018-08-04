@@ -1,31 +1,42 @@
 * {
 	margin: 0px;
 	padding: 0px;
+	/* font-family: 'Oswald', sans-serif; */
+	font-family: 'Roboto', "Open Sans", sans-serif; 
 }
 
 .app {
 	height: 100vh;
 	display: flex;
 	flex-direction: column;
+	/* font-family: 'Oswald', sans-serif; */
+	/* font-family: 'Roboto', "Open Sans", sans-serif;  */
 	/* border-bottom: 10px dashed black; */
+
 }
 
 html, body {
 	height: 100%;
+
+}
+
+html {
+	background-color: #4f6457;
 }
 
 body {
-	font-family: 'Roboto', "Open Sans", sans-serif; 
 	font-size: 18px;
 	color: #002a32;
-	background-color: #acd0c0;
-	background-color: white;
+	/* background-color: #002a32; */
+	/* background-color: white; */
 	text-align: center;
 	line-height: 1.5;
 	display: flex;
 	flex-direction: column;
 
-	/* margin: 50px; */
+	/* max-width: 800px; */
+	align-items: center;
+	justify-content: center;
 }
 
 button {
@@ -43,6 +54,8 @@ button:hover {
 
 main {
 	flex: 1 0 auto;
+	background-color: #fff7df;
+
 }
 
 a {
@@ -63,18 +76,24 @@ section ul {
 	padding-left: 60px;
 } */
 
-section {
-	padding: 20px;
-}
 
 
 h2 {
 	font-size: 1.5em;
 	margin-bottom: .5em;
+	font-family: 'Yanone Kaffeesatz', sans-serif;
 }
 h3 {
 	font-size: 1.25em;
-}
+	font-family: Lobster;
+	margin: .5em 0;
+	color: #d9b44a;
+	text-shadow: 1px 1px 2px #4f6457,
+		-1px -1px 0  #4f6457,
+		1px -1px 0 #4f6457,
+		-1px 1px 0  #4f6457
+
+	}
 
 
 /*

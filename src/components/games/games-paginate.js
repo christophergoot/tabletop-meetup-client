@@ -105,7 +105,7 @@ export default function GamesPaginate(props) {
 			label: 'show 50 per page' },
 		{	value: 100,
 			label: 'show 100 per page' },
-		{	value: 0,
+		{	value: 10000,
 			label: 'Show All' }
 	];
 	let options = limitOpts.map((opt, i) => {

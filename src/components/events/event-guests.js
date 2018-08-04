@@ -85,11 +85,11 @@ export default class EventGuests extends React.Component {
 					</button>
 				);
 				else if (this.state.isEditing === true) {
-					const possibleChoices = ['maybe', 'yes', 'no']; 
+					const possibleChoices = [ 'Yes', 'Maybe', 'No']; 
 					inviteResponse = possibleChoices.map((opt, i) => 
 						<button 
 							className='change-rsvp'	
-							onClick={e => this.handleRsvp(eventId, opt, e)} 
+							onClick={e => this.handleRsvp(eventId, opt.toLowerCase(), e)} 
 							key={i} >
 							{opt}
 						</button>

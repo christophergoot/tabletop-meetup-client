@@ -200,6 +200,7 @@ export const deleteEvent = eventId => dispatch => {
 
 export const changeRsvp = (eventId, rsvp) => (dispatch, getState) => {
 	const authToken = loadAuthToken();
+	// const userId = getState().auth.currentUser.userId;
 	return fetch(`${API_BASE_URL}events/${eventId}/rsvp`, {
 		method: 'POST',
 		headers: {
@@ -210,14 +211,16 @@ export const changeRsvp = (eventId, rsvp) => (dispatch, getState) => {
 	})
 		.then(res => res.json())
 		.then(event => dispatch(fetchSingleEvent(event.eventId)))
+		// .then(event => dispatch(changeRsvpSuccess(userId, rsvp, event)))
 		.catch(err => {
 			console.log('error', err);
 		});
 };
 
 export const CHANGE_RSVP_SUCCESS = 'CHANGE_RSVP_SUCCESS';
-export const changeRsvpSuccess = (userId, rsvp) => ({
+export const changeRsvpSuccess = (userId, rsvp, event) => ({
 	type: CHANGE_RSVP_SUCCESS,
 	userId,
-	rsvp
+	rsvp,
+	event
 });

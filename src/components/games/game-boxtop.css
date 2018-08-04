@@ -13,6 +13,11 @@
 	display: flex;
 }
 
+.boxtop-icon {
+	flex-direction: column;
+	max-width: 40px;
+}
+
 .game-card {
 	/* border: 1px grey solid; */
 	/* max-width: 400px; */

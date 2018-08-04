@@ -1,5 +1,6 @@
 import React from 'react';
 // import CollectionDetails from './collection-details';
+import { STATIC_MEDIA_FOLDER } from '../../config';
 
 import './game-boxtop.css';
 
@@ -10,10 +11,9 @@ export default function GameBoxtop(props) {
 	const externalLink = `https://boardgamegeek.com/boardgame/${gameId}/`;
 	const playerCount = (minPlayers, maxPlayers) => {
 		if (minPlayers === maxPlayers) {
-			if (minPlayers === 1) return ('1 Player');
-			else return (minPlayers + ' Players');
+			return minPlayers;
 		}
-		else return (`${minPlayers} to ${maxPlayers} Players`);
+		else return (`${minPlayers} - ${maxPlayers}`);
 	};
 	let ownerReport = '';
 	if (owners && owners.length === 1) ownerReport = <span>Owned by {owners}</span>;
@@ -27,7 +27,12 @@ export default function GameBoxtop(props) {
 	let yearReport = '';
 	if (yearPublished > 0) yearReport = `(${yearPublished})`;
 	let rankReport = '';
-	if (rank && rank > 0) rankReport = <span>BGG Rank: {rank}</span>;
+	if (rank && rank > 0) rankReport = <div className='boxtop-icon'>
+		<img src={STATIC_MEDIA_FOLDER+'rating-icon.png'} 
+			alt='Boargamegeek Rank'
+			title='Boargamegeek Rank' />
+		{rank}
+	</div>;
 
 	return (
 		<div className='game-card'>
@@ -44,9 +49,24 @@ export default function GameBoxtop(props) {
 				</div>
 				<div className='boxtop-deets'>
 					{rankReport}
-					<span>{averageRating.toFixed(2)} Average Rating</span>
-					<span>{playerCount(minPlayers, maxPlayers)}</span>
-					<span>{playingTime} Min Playing Time</span>
+					<div className='boxtop-icon'>
+						<img src={STATIC_MEDIA_FOLDER+'rating-icon.png'} 
+							alt='Average Rating'
+							title='Average Rating' />
+						{averageRating.toFixed(2)}
+					</div>
+					<div className='boxtop-icon'>
+						<img src={STATIC_MEDIA_FOLDER+'rating-icon.png'} 
+							alt='Player Count'
+							title='Player Count' />
+						{playerCount(minPlayers, maxPlayers)}
+					</div>
+					<div className='boxtop-icon'>
+						<img src={STATIC_MEDIA_FOLDER+'rating-icon.png'} 
+							alt='Playing Time'
+							title='Playing Time' />
+						{playingTime} Min
+					</div>
 				</div>
 			</div>
 			<span className='game-owners'>{ownerReport}</span>
