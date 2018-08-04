@@ -87,7 +87,7 @@ class GameFilter extends React.Component {
 		});
 
 		if (this.state.isOpen) return (
-			<div >
+			<div className='game-filter'>
 				<h4 onClick={() => this.setState({ isOpen: false })}>
 					{filterTitle('open')}
 				</h4>
@@ -96,7 +96,7 @@ class GameFilter extends React.Component {
 				</ul>
 			</div>);
 		else return (
-			<div>
+			<div className='game-filter'>
 				<h4 onClick={() => this.setState({ isOpen: true })}>
 					{filterTitle('closed')}
 				</h4>

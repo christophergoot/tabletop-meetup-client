@@ -7,7 +7,7 @@ import './game-boxtop.css';
 export default function GameBoxtop(props) {
 	const { gameId, name, thumbnail, yearPublished, averageRating, 
 		minPlayers, maxPlayers, playingTime, rank } = props.game;
-	const { owners } = props;
+	// const { owners } = props;
 	const externalLink = `https://boardgamegeek.com/boardgame/${gameId}/`;
 	const playerCount = (minPlayers, maxPlayers) => {
 		if (minPlayers === maxPlayers) {
@@ -15,15 +15,17 @@ export default function GameBoxtop(props) {
 		}
 		else return (`${minPlayers} - ${maxPlayers}`);
 	};
-	let ownerReport = '';
-	if (owners && owners.length === 1) ownerReport = <span>Owned by {owners}</span>;
-	else if (owners && owners.length > 1) {
-		ownerReport = 'Owned by ';
-		for(let i=0; i<owners.length-1; i++) {
-			ownerReport += `${owners[i]} & `;
-		}
-		ownerReport += owners[owners.length-1];
-	}
+
+	// let ownerReport = '';
+	// if (owners && owners.length === 1) ownerReport = <span>Owned by {owners}</span>;
+	// else if (owners && owners.length > 1) {
+	// 	ownerReport = 'Owned by ';
+	// 	for(let i=0; i<owners.length-1; i++) {
+	// 		ownerReport += `${owners[i]} & `;
+	// 	}
+	// 	ownerReport += owners[owners.length-1];
+	// }
+
 	let yearReport = '';
 	if (yearPublished > 0) yearReport = `(${yearPublished})`;
 	let rankReport = '';
@@ -68,7 +70,7 @@ export default function GameBoxtop(props) {
 					<p>{playingTime}</p>
 				</div>
 			</div>
-			<div className='game-owners'>{ownerReport}</div>
+			{/* <div className='game-owners'>{ownerReport}</div> */}
 		</div>
 
 	);

@@ -1,12 +1,25 @@
 .event-top-game {
-	margin: 0 auto;
-	max-width: 80%;
+	font-size: .9em;
+	/* margin: 0 auto; */
+	padding: .0 .45em;
+	/* max-width: 80%; */
 	background-color: #acd0c07c;
 	display: flex;
 	flex-direction: row;
-	justify-content: space-between;
+	align-content: left;
+	/* justify-content: first baseline; */
 }
 
 .event-top-game:nth-child(odd) {
 	background-color: #d9b34a7e;
+}
+
+.top-game-text {
+	align-self: left;
+}
+
+.top-games-owners {
+	color: rgb(116, 116, 116);
+	font-size: .9em;
+	font-weight: 100;
 }

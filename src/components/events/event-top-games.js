@@ -16,6 +16,7 @@ class EventTopGames extends Component {
 	}
 
 	rankedGames = () => {
+
 		const { event, wantToPlayLists, user } = this.props;
 		const { userId } = user;
 		const gameList = event.games;
@@ -59,12 +60,16 @@ class EventTopGames extends Component {
 			});
 		
 		return sortedList.map((game, i) => {
+			const owners = game.owners.map(ownerId => 
+				event.guests.find(guest => guest.userId === ownerId).user[0].username
+			);
+			let ownerReport = <span className='top-games-owners'>Owned by {owners.join(' & ')}</span>;
 			let yearReport = '';
 			if (game.yearPublished && game.yearPublished > 0) 
 				yearReport = `(${game.yearPublished})`;
 			return (
 			<div key={i} className='event-top-game'>
-				{game.name} {yearReport}
+				<div className='top-game-text'>{game.name} {yearReport} {ownerReport}</div>
 				<GameBallot 
 					game={game} 
 					eventId={event.eventId} 

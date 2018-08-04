@@ -55,3 +55,8 @@
 	height: 0px;
 	border: 0px solid #002a32;
 }
+
+.game-filter {
+	max-width: 400px;
+	margin: 0 auto .5em auto;
+}
