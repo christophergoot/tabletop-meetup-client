@@ -27,50 +27,50 @@ export default function GameBoxtop(props) {
 	let yearReport = '';
 	if (yearPublished > 0) yearReport = `(${yearPublished})`;
 	let rankReport = '';
-	if (rank && rank > 0) rankReport = <div className='boxtop-icon'>
-		<img src={STATIC_MEDIA_FOLDER+'rating-icon.png'} 
-			alt='Boargamegeek Rank'
-			title='Boargamegeek Rank' />
-		{rank}
-	</div>;
+	if (rank && rank > 0) rankReport = 
+		<div className='boxtop-icon'>
+			<img src={STATIC_MEDIA_FOLDER+'bgg-rank-icon.png'} 
+				alt='Boargamegeek Rank'
+				title='Boargamegeek Rank' />
+			<p>{rank}</p>
+		</div>;
 
 	return (
 		<div className='game-card'>
-			<div className='game-card-title'>
-				<p><a href={externalLink} target='_blank'>{name}</a> {yearReport}</p>
+			<div className='boxtop-cover'>
+				<img src={thumbnail} 
+					alt={'Boxart for '+name}
+					title={'Boxart for '+name}/>
 			</div>
-			<div style={{display:'flex'}} >
-				<div className='boxtop-img-col'>
-					<img src={thumbnail} 
-						alt={'Boxart for '+name}
-						title={'Boxart for '+name}
-						style={{height:'4em',border:'1px solid black',boxShadow:'1px 2px 3px gray',display:'block'}}/>
-					{props.listManager}
+			<div className='boxtop-vote'>{props.listManager}</div>
+			<div className='boxtop-title'>
+				<p><a href={externalLink} target='_blank'>
+					{name}</a> {yearReport}</p>
+			</div>
+			<div className='boxtop-deets'>
+				{rankReport}
+				<div className='boxtop-icon'>
+					<img src={STATIC_MEDIA_FOLDER+'rating-icon.png'} 
+						alt='Average Rating'
+						title='Average Rating' />
+					<p>{averageRating.toFixed(2)}</p>
 				</div>
-				<div className='boxtop-deets'>
-					{rankReport}
-					<div className='boxtop-icon'>
-						<img src={STATIC_MEDIA_FOLDER+'rating-icon.png'} 
-							alt='Average Rating'
-							title='Average Rating' />
-						{averageRating.toFixed(2)}
-					</div>
-					<div className='boxtop-icon'>
-						<img src={STATIC_MEDIA_FOLDER+'rating-icon.png'} 
-							alt='Player Count'
-							title='Player Count' />
-						{playerCount(minPlayers, maxPlayers)}
-					</div>
-					<div className='boxtop-icon'>
-						<img src={STATIC_MEDIA_FOLDER+'rating-icon.png'} 
-							alt='Playing Time'
-							title='Playing Time' />
-						{playingTime} Min
-					</div>
+				<div className='boxtop-icon'>
+					<img src={STATIC_MEDIA_FOLDER+'player-count-icon.png'} 
+						alt='Player Count'
+						title='Player Count' />
+					<p>{playerCount(minPlayers, maxPlayers)}</p>
+				</div>
+				<div className='boxtop-icon'>
+					<img src={STATIC_MEDIA_FOLDER+'game-time-icon.png'} 
+						alt='Playing Time'
+						title='Playing Time' />
+					<p>{playingTime}</p>
 				</div>
 			</div>
-			<span className='game-owners'>{ownerReport}</span>
-		</div>		
+			<div className='game-owners'>{ownerReport}</div>
+		</div>
+
 	);
 
 	// return (

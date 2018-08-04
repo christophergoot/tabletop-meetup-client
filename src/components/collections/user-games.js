@@ -5,7 +5,7 @@ import GameSort from './game-sort';
 export default function UserGames() {
 	return (
 		<section>
-			<h1>Manage Game List</h1>
+			<h1>Game Collection</h1>
 			<a href>Add a Game</a>
 			<GameSort />
 			<GameList />

@@ -1,51 +1,88 @@
 
-.boxtop-deets {
-	background-color: white;
-	font-size: .7em;
-	display: block;
-	width: 150px;
-	padding: .5em;
-	border-radius: 3px;
-	margin: 0 auto;
-}
-
-.boxtop-deets span {
-	display: flex;
-}
-
-.boxtop-icon {
-	flex-direction: column;
-	max-width: 40px;
-}
-
 .game-card {
-	/* border: 1px grey solid; */
-	/* max-width: 400px; */
-	width: 100%;
-	padding: .5em;
+	max-width: 325px;
+	display: grid;
+	grid-template-areas: 
+		"title"
+		"cover"
+		"deets"
+		"vote"
+		"owners";
+	/* width: 200px; */
+
+	padding: 0;
 	background-color: #acd0c07c;
 	transition: all .15s ease-out;
+}
+
+.boxtop-title {
+	background-color: #acd0c0;
+	position: relative;
+	top: 0;
+	font-size: 1em;
+	grid-area: title;
+	padding: 0 .15em;
+	margin-bottom: .2em;
 }
 
 .game-card:nth-child(odd) {
 	background-color: #d9b34a7e;
 }
 
-.game-card:hover {
-	/* box-shadow: 1px 1px 3px 0px rgb(190, 190, 190); */
-	transform: scale(1.02);
+.game-card:nth-child(odd) .boxtop-title {
+	background-color: #d9b34a;
 }
 
-.game-card-title {
+.boxtop-deets {
+	/* background-color: white; */
+	/* font-size: .7em; */
+	display: flex;
+	align-items: center;
+	justify-content: center;	
+	/* padding: 0 auto; */
+	/* padding-left: auto; */
+	width: 200px;
+	/* border-radius: 3px; */
+	margin: 0 auto;
+	grid-area: deets;
+}
+
+.boxtop-icon {
+	padding: 0 .25em;
+	position: relative;
+	/* margin-bottom: -.9em; */
+}
+
+.boxtop-icon p {
+	position: relative;
+	/* top: -.65em; */
+	/* left: 50%; */
+	text-align: center;
+	font-family: 'Yanone Kaffeesatz', sans-serif;
+	font-weight: 900;
 	font-size: 1em;
+	line-height: .5%;
 }
 
-.game-owners {
-	font-size: .85em;
+.boxtop-cover {
+	/* flex-direction: row; */
+	grid-area: cover;
+	margin: 0 auto;
 }
 
-.boxtop-img-col {
-	flex-direction: row;
+.boxtop-cover img {
+	max-height: 300px;
+	max-width: 300px;
+	border: 1px solid black;
+	box-shadow: 1px 2px 3px gray;
+}
+
+.boxtop-vote {
+	margin-top: .2em;
+	grid-area: vote;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .game-action {
@@ -54,4 +91,10 @@
 	font-style: italic;
 	text-align: right;
 	line-height: 14px;
+}
+
+
+.game-owners {
+	font-size: .85em;
+	grid-area: owners;
 }
