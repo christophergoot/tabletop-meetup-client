@@ -24,8 +24,9 @@ export class Nav extends React.Component {
 		);} else { return (
 			<nav>
 				<ul>
-					<li><Link to='/'>Login</Link></li>
+					<li><Link to='/login'>Login</Link></li>
 					<li><Link to='/register'>Register</Link></li>
+					<li><Link to='/demo'>Demo</Link></li>
 				</ul>
 			</nav>
 

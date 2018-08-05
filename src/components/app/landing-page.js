@@ -32,6 +32,11 @@ export function Landing(props) {
 						<Link to='/register'>Register</Link>
 					</button> for an account and start planning your next TableTop MeetUp now
 				</p>
+				<p>
+					<button>
+						<Link to='/demo'>Demo</Link>
+					</button> TableTop MeetUp to explore
+				</p>
 			</div>
 			<LoginForm />
 		</section>

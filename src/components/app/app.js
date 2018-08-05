@@ -15,7 +15,9 @@ import Register from './register';
 import {refreshAuthToken} from '../../actions/auth';
 import Dashboard from './dashboard';
 // import 'typeface-roboto';
-import { LoginForm } from './login-form';
+// import LoginForm from './login-form';
+import Login from './login';
+import Demo from './demo';
 
 export class App extends React.Component {
 	componentDidUpdate(prevProps) {
@@ -66,8 +68,9 @@ export class App extends React.Component {
 						<Route exact path="/" component={Landing} />
 						<Route exact path="/dashboard" component={Dashboard} />
 						<Route exact path="/register" component={Register} />
-						<Route exact path="/login" component={LoginForm} />
+						<Route exact path="/login" component={Login} />
 						<Route exact path="/events" component={Events} />
+						<Route exact path="/demo" component={Demo} />
 						<Route exact path="/games" component={Games} />
 						<Route exact path="/events/new" component={CreateNewEvent} />
 						<Route exact path="/event/:eventId" component={SingleEvent} />

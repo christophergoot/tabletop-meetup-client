@@ -31,7 +31,6 @@ export class LoginForm extends React.Component {
 					<li>Username: demo-user</li>
 					<li>Password: demo-password</li>
 				</ul>
-				{error}
 				<div>
 					<Field
 						floatingLabelText='Username'
@@ -52,6 +51,7 @@ export class LoginForm extends React.Component {
 						validate={[required, nonEmpty]}
 					/>
 				</div>
+				<div style={{color:'red',marginTop:'.5em'}}>{error}</div>
 				<div>
 					<Button 
 						type="submit"

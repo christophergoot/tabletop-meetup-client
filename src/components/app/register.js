@@ -12,7 +12,7 @@ export function Register(props) {
 	}
 	return (
 		<div className="home">
-			<h2>Register for Tabletop Meetup</h2>
+			<h2>Register for TableTop MeetUp</h2>
 			<RegistrationForm />
 		</div>
 	);
