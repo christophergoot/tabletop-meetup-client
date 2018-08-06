@@ -8,13 +8,16 @@
 	border-bottom-left-radius: 1em;
 	border-bottom-right-radius: 1em;
 	/* transition-delay: .5s; */
-	transition: background-color .5s linear, border-bottom-left-radius .5s, border-bottom-right-radius .5s;
+	transition: background-color .5s linear;
+	transition-delay: .5s;
+	transition-property: border-bottom-left-radius, border-bottom-right-radius;
+	transition-duration: .00025s;
 }
 .game-filter-title.open{
 	background-color: rgb(217, 180, 74);
 	border-bottom-left-radius: 0em;
 	border-bottom-right-radius: 0em;
-	transition: background-color .5s linear, border-bottom-left-radius .5s, border-bottom-right-radius .5s;
+	transition: background-color .5s linear;
 }
 .game-filter-title.open>img {
 	transform: rotate(180deg);	
