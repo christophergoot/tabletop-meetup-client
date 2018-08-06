@@ -55,6 +55,20 @@ const initialState = ({
 	]
 });
 
+function updateEventInState(state, action) {
+	// get index of event to be updated
+	const index = state.list.findIndex(event => event.eventId === action.event.eventId);
+	// const updatedEvent = ...state.list[index]
+	return {
+		...state,
+		list: [
+			...state.list.slice(0,index),
+			action.event,
+			...state.list.slice(index+1)
+		]
+	};
+
+}
 
 
 export default function eventsReducer(state=initialState, action) {
@@ -124,19 +138,7 @@ export default function eventsReducer(state=initialState, action) {
 		};
 
 	case CHANGE_RSVP_SUCCESS:
-		return {
-			...state,
-			current: {
-				...state.current,
-				guests: [
-					...state.current.guests,
-					{
-						userId: action.userId,
-						rsvp: action.rsvp
-					}
-				]
-			}
-		};
+		return updateEventInState(state, action);
 
 	default: 
 		return state;

@@ -200,7 +200,7 @@ export const deleteEvent = eventId => dispatch => {
 
 export const changeRsvp = (eventId, rsvp) => (dispatch, getState) => {
 	const authToken = loadAuthToken();
-	// const userId = getState().auth.currentUser.userId;
+	const userId = getState().auth.currentUser.userId;
 	return fetch(`${API_BASE_URL}events/${eventId}/rsvp`, {
 		method: 'POST',
 		headers: {
@@ -210,8 +210,8 @@ export const changeRsvp = (eventId, rsvp) => (dispatch, getState) => {
 		body: JSON.stringify({rsvp})
 	})
 		.then(res => res.json())
-		.then(event => dispatch(fetchSingleEvent(event.eventId)))
-		// .then(event => dispatch(changeRsvpSuccess(userId, rsvp, event)))
+		// .then(event => dispatch(fetchSingleEvent(event.eventId)))
+		.then(event => dispatch(changeRsvpSuccess(userId, rsvp, event)))
 		.catch(err => {
 			console.log('error', err);
 		});
