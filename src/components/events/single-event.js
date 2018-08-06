@@ -24,21 +24,13 @@ export class SingleEvent extends React.Component {
 	}
 
 	render() {
-		const { eventId } = this.props.match.params;
-		// let thisEvent = this.props.events.find(ev => ev.eventId === eventId) || this.props.events[0];
 		const thisEvent = this.props.currentEvent;
 		let userWantToPlayList = [];
 		const userList = this.props.wantToPlayLists.filter(list => list.userId === this.props.user.userId);
 		if (userList.length>0) userWantToPlayList = userList[0].list;
 
-		let isHost = false;
-		const userGuest = thisEvent.guests.find(g => g.userId === this.props.user.userId);
-		// let rsvp = 10;
-		if (userGuest && userGuest.rsvp === 'host') isHost = true;
-
 		return (
 			<div>
-				{this.deleteButton(isHost,eventId)}
 				<ListEvent 
 					event={thisEvent} 
 					userId={this.props.user.userId}

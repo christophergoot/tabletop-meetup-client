@@ -1,6 +1,7 @@
 .list-event {
 	display: flex;
 	flex-direction: row;
+	flex-wrap: wrap;
 	background-color: #75b1a9;
 	margin: 20px;
 	padding: 10px;
