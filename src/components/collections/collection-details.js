@@ -56,9 +56,20 @@ export class CollectionDetails extends React.Component {
 			{ wishList: 'Wishlist' }
 		];
 		let collectionDetails = collectionFields.map((field, i) => {
-			if (game[Object.keys(field)]) return (
-				<p key={i}>{(field[Object.keys(field)])}</p>
-			);
+			if (game[Object.keys(field)]) {
+				const initials = (field[Object.keys(field)]).split(' ').map((word, i, arr) => {
+					if (i === 0) return word[0].toUpperCase();
+					if (i === arr.length-1) return word[0].toUpperCase();
+					return ' ';
+				}).filter(init => init !== ' ');
+				return (
+					// <p key={i}>{(field[Object.keys(field)])}</p>
+					<span key={i}
+						alt={(field[Object.keys(field)])}
+						title={(field[Object.keys(field)])}
+						className='collection-initials'>{initials}</span>
+				);
+			} 
 			return ('');
 		});
 		if (collectionDetails.filter(el => el !== '').length === 0) {
