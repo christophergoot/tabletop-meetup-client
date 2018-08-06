@@ -5,6 +5,7 @@ import { Link, Redirect } from 'react-router-dom';
 import './landing-page.css';
 
 import LoginForm from './login-form';
+import { STATIC_MEDIA_FOLDER } from '../../config';
 
 
 export function Landing(props) {
@@ -20,13 +21,42 @@ export function Landing(props) {
 			</div>
 
 			<h2>Getting started is easy:</h2>
-			<ul className='landing-page-list'>
-				<li>Create a new Event</li>
-				<li>Invite Guests</li>
-				<li>Let them tell you which games they are interested in playing</li>
-			</ul>
+			
+			<div className='getting-started'>
+				<h3>Create a new Event</h3>
+				<div className='getting-started-blocks'>
+					<img alt='Gather Votes'
+						title='Gather Votes'
+						src={STATIC_MEDIA_FOLDER+'create-event.svg'} />
+					<div>
+						<p>Set a time</p>
+						<p>Set a place</p>
+						<p>Invite your Guests</p>
+					</div>	
+				</div>
+			</div>
+			<div className='getting-started'>
+				<h3>Gather Votes</h3>
+				<div className='getting-started-blocks'>
+					<img alt='Gather Votes'
+						title='Gather Votes'
+						src={STATIC_MEDIA_FOLDER+'gather-votes.svg'} />
+					<p>Let them tell you which games they are interested in playing</p>
+				</div>
+			</div>				
+			<div className='getting-started'>
+				<h3>Get it to the TableTop</h3>
+				<div className='getting-started-blocks'>
+					<img alt='TableTop Games Playing'
+						title='TableTop Games Playing'
+						src={STATIC_MEDIA_FOLDER+'tabletop.svg'} />
+					<p>With less time deciding, and more time playing</p>
+				</div>				
+			</div>
 			<div className='landing-page section'>
 				<h2>Give it a Go</h2>
+			</div>
+			<div className='landing-page-begin'>	
 				<p>
 					<button>
 						<Link to='/register'>Register</Link>
@@ -37,7 +67,8 @@ export function Landing(props) {
 						<Link to='/demo'>Demo</Link>
 					</button> TableTop MeetUp to explore
 				</p>
-			</div>
+
+			</div>	
 			<LoginForm />
 		</section>
 	);

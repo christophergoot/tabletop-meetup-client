@@ -15,3 +15,33 @@
 .landing-page-list>li::before {
 	content: '⇒  '
 }
+
+.getting-started {
+	margin: 0 1em 3em 1em;
+	display: flex;
+	flex-direction: column;
+}
+
+.getting-started-blocks {
+	display: inline-flex;
+	flex-direction: row;
+	/* flex-wrap: wrap; */
+	min-width: 200px;
+	max-width: 400px;
+	margin: 0 auto;
+	justify-content: center;
+}
+
+.getting-started-blocks>p, .getting-started-blocks>div, .getting-started-blocks>img  {
+	min-width: 200px;
+	/* max-width: 400px; */
+}
+
+.landing-page-begin {
+	padding: 1em 2em;
+	margin: .5em 2em;
+}
+
+.landing-page-begin p {
+	margin-bottom: 1em;
+}
