@@ -84,20 +84,28 @@ export class CollectionDetails extends React.Component {
 			);
 		});
 		if (this.state.editing) return (
-			<div className='collection-details editing'>
-				<form onSubmit={e => this.updateCollection(e,game)}>
-					{checkBoxes}
-					<button type='submit'>
-						Save
-					</button>
-					<button onClick={() => this.setState({editing: false})}>
-						Cancel
-					</button>
-					<button onClick={e => this.handleRemove(e,game)}>
-						Remove Game
-					</button>
-				</form>
-			</div>			
+			<div style={{position:'relative'}}>
+				<div className='collection-details editing'>
+					<form onSubmit={e => this.updateCollection(e,game)}>
+						{checkBoxes}
+						<button type='submit'>
+				Save
+						</button>
+						<button onClick={() => this.setState({editing: false})}>
+				Cancel
+						</button>
+						<button onClick={e => this.handleRemove(e,game)}>
+				Remove Game
+						</button>
+					</form>
+				</div>			
+
+				<div 
+					className='collection-details'
+					onClick={() => this.setState({editing: true})} >
+					{collectionDetails}
+				</div>
+			</div>
 		);
 		else return (
 			<div 

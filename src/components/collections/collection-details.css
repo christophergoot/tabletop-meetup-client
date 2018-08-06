@@ -11,12 +11,13 @@
 }
 
 .collection-details.editing {
-	position: absolute;
-	display: block;
-	background-color: white;
-	margin: 10px;;
-	width: 150px;
-	z-index: 1;
+    position: absolute;
+    bottom: 0;
+    display: block;
+    background-color: white;
+    margin: auto;
+    width: 150px;
+    z-index: 1;
 }
 
 .collection-details.editing>form {
@@ -47,21 +48,29 @@
 }
 
 .collection-initials {
-	display: inline-block;
+    display: inline-block;
     margin: 0 .1em;
-    /* padding: .25em; */
+    padding: .25em;
     padding-bottom: 1px;
-    border: 1px solid black;
-    background-color: #fff;
+    /* border: 1px solid black; */
+    background-color: #D9B44A;
+    background-color: #4f6457;
+    color: #d9b44a;
     border-radius: 50%;
     width: 1.25em;
     height: 1.25em;
     overflow: hidden;
     font-family: 'Yanone Kaffeesatz', sans-serif;
-    font-weight: 900;
+    font-weight: 100;
     font-size: 1em;
     /* line-height: .025%; */
     text-align: center;
     vertical-align: middle;
     line-height: 1.25em;
+}
+
+.collection-initials:hover {
+    color: #4f6457;
+    background-color: #d9b44a;
+
 }
