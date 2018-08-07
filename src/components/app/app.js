@@ -14,8 +14,8 @@ import Footer from './footer';
 import Register from './register';
 import {refreshAuthToken} from '../../actions/auth';
 import Dashboard from './dashboard';
-// import 'typeface-roboto';
-// import LoginForm from './login-form';
+// import ReactTooltip from 'react-tooltip';
+
 import Login from './login';
 import Demo from './demo';
 

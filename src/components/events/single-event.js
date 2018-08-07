@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { fetchSingleEvent, deleteEvent } from '../../actions/events';
 import requiresLogin from '../app/requires-login';
 import { fetchUserWantToPlayList } from '../../actions/collections';
+import ReactTooltip from 'react-tooltip';
 
 export class SingleEvent extends React.Component {
 	componentDidMount() {
@@ -31,6 +32,7 @@ export class SingleEvent extends React.Component {
 
 		return (
 			<div>
+				<ReactTooltip delayHide={500} effect='solid' type='dark' />
 				<ListEvent 
 					event={thisEvent} 
 					userId={this.props.user.userId}
