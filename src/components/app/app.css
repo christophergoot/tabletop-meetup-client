@@ -32,8 +32,7 @@ body {
 	line-height: 1.5;
 	display: flex;
 	flex-direction: column;
-
-	max-width: 800px;
+	/* max-width: 800px; */
 	align-items: center;
 	justify-content: center;
 }
@@ -54,6 +53,8 @@ button:hover {
 main {
 	flex: 1 0 auto;
 	background-color: #fff7df;
+	margin: 0 auto;
+	max-width: 1000px;
 
 }
 
@@ -62,20 +63,6 @@ a {
 	color: inherit;
 	cursor: pointer;
 }
-
-/* button {
-	height: 1em;
-	background-color: #e7e7e7;
-	display: inline-block;
-} */
-
-/* 
-section ul {
-	text-align: left;
-	padding-left: 60px;
-} */
-
-
 
 h2 {
 	font-size: 1.75em;
@@ -94,26 +81,6 @@ h3 {
 
 	}
 
-
-/*
-section:nth-child(even) {
-	background-color: lightgrey;
-} */
-/* 
-form {
-	padding: 0 60px;
-} */
-
-/* input {
-	display: block;
-	margin: 5px auto;
-	padding: 5px;
-	width: 100%;
-} */
-/* 
-input[type=date], input[type=time] {
-	width: auto;
-} */
 .login-form {
 	margin: 0 0 1.5em 0;
 }

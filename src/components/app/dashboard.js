@@ -14,10 +14,6 @@ export class Dashboard extends React.Component {
 		this.props.dispatch(fetchCollection(userId,'100000'));
 		this.props.dispatch(fetchEvents(userId));
 	}
-	// componentDidUpdate() {
-	// 	const { userId } = this.props;
-	// 	this.props.dispatch(fetchCollection(userId,'100000'));
-	// }
 
 	render() {
 		return (

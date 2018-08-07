@@ -10,9 +10,8 @@ export default function GameListSummary(props) {
 		const wantToPlay = games.filter(g => g.wantToPlay).length || 0;
 		summary = (
 			<div>
-				<p>{owned} games owned</p>
-				<p>{wantToPlay} want to play</p>
-				<Link to='/games'>Manage Games</Link>
+				<p>{owned} games Owned</p>
+				<p>{wantToPlay} Want to Play</p>
 			</div>
 		);
 	}
@@ -20,6 +19,7 @@ export default function GameListSummary(props) {
 	return (
 		<div className="dashboard-gamelist-summary">
 			{summary}
+			<button><Link to='/games'>Manage Games</Link></button>
 			<AddGame />
 		</div>
 	);

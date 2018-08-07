@@ -6,8 +6,8 @@
 	background-color: #acd0c07c;
 	display: flex;
 	flex-direction: row;
-	align-content: left;
-	/* justify-content: first baseline; */
+	/* align-content: left; */
+	justify-content: space-between;
 }
 
 .event-top-game:nth-child(odd) {

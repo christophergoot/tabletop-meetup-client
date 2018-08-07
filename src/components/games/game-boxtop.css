@@ -9,7 +9,7 @@
 		"vote"
 		"owners";
 	/* width: 200px; */
-
+	flex: 1;
 	padding: 0;
 	background-color: #acd0c07c;
 	transition: all .15s ease-out;
@@ -32,15 +32,6 @@
 .game-card:nth-child(odd) .boxtop-title {
 	background-color: #d9b34a;
 }
-
-/* 
-.boxtop-vote {
-	background-color: #acd0c0;
-}
-
-.game-card:nth-child(odd) .boxtop-vote {
-	background-color: #d9b34a;
-} */
 
 .boxtop-deets {
 	display: flex;
