@@ -95,7 +95,7 @@ export const fetchSingleEvent = (eventId) => dispatch => {
 		}
 		return res.json();
 	}).then(res => {
-		dispatch(fetchSingleEventSuccess(res));
+		if (res.eventId) dispatch(fetchSingleEventSuccess(res));
 	});	
 };
 
@@ -156,7 +156,7 @@ export const castVote = ballot => (dispatch, getState) => {
 			return res.json();
 		}).then(() => {
 			dispatch(castVoteSuccess(ballot));
-			dispatch(fetchSingleEvent(ballot.eventId));
+			// dispatch(fetchSingleEvent(ballot.eventId));
 		});	
 
 	} else if (ballot.vote === 'wantToPlay') {
@@ -223,4 +223,30 @@ export const changeRsvpSuccess = (userId, rsvp, event) => ({
 	userId,
 	rsvp,
 	event
+});
+
+export const fetchEventTopGames = eventId => (dispatch, getState) => {
+	const authToken = loadAuthToken();
+	return fetch(`${API_BASE_URL}events/${eventId}/top-games`, {
+		method: 'GET',
+		headers: {
+			'Content-Type': 'application/json',
+			'Authorization': 'Bearer ' + authToken
+		}
+	}).then(res => {
+		if (!res.ok) {
+			return Promise.reject(res.statusText);
+		}
+		return res.json();
+	}).then(eventTopGames => {
+		dispatch(fetchEventTopGamesSuccess(eventTopGames));
+		// dispatch(fetchSingleEvent(ballot.eventId));
+	});	
+
+};
+
+export const FETCH_EVENT_TOP_GAMES_SUCCESS = 'FETCH_EVENT_TOP_GAMES_SUCCESS';
+export const fetchEventTopGamesSuccess = eventTopGames => ({
+	type: FETCH_EVENT_TOP_GAMES_SUCCESS,
+	eventTopGames
 });

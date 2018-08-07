@@ -6,7 +6,8 @@ import { FETCH_EVENTS_SUCCESS,
 	REDIRECT_TO_URL, 
 	CAST_VOTE_SUCCESS, 
 	CLEAR_REDIRECT,
-	CHANGE_RSVP_SUCCESS 
+	CHANGE_RSVP_SUCCESS,
+	FETCH_EVENT_TOP_GAMES_SUCCESS
 } from '../actions/events';
 import { FETCH_ALL_USERS_SUCCESS } from '../actions/users';
 
@@ -35,8 +36,27 @@ const initialState = ({
 		pageCount: 5,
 		limit: 25,
 		games: [],
-		guests: []
+		guests: [],
+		gameVotes: []
 	},
+	currentTopGames: [
+		{
+			averageRating: 0,
+			bggRating: 0,
+			eventVotes: 0,
+			gameId: 0,
+			image: '',
+			isExpansion: false,
+			maxPlayers: 0,
+			minPlayers: 0,
+			name: '',
+			owners: [],
+			playingTime: 0,
+			rank: 0,
+			thumbnail: '',
+			yearPublished: 0
+		}
+	],
 	list: [
 		{
 			eventId: '',
@@ -84,9 +104,6 @@ export default function eventsReducer(state=initialState, action) {
 	case FETCH_SINGLE_EVENT_SUCCESS:
 		return {
 			...state,
-			list: [
-				action.event
-			],
 			current: action.event
 		};
 
@@ -140,20 +157,13 @@ export default function eventsReducer(state=initialState, action) {
 	case CHANGE_RSVP_SUCCESS:
 		return updateEventInState(state, action);
 
+	case FETCH_EVENT_TOP_GAMES_SUCCESS:
+		return {
+			...state,
+			currentTopGames: action.eventTopGames
+		};
+
 	default: 
 		return state;
 	}
 }
-
-
-// const events = 
-// 	{	
-// 		total: 1000,
-// 		page: 5,
-// 		totalPages,
-// 		list: [
-// 			{singleEvent},
-// 			{}
-
-// 		]
-// 	};
