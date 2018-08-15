@@ -21,18 +21,8 @@ export const checkUsername = (username) => {
 		.then(res => normalizeResponseErrors(res))
 		.then(res => res.json())
 		.then(() => true)
-		// .then(res => dispatch(checkUsernameSuccess(res)))
 		.catch(err => {
 			return false;
-			// const {reason, message, location} = err;
-			// if (reason === 'ValidationError') {
-			// 	// Convert ValidationErrors into SubmissionErrors for Redux Form
-			// 	return Promise.reject(
-			// 		new SubmissionError({
-			// 			[location]: message
-			// 		})
-			// 	);
-			// }
 		});
 
 };

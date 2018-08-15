@@ -87,9 +87,47 @@ function updateEventInState(state, action) {
 			...state.list.slice(index+1)
 		]
 	};
-
 }
 
+// function updateGameVoteInState(state, ballot) {
+// 	console.log(ballot);
+// 	const eventIndex = state.list.findIndex(event => event.eventId === ballot.eventId);
+
+// 	const updatedEvent = state.list[eventIndex];
+// 	// const existingVote = updatedEvent.gameVotes.find(vote => vote.gameId === ballot.game.gameId);
+
+// 	// strategy
+// 	// find existing gamevote in event
+// 	// update gamevote in array and current
+
+// 	// find existing listing in currentTopGames
+// 	let topGame = ballot.game;
+// 	let existingTopGameIndex = state.currentTopGames.length;
+// 	const existingTopGame = state.currentTopGames.find(game => game.gameId === ballot.game.gameId);
+// 	if (existingTopGame) {
+// 		existingTopGameIndex = state.currentTopGames.findIndex(game => game.gameId === ballot.game.gameId);
+// 		topGame = existingTopGame;
+// 	}
+// 	if (ballot.vote === 'yes') topGame.eventVotes ++;
+// 	else if (ballot.vote === 'no') topGame.eventVotes --;
+// 	else if (ballot.vote === 'want to play') topGame.eventVotes ++;	
+
+		
+// 	return {
+// 		...state,
+// 		currentTopGames: [
+// 			...state.currentTopGames.slice(0,existingTopGameIndex),
+// 			topGame,
+// 			...state.currentTopGames.slice(existingTopGameIndex+1)
+// 		],
+// 		list: [
+// 			...state.list.slice(0,eventIndex),
+// 			updatedEvent,
+// 			...state.list.slice(eventIndex+1)
+// 		],
+// 		current: updatedEvent
+// 	};
+// }
 
 export default function eventsReducer(state=initialState, action) {
 	const { type } = action;
@@ -144,9 +182,11 @@ export default function eventsReducer(state=initialState, action) {
 		};
 
 	case CAST_VOTE_SUCCESS:
+		// return updateGameVoteInState(state, action.ballot);
 		return {
 			...state
 		};
+
 
 	case CLEAR_REDIRECT:
 		return {

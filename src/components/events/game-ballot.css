@@ -4,6 +4,7 @@
 	flex-direction: row;
 	align-items: center;
 	justify-content: center;
+	min-width: 51px;
 }
 .game-ballot img {
 	height: 1.5em;

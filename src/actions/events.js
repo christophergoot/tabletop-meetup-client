@@ -36,13 +36,7 @@ export const clearRedirect = () => ({
 export const redirect = url => dispatch => {
 	dispatch(redirectToUrl(url));
 	dispatch(clearRedirect());
-	// .then(() => dispatch(clearRedirect()));
 };
-
-// export CREATE_EVENT_ERROR = 'CREATE_EVENT_ERROR';
-// export const createEventError = (error) => {
-
-// }
 
 export const createNewEvent = newEvent => dispatch => {
 	const authToken = loadAuthToken();
@@ -54,9 +48,7 @@ export const createNewEvent = newEvent => dispatch => {
 		},
 		body: JSON.stringify(newEvent)
 	}).then(res => {
-		// console.log()
 		if (!res.ok) {
-			// dispatch(createEventError(res));
 			return Promise.reject(res.json());
 		}
 		return res.json();

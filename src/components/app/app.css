@@ -43,6 +43,7 @@ button {
 	background-color: #4f6457;
 	color: #75b1a9;
 	border: 1px solid #75b1a9;
+	cursor: pointer;
 }
 
 button:hover {
@@ -55,7 +56,6 @@ main {
 	background-color: #fff7df;
 	margin: 0 auto;
 	max-width: 1000px;
-
 }
 
 a {
@@ -101,4 +101,10 @@ h3 {
 .input-text-field {
 	display:block;
 	background-color: red;
+}
+
+@media only screen and (min-width: 500px) {
+    main {
+        min-width: 500px;
+    }
 }

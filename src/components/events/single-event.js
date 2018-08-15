@@ -3,7 +3,6 @@ import ListEvent from './list-event';
 import EventGameList from './event-game-list';
 import EventTopGames from './event-top-games';
 import { connect } from 'react-redux';
-// import { Redirect } from 'react-router-dom';
 import { fetchSingleEvent, deleteEvent, fetchEventTopGames } from '../../actions/events';
 import requiresLogin from '../app/requires-login';
 import { fetchUserWantToPlayList } from '../../actions/collections';
@@ -11,8 +10,6 @@ import ReactTooltip from 'react-tooltip';
 
 export class SingleEvent extends React.Component {
 	componentDidMount() {
-		// this.props.dispatch(fetchEvents());
-		// ReactTooltip.rebuild();
 		this.props.dispatch(fetchSingleEvent(this.props.match.params.eventId));
 		this.props.dispatch(fetchUserWantToPlayList(this.props.user.userId));
 		this.props.dispatch(fetchEventTopGames(this.props.match.params.eventId));
