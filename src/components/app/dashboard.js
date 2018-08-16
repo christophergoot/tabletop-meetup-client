@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchCollection } from '../../actions/collections';
+// import { fetchCollection } from '../../actions/collections';
 import { fetchEvents } from '../../actions/events';
 import './dashboard.css';
 import Events from '../events/events';
@@ -11,7 +11,7 @@ import { loadAuthToken } from '../../local-storage';
 export class Dashboard extends React.Component {
 	componentDidMount() {
 		const { userId } = this.props;
-		this.props.dispatch(fetchCollection(userId,'100000'));
+		// this.props.dispatch(fetchCollection(userId,'100000'));
 		this.props.dispatch(fetchEvents(userId));
 	}
 
