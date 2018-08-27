@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types'; 
 import RangeSlider from './range-slider';
 import FilterOption from './filter-option';
+import GameSort from './game-sort';
 import './game-filter.css';
 import './sort-container.css';
 import { STATIC_MEDIA_FOLDER } from '../../config';
@@ -39,7 +40,7 @@ class GameFilter extends React.Component {
 
 		const filterTitle = type => (
 			<div className={'game-filter-title ' + type}>
-			Filters
+			Sort & Filter
 				<img src={STATIC_MEDIA_FOLDER+'filter-icon.svg'}
 					alt='filter icon'
 					style={{
@@ -91,7 +92,14 @@ class GameFilter extends React.Component {
 				<h4 onClick={() => this.setState({ isOpen: false })}>
 					{filterTitle('open')}
 				</h4>
+				
 				<ul className='game-filter-container open'>
+					<li>
+						<GameSort 
+							collection={this.props.collection}
+							updateList={this.props.updateList}
+						/>
+					</li>
 					{listItems}
 				</ul>
 			</div>);
@@ -100,9 +108,6 @@ class GameFilter extends React.Component {
 				<h4 onClick={() => this.setState({ isOpen: true })}>
 					{filterTitle('closed')}
 				</h4>
-				<ul className='game-filter-container closed'>
-					{listItems}
-				</ul>
 			</div>
 		);
 	}

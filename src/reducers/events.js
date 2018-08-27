@@ -89,45 +89,55 @@ function updateEventInState(state, action) {
 	};
 }
 
-// function updateGameVoteInState(state, ballot) {
-// 	console.log(ballot);
-// 	const eventIndex = state.list.findIndex(event => event.eventId === ballot.eventId);
+function updateGameVoteInState(state, ballot) {
+	// console.log(ballot);
+	// const eventIndex = state.list.findIndex(event => event.eventId === ballot.eventId);
 
-// 	const updatedEvent = state.list[eventIndex];
-// 	// const existingVote = updatedEvent.gameVotes.find(vote => vote.gameId === ballot.game.gameId);
+	// const updatedEvent = state.list[eventIndex];
+	// const existingVote = updatedEvent.gameVotes.find(vote => vote.gameId === ballot.game.gameId);
+	// find existing listing in currentTopGames
+	let topGame = ballot.game; // set game to ballot game by default
+	topGame.eventVotes = 0;
+	let existingTopGameIndex = state.currentTopGames.length; // set index to next spot in array by default
+	const existingTopGame = state.currentTopGames.find(game => game.gameId === ballot.game.gameId); 
+	if (existingTopGame) {
+		existingTopGameIndex = state.currentTopGames.findIndex(game => game.gameId === ballot.game.gameId); //update to actual
+		topGame = existingTopGame; // update to actual
+	}
+	if (ballot.vote === 'yes') topGame.eventVotes ++;
+	else if (ballot.vote === 'no') topGame.eventVotes --;
+	else if (ballot.vote === 'want to play') topGame.eventVotes ++;	
 
-// 	// strategy
-// 	// find existing gamevote in event
-// 	// update gamevote in array and current
 
-// 	// find existing listing in currentTopGames
-// 	let topGame = ballot.game;
-// 	let existingTopGameIndex = state.currentTopGames.length;
-// 	const existingTopGame = state.currentTopGames.find(game => game.gameId === ballot.game.gameId);
-// 	if (existingTopGame) {
-// 		existingTopGameIndex = state.currentTopGames.findIndex(game => game.gameId === ballot.game.gameId);
-// 		topGame = existingTopGame;
-// 	}
-// 	if (ballot.vote === 'yes') topGame.eventVotes ++;
-// 	else if (ballot.vote === 'no') topGame.eventVotes --;
-// 	else if (ballot.vote === 'want to play') topGame.eventVotes ++;	
+	// strategy
+	// find existing gamevote in event
+	// update gamevote in array and current
+	// const existingGameVote = state.current.gameVotes.find();
+
 
 		
-// 	return {
-// 		...state,
-// 		currentTopGames: [
-// 			...state.currentTopGames.slice(0,existingTopGameIndex),
-// 			topGame,
-// 			...state.currentTopGames.slice(existingTopGameIndex+1)
-// 		],
-// 		list: [
-// 			...state.list.slice(0,eventIndex),
-// 			updatedEvent,
-// 			...state.list.slice(eventIndex+1)
-// 		],
-// 		current: updatedEvent
-// 	};
-// }
+	return {
+		...state,
+		currentTopGames: [
+			...state.currentTopGames.slice(0,existingTopGameIndex),
+			topGame,
+			...state.currentTopGames.slice(existingTopGameIndex+1)
+		],
+		current: {
+			...state.current,
+			gameVotes: [
+				...state.current.gameVotes,
+
+			]
+		}
+		// list: [
+		// 	...state.list.slice(0,eventIndex),
+		// 	updatedEvent,
+		// 	...state.list.slice(eventIndex+1)
+		// ],
+		// current: updatedEvent
+	};
+}
 
 export default function eventsReducer(state=initialState, action) {
 	const { type } = action;
@@ -182,10 +192,10 @@ export default function eventsReducer(state=initialState, action) {
 		};
 
 	case CAST_VOTE_SUCCESS:
-		// return updateGameVoteInState(state, action.ballot);
-		return {
-			...state
-		};
+		return updateGameVoteInState(state, action.ballot);
+		// return {
+		// 	...state
+		// };
 
 
 	case CLEAR_REDIRECT:

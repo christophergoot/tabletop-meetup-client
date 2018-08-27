@@ -63,7 +63,6 @@ export default function GameSort(props) {
 
 	return (
 		<div className='sort-container'>
-			Sort
 			<ul>
 				{listItems}
 			</ul>

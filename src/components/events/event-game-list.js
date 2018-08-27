@@ -1,7 +1,7 @@
 import React from 'react';
 import GameBoxtop from '../games/game-boxtop';
 import GameFilter from '../games/game-filter';
-import GameSort from '../games/game-sort';
+// import GameSort from '../games/game-sort';
 import GamesPaginate from '../games/games-paginate';
 import GameBallot from './game-ballot';
 import { fetchSingleEvent } from  '../../actions/collections';
@@ -58,19 +58,20 @@ export default class EventGameList extends React.Component {
 	
 		return (
 			<section>
-				<h2>All Games Owned <MoreInfo info='by guests either invited or attending' /></h2>
-				<GameSort 
+				<h2>All Available Games <MoreInfo info='by guests either invited or attending' /></h2>
+				{/* <GameSort 
 					collection={event}
 					updateList={this.updateList}
-				/>
-				<GamesPaginate 
-					collection={event}
-					updateList={this.updateList}
-				/>
+				/> */}
+				
 				<GameFilter 
 					collection={event}
 					updateList={this.updateList}
 					filterMethods={filterMethods}
+				/>
+				<GamesPaginate 
+					collection={event}
+					updateList={this.updateList}
 				/>
 				<span className="game-list">{gameList}</span>
 				<GamesPaginate 

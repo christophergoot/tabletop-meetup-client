@@ -1,7 +1,9 @@
 import { SubmissionError } from 'redux-form';
 import { API_BASE_URL } from '../config';
 import { loadAuthToken } from '../local-storage';
-import { postGame, fetchUserWantToPlayList } from './collections';
+import { postGame, 
+	// fetchUserWantToPlayList 
+} from './collections';
 
 
 export const FETCH_EVENTS_SUCCESS = 'FETCH_EVENT_SUCCESS';
@@ -165,8 +167,9 @@ export const castVote = ballot => (dispatch, getState) => {
 		postGame(game)
 		// return dispatch(updateGame(game))
 			.then(() => {
-				const userId = getState().auth.currentUser.userId;
-				dispatch(fetchUserWantToPlayList(userId));
+				// const userId = getState().auth.currentUser.userId;
+				// dispatch(fetchUserWantToPlayList(userId));
+				dispatch(castVoteSuccess(ballot));
 				// dispatch(fetchSingleEvent(ballot.eventId));
 			});
 	// } else if (ballot.vote === 'hide') {
