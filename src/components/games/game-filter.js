@@ -108,6 +108,15 @@ class GameFilter extends React.Component {
 				<h4 onClick={() => this.setState({ isOpen: true })}>
 					{filterTitle('closed')}
 				</h4>
+				<ul className='game-filter-container closed'>
+					<li>
+						<GameSort 
+							collection={this.props.collection}
+							updateList={this.props.updateList}
+						/>
+					</li>
+					{listItems}
+				</ul>
 			</div>
 		);
 	}

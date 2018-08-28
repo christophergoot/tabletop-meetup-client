@@ -134,6 +134,8 @@ export const castVoteSuccess = ballot => ({
 });
 
 export const castVote = ballot => (dispatch, getState) => {
+	const userId = getState().auth.currentUser.userId;
+	ballot.userId = userId;
 	if (ballot.vote === 'yes' | ballot.vote === 'no') {
 		const authToken = loadAuthToken();
 		return fetch(`${API_BASE_URL}events/${ballot.eventId}/cast-vote`, {
@@ -155,7 +157,6 @@ export const castVote = ballot => (dispatch, getState) => {
 
 	} else if (ballot.vote === 'wantToPlay') {
 		let wantToPlay = true;
-		const userId = getState().auth.currentUser.userId;
 		const wantList = getState().collections.wantToPlayLists.find(list => list.userId === userId).list;
 		// const wantExists = wantList.contains(ballot.game.gameId);
 		if (wantList.includes(ballot.game.gameId)) wantToPlay = false;

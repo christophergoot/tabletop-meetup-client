@@ -36,13 +36,7 @@
 	/* max-width: 20em; */
 	/* background-color: red; */
 }
-.game-filter-container>li:hover {
-	box-shadow: 1px 1px 3px lightgrey;
-	/* background-color: #d9b44a; */
-}
-/* .game-filter-container>li {
-	padding: .25em;
-} */
+
 .game-filter-container.open {
 	transition: height .5s ease-in-out;
 	height: 500px;
