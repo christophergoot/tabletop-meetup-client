@@ -23,45 +23,11 @@ class EventTopGames extends Component {
 
 		const { event, user } = this.props;
 		const { userId } = user;
-		// const gameList = event.games;
-		// const userLists	= wantToPlayLists.filter(list => {
-		// 	return event.guests.map(guest => guest.userId).includes(list.userId)
-		// });
-		// const rankedList = gameList.map(game => {
-		// 	let yesVotes = 0,
-		// 		noVotes = 0,
-		// 		usersWhoWantToPlay = 0;
-		// 	const votes = event.gameVotes.find(vote => vote.gameId === game.gameId);
-		// 	if (votes) {
-		// 		yesVotes = votes.yes.length;
-		// 		noVotes = votes.no.length;
-		// 	};
-		// 	userLists.forEach(list => {
-		// 		if (list.list) {
-		// 			if (list.list.includes(game.gameId)) usersWhoWantToPlay ++;
-		// 		}
-		// 	});
-		// 	return ({
-		// 		...game,
-		// 		eventVotes: yesVotes + usersWhoWantToPlay - noVotes
-		// 	});
-		// })
+
 		let userWantToPlayList = [];
 		const userList = this.props.wantToPlayLists.filter(list => list.userId === userId);
 		if (userList.length>0) userWantToPlayList = userList[0].list;
 
-		// const sortedList = rankedList
-		// 	.filter(game => game.eventVotes > 0)
-		// 	.sort((a,b) => {
-		// 		if (a.averageRating > b.averageRating) return -1;
-		// 		if (a.averageRating < b.averageRating) return 1;
-		// 		return 0;				
-		// 	})
-		// 	.sort((a,b) => {
-		// 		if (a.eventVotes > b.eventVotes) return -1;
-		// 		if (a.eventVotes < b.eventVotes) return 1;
-		// 		return 0;
-		// 	});
 		const sortedList = this.props.topGames;
 		return sortedList.map((game, i) => {
 			const owners = game.owners.map(ownerId => 

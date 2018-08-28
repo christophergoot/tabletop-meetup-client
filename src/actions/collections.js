@@ -262,7 +262,7 @@ export const fetchUserWantToPlayList = userId => dispatch => {
 };
 
 export const fetchBggUser = username => {
-	const url = 'https://cors-anywhere.herokuapp.com/' 
+	const url = 'https://cors-anywhere.herokuapp.com/'
 	+ 'https://www.boardgamegeek.com/xmlapi2/user?'
 	+ `name=${username}`
 	+ '&domain=boardgame';
@@ -318,4 +318,10 @@ export const HANDLE_BGG_USER_SEARCH_SUCCESS = 'HANDLE_BGG_USER_SEARCH_SUCCESS';
 export const handleBggUserSearchSuccess = bggUser => ({
 	type: HANDLE_BGG_USER_SEARCH_SUCCESS,
 	bggUser
+});
+
+export const WANT_TO_PLAY_SUCCESS = 'WANT_TO_PLAY_SUCCESS';
+export const wantToPlaySuccess = ballot => ({
+	type: WANT_TO_PLAY_SUCCESS,
+	ballot
 });

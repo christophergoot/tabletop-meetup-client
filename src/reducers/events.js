@@ -7,7 +7,8 @@ import { FETCH_EVENTS_SUCCESS,
 	CAST_VOTE_SUCCESS, 
 	CLEAR_REDIRECT,
 	CHANGE_RSVP_SUCCESS,
-	FETCH_EVENT_TOP_GAMES_SUCCESS
+	FETCH_EVENT_TOP_GAMES_SUCCESS,
+	UPDATE_EVENT_VOTE
 } from '../actions/events';
 import { FETCH_ALL_USERS_SUCCESS } from '../actions/users';
 
@@ -90,32 +91,10 @@ function updateEventInState(state, action) {
 }
 
 function updateGameVoteInState(state, ballot) {
-	// console.log(ballot);
-	// const eventIndex = state.list.findIndex(event => event.eventId === ballot.eventId);
-
-	// const updatedEvent = state.list[eventIndex];
-	// const existingVote = updatedEvent.gameVotes.find(vote => vote.gameId === ballot.game.gameId);
-	// find existing listing in currentTopGames
-	let topGame = ballot.game; // set game to ballot game by default
-	topGame.eventVotes = 0;
-	let existingTopGameIndex = state.currentTopGames.length; // set index to next spot in array by default
-	const existingTopGame = state.currentTopGames.find(game => game.gameId === ballot.game.gameId); 
-	if (existingTopGame) {
-		existingTopGameIndex = state.currentTopGames.findIndex(game => game.gameId === ballot.game.gameId); //update to actual
-		topGame = existingTopGame; // update to actual
-	}
-
-
-	if (ballot.vote === 'yes') {
-		topGame.eventVotes ++;
-	}
-	else if (ballot.vote === 'no') topGame.eventVotes --;
-	else if (ballot.vote === 'want to play') topGame.eventVotes ++;	
-
+	const { userId } = ballot;
 	const gameVotes = state.current.gameVotes;
 
 	if (ballot.vote === 'yes' || ballot.vote === 'no') {
-		const { userId } = ballot;
 		let i = gameVotes.length; // initialize at new position in index
 		const v = ballot.vote;
 		if (gameVotes.find(doc => doc.gameId === ballot.game.gameId)) { // (game has existing score card)
@@ -137,12 +116,35 @@ function updateGameVoteInState(state, ballot) {
 		gameVotes[i][v].push(ballot.userId);	
 	}
 
+	return {
+		...state,
+		current: {
+			...state.current,
+			gameVotes: [
+				...gameVotes
+			]
+		}
+	};
+}
 
-	// if (existingIndex) gameVotes[existingIndex] = switchVote(gameVotes[existingIndex], userId);
-	// const existingGameVote = state.current.gameVotes.find(doc => doc.gameId === ballot.game.gameId);
-	// if (existingGameVote) 
+function updateEventVotes(state, ballot) {
+	let topGame = ballot.game; // set game to ballot game by default
+	topGame.eventVotes = 0;
+	let existingTopGameIndex = state.currentTopGames.length; // set index to next spot in array by default
+	const existingTopGame = state.currentTopGames.find(game => game.gameId === ballot.game.gameId); 
+	if (existingTopGame) {
+		existingTopGameIndex = state.currentTopGames.findIndex(game => game.gameId === ballot.game.gameId); //update to actual
+		topGame = existingTopGame; // update to actual
+	}
 
-		
+	if (ballot.vote === 'yes') {
+		topGame.eventVotes ++;
+	} else if (ballot.vote === 'no') {
+		topGame.eventVotes --;
+	} else if (ballot.vote === 'want to play') {
+		topGame.eventVotes ++;
+	}
+
 	return {
 		...state,
 		currentTopGames: [
@@ -150,18 +152,6 @@ function updateGameVoteInState(state, ballot) {
 			topGame,
 			...state.currentTopGames.slice(existingTopGameIndex+1)
 		],
-		current: {
-			...state.current,
-			gameVotes: [
-				...gameVotes
-			]
-		}
-		// list: [
-		// 	...state.list.slice(0,eventIndex),
-		// 	updatedEvent,
-		// 	...state.list.slice(eventIndex+1)
-		// ],
-		// current: updatedEvent
 	};
 }
 
@@ -219,10 +209,6 @@ export default function eventsReducer(state=initialState, action) {
 
 	case CAST_VOTE_SUCCESS:
 		return updateGameVoteInState(state, action.ballot);
-		// return {
-		// 	...state
-		// };
-
 
 	case CLEAR_REDIRECT:
 		return {
@@ -238,6 +224,9 @@ export default function eventsReducer(state=initialState, action) {
 			...state,
 			currentTopGames: action.eventTopGames
 		};
+	
+	case UPDATE_EVENT_VOTE:
+		return updateEventVotes(state, action.ballot);
 
 	default: 
 		return state;

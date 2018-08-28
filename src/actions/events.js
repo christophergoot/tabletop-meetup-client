@@ -2,7 +2,7 @@ import { SubmissionError } from 'redux-form';
 import { API_BASE_URL } from '../config';
 import { loadAuthToken } from '../local-storage';
 import { postGame, 
-	// fetchUserWantToPlayList 
+	wantToPlaySuccess 
 } from './collections';
 
 
@@ -133,6 +133,12 @@ export const castVoteSuccess = ballot => ({
 	ballot
 });
 
+export const UPDATE_EVENT_VOTE = 'UPDATE_EVENT_VOTE';
+export const updateEventVote = ballot => ({
+	type: UPDATE_EVENT_VOTE,
+	ballot
+});
+
 export const castVote = ballot => (dispatch, getState) => {
 	const userId = getState().auth.currentUser.userId;
 	ballot.userId = userId;
@@ -152,7 +158,7 @@ export const castVote = ballot => (dispatch, getState) => {
 			return res.json();
 		}).then(() => {
 			dispatch(castVoteSuccess(ballot));
-			// dispatch(fetchSingleEvent(ballot.eventId));
+			dispatch(updateEventVote(ballot));
 		});	
 
 	} else if (ballot.vote === 'wantToPlay') {
@@ -164,14 +170,10 @@ export const castVote = ballot => (dispatch, getState) => {
 			...ballot.game,
 			wantToPlay
 		};
-		// return updateGame(game)
 		postGame(game)
-		// return dispatch(updateGame(game))
 			.then(() => {
-				// const userId = getState().auth.currentUser.userId;
-				// dispatch(fetchUserWantToPlayList(userId));
-				dispatch(castVoteSuccess(ballot));
-				// dispatch(fetchSingleEvent(ballot.eventId));
+				dispatch(wantToPlaySuccess(ballot));
+				dispatch(updateEventVote(ballot));
 			});
 	// } else if (ballot.vote === 'hide') {
 	// 	// alert('We\'ll hide this from you in the future');

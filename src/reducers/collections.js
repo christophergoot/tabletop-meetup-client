@@ -10,7 +10,8 @@ import {
 	FETCH_USER_WANT_TO_PLAY_LIST_SUCCESS,
 	HANDLE_BGG_USER_SEARCH_SUCCESS,
 	START_BGG_USER_VALIDATION,
-	END_BGG_USER_VALIDATION
+	END_BGG_USER_VALIDATION,
+	WANT_TO_PLAY_SUCCESS
 } from '../actions/collections';
 
 const initialState = ({
@@ -37,6 +38,27 @@ const initialState = ({
 		validating: false
 	}
 });
+
+function updateWantToPlayInState(state, ballot) {
+	// find wantToPlayList
+	const wantToPlay = state.wantToPlayLists.find(list => list.userId === ballot.userId);
+	const prevWantedI = wantToPlay.list.findIndex(id => id === ballot.game.gameId);
+	if (prevWantedI >= 0) { // want to play list previously contained game
+		wantToPlay.list.splice(prevWantedI, 1); // remove game
+	} else { // want to play list did not contain game
+		wantToPlay.list.push(ballot.game.gameId); // add game
+	}
+
+	return {
+		...state,
+		wantToPlayLists: [
+			...state.wantToPlayLists.filter(list => list.userId !== ballot.userId),
+			{ ...wantToPlay }
+		]
+	};
+
+
+}
 
 export default function collectionsReducer(state=initialState, action) {
 	const { type } = action;
@@ -149,6 +171,9 @@ export default function collectionsReducer(state=initialState, action) {
 				validating: false
 			}
 		};
+
+	case WANT_TO_PLAY_SUCCESS:
+		return updateWantToPlayInState(state, action.ballot);
 
 	default: 
 		return state;
