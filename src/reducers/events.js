@@ -114,8 +114,8 @@ function updateGameVoteInState(state, ballot) {
 
 	const gameVotes = state.current.gameVotes;
 
-	if (ballot.vote === 'yes' | 'no') {
-		const { userId, gameId } = ballot;
+	if (ballot.vote === 'yes' || ballot.vote === 'no') {
+		const { userId } = ballot;
 		let i = gameVotes.length; // initialize at new position in index
 		const v = ballot.vote;
 		if (gameVotes.find(doc => doc.gameId === ballot.game.gameId)) { // (game has existing score card)
@@ -127,9 +127,9 @@ function updateGameVoteInState(state, ballot) {
 			const indexOfNo = gameVotes[i].no.indexOf(userId);
 			if (indexOfYes >= 0) gameVotes[i].yes.splice(indexOfYes, 1);
 			if (indexOfNo >= 0) gameVotes[i].no.splice(indexOfNo, 1);
-		} else { // create new scorescard and add to gamevotes
+		} else { // add new scorescard gamevotes
 			gameVotes.push({
-				gameId, 
+				gameId: ballot.game.gameId,
 				yes: [],
 				no: []
 			});
@@ -152,7 +152,9 @@ function updateGameVoteInState(state, ballot) {
 		],
 		current: {
 			...state.current,
-			gameVotes
+			gameVotes: [
+				...gameVotes
+			]
 		}
 		// list: [
 		// 	...state.list.slice(0,eventIndex),
