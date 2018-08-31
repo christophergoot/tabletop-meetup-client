@@ -19,9 +19,15 @@ export const fetchCollection = (userId, limit, page, sort, filters) =>  dispatch
 		});
 };
 
-export const fetchSingleEvent = (userId, limit, page, sort, filters) =>  dispatch => {
+export const fetchSingleEvent = (userId, newLimit, newPage, newSort, newFilters) =>  (dispatch, getState) => {
 	const uri = `events/${userId}/`;
-	manageGameList(uri,limit, page, sort, filters)
+	let { limit, page, sort, filters } = getState().events.current;
+	if (newLimit) limit = newLimit;
+	if (newPage) page = newPage;
+	if (newSort) sort = { ...sort, ...newSort };
+	if (newFilters) filters = newFilters;
+
+	manageGameList(uri, limit, page, sort, filters)
 		.then(res => {
 			if (!res.ok) {
 				return Promise.reject(res.statusText);
@@ -33,7 +39,7 @@ export const fetchSingleEvent = (userId, limit, page, sort, filters) =>  dispatc
 		});
 };
 
-export const manageGameList = (uri, limit, page, sort, filters)  => {
+export const manageGameList = (uri, limit, page, sort, filters) => {
 	const authToken = loadAuthToken();
 	// collectionType will be either 'events' or 'collections'
 	const url = new URL(`${API_BASE_URL}${uri}`);
@@ -136,16 +142,25 @@ export const gameSearchStart = () => ({
 	type: GAME_SEARCH_START
 });
 
+export const HANDLE_GAME_SEARCH_ERROR = 'HANDLE_GAME_SEARCH_ERROR';
+export const handleGameSearchError = error => ({
+	type: HANDLE_GAME_SEARCH_ERROR,
+	error
+});
+
 export const handleGameSearch = query => dispatch => {
 	dispatch(gameSearchStart());
 	searchBggForGame(query)
 		.then(res => {
 			dispatch(handleGameSearchSuccess(res));
-		});	
+		})
+		.catch(err => {
+			dispatch(handleGameSearchError(err));
+		});
 };
 
 export const searchBggForGame = query => {
-	const url = 'https://cors-anywhere.herokuapp.com/' 
+	const url = 'https://cors-anywhere.herokuapp.com/'
 		+ 'https://www.boardgamegeek.com/xmlapi2/search?'
 		+ `query=${query}`
 		+ '&type=boardgame'
@@ -168,7 +183,10 @@ export const searchBggForGame = query => {
 				});
 			});
 			return gameList;	
-		});
+		})
+		.catch(err => {
+			console.log('error enountered searching for game: '+err);
+		})
 };
 
 export const fetchGameFromBgg = tempGame => {

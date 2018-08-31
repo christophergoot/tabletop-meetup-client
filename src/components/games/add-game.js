@@ -37,17 +37,19 @@ class AddGame extends Component {
 		};
 
 		this.props.dispatch(selectGameByGame(tempGame));
-		// do nothing to the input
-		// update state.collections.addGame.gameSearchDrop: 'select'
-		
+	}
 
-		// if game exists in collection, open boxtop with existing values
-
-
+	errorMessage = () => {
+		if (this.props.errorMessage) return (<p class='error'>{this.props.errorMessage}</p>)
+		else return ''
 	}
 
 	dropdown = () => {
 		if (this.props.drop === 'search' && this.props.gameSearchResults.length > 0) return this.searchResults()
+		else if (this.props.drop === 'select' && this.props.gameSearchResults.length === 0) return (
+			<ul className='add-game-dropdown'>
+				<li>No results found</li>
+			</ul>)
 		else if (this.props.drop === 'select') return (
 			<div className='select-game-dropdown'>
 				<GameCard game={this.props.selectedGame}/>
@@ -95,6 +97,7 @@ class AddGame extends Component {
 						/>
 						<div style={{width:'40px'}}>{this.spinner()}</div>
 					</div>
+					{this.errorMessage()}
 					{this.dropdown()}
 				</div>
 			);
@@ -106,7 +109,8 @@ function mapStateToProps(state) {
 		gameSearchResults: state.collections.addGame.gameSearchResults,
 		drop: state.collections.addGame.gameSearchDrop,
 		currentSearches: state.collections.addGame.currentSearches,
-		selectedGame: state.collections.addGame.selectedGame
+		selectedGame: state.collections.addGame.selectedGame,
+		errorMessage: state.collections.addGame.error
 	};
 }
 

@@ -11,7 +11,8 @@ import {
 	HANDLE_BGG_USER_SEARCH_SUCCESS,
 	START_BGG_USER_VALIDATION,
 	END_BGG_USER_VALIDATION,
-	WANT_TO_PLAY_SUCCESS
+	WANT_TO_PLAY_SUCCESS,
+	HANDLE_GAME_SEARCH_ERROR
 } from '../actions/collections';
 
 const initialState = ({
@@ -93,7 +94,18 @@ export default function collectionsReducer(state=initialState, action) {
 				currentSearches: state.addGame.currentSearches - 1
 			}
 		};
-	
+
+	case HANDLE_GAME_SEARCH_ERROR:
+		return {
+			...state,
+			addGame: {
+				...state.addGame,
+				gameSearchError: action.error.message,
+				currentSearches: state.addGame.currentSearches - 1
+			}
+		};
+
+
 	case GAME_SEARCH_START:
 		return {
 			...state,

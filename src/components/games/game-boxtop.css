@@ -11,7 +11,7 @@
 	/* width: 200px; */
 	flex: 1;
 	padding: 0;
-	background-color: #acd0c07c;
+	background-color: #D6E4D0;
 	transition: all .15s ease-out;
 }
 
@@ -26,7 +26,7 @@
 }
 
 .game-card:nth-child(odd) {
-	background-color: #d9b34a7e;
+	background-color: #EAD697;
 }
 
 .game-card:nth-child(odd) .boxtop-title {
