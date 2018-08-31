@@ -152,8 +152,8 @@ export const handleGameSearch = query => dispatch => {
 	dispatch(gameSearchStart());
 	searchBggForGame(query)
 		.then(res => {
-			if (!res) throw ({ message:'Error searching boardgamegeek.com for game' });
-			if (res.length === 0) throw ({ message: 'No matching games found at boardgamegeek.com' })
+			if (!res) throw new Error('Error searching boardgamegeek.com for game');
+			if (res.length === 0) throw new Error('No matching games found at boardgamegeek.com')
 			dispatch(handleGameSearchSuccess(res));
 		})
 		.catch(err => {
