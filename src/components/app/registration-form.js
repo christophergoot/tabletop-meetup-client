@@ -110,7 +110,7 @@ RegistrationForm = connect(mapStateToProps)(RegistrationForm);
 export default reduxForm({
 	form: 'registration',
 	asyncValidate: asyncValidateNewRegistration,
-	asyncBlurFields: ['bggUsername'],
+	asyncBlurFields: ['bggUsername', 'username'],
 	onSubmitFail: (errors, dispatch) =>
 		dispatch(focus('registration', Object.keys(errors)[0]))
 })(RegistrationForm);

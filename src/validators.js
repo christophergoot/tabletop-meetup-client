@@ -1,6 +1,7 @@
 import { fetchBggUser, 
 	// startBggUserValidation, endBggUserValidation 
 } from './actions/collections';
+import { checkUsername } from './actions/users';
 // import { checkUsername } from './actions/users';
 
 // import { parseString } from 'xml2js';
@@ -25,14 +26,24 @@ export const matches = field => (value, allValues) => {
 		: 'Does not match';
 };
 
-export const asyncValidateNewRegistration = value => {
+export const asyncValidateNewRegistration = (value, dispatch, props, field) => {
 	return new Promise((resolve, reject) => {
-		if (value.bggUsername) {
+		if (value.bggUsername && field === 'bggUsername') {
 			return fetchBggUser(value.bggUsername)
 				.then(res => {
 					// eslint-disable-next-line
 					if (res.bggId === '' && value.bggUsername) throw { bggUsername: 'Invalid BGG Username' };
-					resolve(res);
+					// resolve(res);
+				})
+				.catch(err => {
+					reject(err);
+				});
+		}
+		if (value.username && field === 'username') {
+			return checkUsername(value.username)
+				.then(res => {
+					if (res) reject({ username: 'Username is already taken'});
+					// else resolve(res);
 				})
 				.catch(err => {
 					reject(err);
