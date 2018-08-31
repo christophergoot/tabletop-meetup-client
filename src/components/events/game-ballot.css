@@ -13,14 +13,24 @@
 }
 
 .game-ballot>a:hover {
-	filter: invert(1);
-	transition: filter .2s ease-in-out;
-}
+	animation: wobble 0.35s cubic-bezier(.36,.07,.19,.97) both;
+	transform: translate3d(0, 0, 0);
+	backface-visibility: hidden;
+	perspective: 1000px;
+  }
+  
+  @keyframes wobble {
+	20%, 70% {
+	  transform: translate3d(-2px, 0, 0);
+	}
+ 	
+	50%, 85% {
+	  transform: translate3d(2px, 0, 0);
+	}
+  }
 
-.game-ballot>a:active {
-	transform: scale(1.1) rotate(10deg);
-	transition: all 2s ease-in-out;
-}
+
+
 
 .game-ballot a.selected > .up {
 	filter: brightness(50%) sepia(1)
