@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { fetchCollection } from '../../actions/collections';
 import GameFilter from '../games/game-filter';
 import GameList from './game-list';
-import GameSort from '../games/game-sort';
 import GamesPaginate from '../games/games-paginate';
 import requiresLogin from '../app/requires-login';
 import { FilterMethods } from '../games/filter-methods-base-set'
@@ -43,18 +42,14 @@ export class Games extends React.Component {
 			<section>
 				<h2>Manage Game List</h2>
 				<AddGame />
-				<GameSort 
-					collection={collection}
-					updateList={this.updateList}
-				/>
-				<GamesPaginate 
-					collection={collection}
-					updateList={this.updateList}
-				/>
 				<GameFilter 
 					collection={collection}
 					updateList={this.updateList}
 					filterMethods={filterMethods}
+				/>
+				<GamesPaginate 
+					collection={collection}
+					updateList={this.updateList}
 				/>
 				<GameList 
 					games={collection.games}

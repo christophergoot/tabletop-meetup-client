@@ -28,7 +28,7 @@ class EventTopGames extends Component {
 		const userList = this.props.wantToPlayLists.filter(list => list.userId === userId);
 		if (userList.length>0) userWantToPlayList = userList[0].list;
 
-		const sortedList = this.props.topGames;
+		const sortedList = this.props.topGames.filter(game => game.eventVotes > 0);
 		return sortedList.map((game, i) => {
 			const owners = game.owners.map(ownerId => 
 				event.guests.find(guest => guest.userId === ownerId).user[0].username

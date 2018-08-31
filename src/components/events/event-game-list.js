@@ -1,14 +1,12 @@
 import React from 'react';
 import GameBoxtop from '../games/game-boxtop';
 import GameFilter from '../games/game-filter';
-// import GameSort from '../games/game-sort';
 import GamesPaginate from '../games/games-paginate';
 import GameBallot from './game-ballot';
 import { fetchSingleEvent } from  '../../actions/collections';
 import { castVote } from '../../actions/events';
 import { FilterMethods } from '../games/filter-methods-base-set';
 import MoreInfo from '../games/more-info';
-// import { connect } from 'react-redux';
 
 export default class EventGameList extends React.Component {
 
@@ -39,14 +37,16 @@ export default class EventGameList extends React.Component {
 							key={i}
 							owners={owners}
 							game={game} 
-							listManager={<GameBallot 
-								game={game}
-								handleVote={this.handleVote}
-								eventId={event.eventId}
-								gameVotes={event.gameVotes} 
-								userId={this.props.userId}
-								userWantToPlayList={this.props.userWantToPlayList}
-							/>}
+							listManager={
+									<GameBallot 
+										game={game}
+										handleVote={this.handleVote}
+										eventId={event.eventId}
+										gameVotes={event.gameVotes} 
+										userId={this.props.userId}
+										userWantToPlayList={this.props.userWantToPlayList}
+									/>
+							}
 						 />
 				);
 			});
