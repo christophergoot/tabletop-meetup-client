@@ -40,7 +40,7 @@ class AddGame extends Component {
 	}
 
 	errorMessage = () => {
-		if (this.props.errorMessage) return (<p class='error'>{this.props.errorMessage}</p>)
+		if (this.props.errorMessage) return (<p className='error'>{this.props.errorMessage}</p>)
 		else return ''
 	}
 
@@ -110,7 +110,7 @@ function mapStateToProps(state) {
 		drop: state.collections.addGame.gameSearchDrop,
 		currentSearches: state.collections.addGame.currentSearches,
 		selectedGame: state.collections.addGame.selectedGame,
-		errorMessage: state.collections.addGame.error
+		errorMessage: state.collections.addGame.gameSearchError
 	};
 }
 

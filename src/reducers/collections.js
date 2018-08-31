@@ -14,13 +14,15 @@ import {
 	WANT_TO_PLAY_SUCCESS,
 	HANDLE_GAME_SEARCH_ERROR
 } from '../actions/collections';
+import { STATIC_MEDIA_FOLDER } from '../config';
 
 const initialState = ({
 	addGame: {
 		gameSearchResults: [],
 		gameSearchDrop: 'search',
 		currentSearches: 0,
-		selectedGame: {}
+		selectedGame: {},
+		sameSearchError: ''
 	},
 	list: {
 		userId: '',
@@ -57,8 +59,6 @@ function updateWantToPlayInState(state, ballot) {
 			{ ...wantToPlay }
 		]
 	};
-
-
 }
 
 export default function collectionsReducer(state=initialState, action) {
@@ -112,7 +112,9 @@ export default function collectionsReducer(state=initialState, action) {
 			addGame: {
 				...state.addGame,
 				currentSearches: state.addGame.currentSearches + 1,
-				gameSearchDrop: 'search'
+				gameSearchDrop: 'search',
+				gameSearchResults: [],
+				gameSearchError: ''
 			}
 		};
 
@@ -122,7 +124,10 @@ export default function collectionsReducer(state=initialState, action) {
 			addGame: {
 				...state.addGame,
 				currentSearches: state.addGame.currentSearches + 1,
-				selectedGame: action.game,
+				selectedGame: { 
+					...action.game,
+					thumbnail: `${STATIC_MEDIA_FOLDER}/thumbnail-placeholder.png` },
+				// gameSearchResults: [],
 				gameSearchDrop: 'select'
 			}
 		};

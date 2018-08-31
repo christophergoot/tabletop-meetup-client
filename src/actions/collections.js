@@ -152,6 +152,8 @@ export const handleGameSearch = query => dispatch => {
 	dispatch(gameSearchStart());
 	searchBggForGame(query)
 		.then(res => {
+			if (!res) throw ({ message:'Error searching boardgamegeek.com for game' });
+			if (res.length === 0) throw ({ message: 'No matching games found at boardgamegeek.com' })
 			dispatch(handleGameSearchSuccess(res));
 		})
 		.catch(err => {
@@ -160,7 +162,8 @@ export const handleGameSearch = query => dispatch => {
 };
 
 export const searchBggForGame = query => {
-	const url = 'https://cors-anywhere.herokuapp.com/'
+	// const url = 'https://cors-anywhere.herokuapp.com/'
+	const url = 'https://picnic-yelp-backend-ehoqpjnyse.now.sh/'
 		+ 'https://www.boardgamegeek.com/xmlapi2/search?'
 		+ `query=${query}`
 		+ '&type=boardgame'
