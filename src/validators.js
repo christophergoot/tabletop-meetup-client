@@ -25,44 +25,21 @@ export const matches = field => (value, allValues) => {
 		: 'Does not match';
 };
 
-// export const isRegisteredUser = (value, allValues) => {
-// 	console.log(value, allValues);
-// 	return checkUsername(value, allValues.indexOf(value))
-// 		? false
-// 		: 'Invalid Tabletop Meetup Username';
-// };
-
-// export const isRegisteredUser = (values /*, dispatch */) => {
-// 	return checkUsername
-// 		.then(res => {
-// 			if (!res) {
-// 				throw new Error({ username: 'That username is taken' });
-// 			}
-// 		});
-// };
-
-// To provide asynchronous validation, provide redux-form with an 
-// asynchronous validation function (asyncValidate) that 
-// takes an object of form values, and the Redux dispatch function, 
-// and returns a promise that either rejects with an object of errors or resolves.
-
-// You will also need to specify which fields should fire the 
-// asynchronous validation when they are blurred with the 
-// asyncBlurFields config property.
-
 export const asyncValidateNewRegistration = value => {
-	if (value.bggUsername) {
-		return fetchBggUser(value.bggUsername)
-			// handleBggUserSearch(searchValue)
-			.then(res => {
-				// dispatch(endBggUserValidation());
-				// eslint-disable-next-line
-				if (res.bggId === '') throw { bggUsername: 'Invalid BGG Username' };
-			});
-		// .catch(err => {
-		// 	throw { bggUsername: JSON.stringify(err) };
-		// });
-	}
+	return new Promise((resolve, reject) => {
+		if (value.bggUsername) {
+			return fetchBggUser(value.bggUsername)
+				.then(res => {
+					// eslint-disable-next-line
+					if (res.bggId === '' && value.bggUsername) throw { bggUsername: 'Invalid BGG Username' };
+					resolve(res);
+				})
+				.catch(err => {
+					reject(err);
+				});
+		}
+		resolve();
+	});
 };
 
 
