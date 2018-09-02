@@ -12,7 +12,8 @@ import {
 	START_BGG_USER_VALIDATION,
 	END_BGG_USER_VALIDATION,
 	WANT_TO_PLAY_SUCCESS,
-	HANDLE_GAME_SEARCH_ERROR
+	HANDLE_GAME_SEARCH_ERROR,
+	TOGGLE_GAME_SEARCH_DROP
 } from '../actions/collections';
 import { STATIC_MEDIA_FOLDER } from '../config';
 
@@ -22,7 +23,7 @@ const initialState = ({
 		gameSearchDrop: 'search',
 		currentSearches: 0,
 		selectedGame: {},
-		sameSearchError: ''
+		gameSearchError: ''
 	},
 	list: {
 		userId: '',
@@ -191,6 +192,15 @@ export default function collectionsReducer(state=initialState, action) {
 
 	case WANT_TO_PLAY_SUCCESS:
 		return updateWantToPlayInState(state, action.ballot);
+	
+	case TOGGLE_GAME_SEARCH_DROP:
+		return {
+			...state,
+			addGame:{
+				...state.addGame,
+				gameSearchDrop: action.dropState
+			}
+		};
 
 	default: 
 		return state;

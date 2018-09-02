@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { handleGameSearch, selectGameByGame } from '../../actions/collections';
+import { handleGameSearch, selectGameByGame, toggleGameSearchDrop } from '../../actions/collections';
 import './add-game.css';
 import Spinner from './spinner';
 import _ from 'lodash';
@@ -52,7 +52,10 @@ class AddGame extends Component {
 			</ul>)
 		else if (this.props.drop === 'select') return (
 			<div className='select-game-dropdown'>
-				<GameCard game={this.props.selectedGame}/>
+				<div className='select-game-container'>
+					<GameCard game={this.props.selectedGame}/>
+					<button className='x-button' onClick={e => this.props.dispatch(toggleGameSearchDrop('search'))}>X</button>
+				</div>
 			</div>)
 		return ''
 	}
@@ -110,6 +113,8 @@ function mapStateToProps(state) {
 		drop: state.collections.addGame.gameSearchDrop,
 		currentSearches: state.collections.addGame.currentSearches,
 		selectedGame: state.collections.addGame.selectedGame,
+		// prevGame: state.collections.addGame.prevGame,
+		// nextGame: state.collections.addGame.nextGame,
 		errorMessage: state.collections.addGame.gameSearchError
 	};
 }

@@ -161,6 +161,12 @@ export const handleGameSearch = query => dispatch => {
 		});
 };
 
+export const TOGGLE_GAME_SEARCH_DROP = 'TOGGLE_GAME_SEARCH_DROP';
+export const toggleGameSearchDrop = dropState => ({
+	type: TOGGLE_GAME_SEARCH_DROP,
+	dropState
+});
+
 export const searchBggForGame = query => {
 	// const url = 'https://cors-anywhere.herokuapp.com/'
 	const url = 'https://picnic-yelp-backend-ehoqpjnyse.now.sh/'
