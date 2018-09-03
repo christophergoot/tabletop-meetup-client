@@ -6,6 +6,11 @@
 	margin: .5em 2em;
 	color: #ACD0C0;
 }
+.landing-page.section:nth-child(even) {
+	background-color: #EBD893;
+	color: #4F6457;
+	border: #4F6457 2px solid;
+}
 .landing-page-list {
 	text-align: left;
 	margin: 0 4em;
@@ -25,7 +30,7 @@
 .getting-started-blocks {
 	display: inline-flex;
 	flex-direction: row;
-	/* flex-wrap: wrap; */
+	flex-wrap: wrap;
 	min-width: 200px;
 	max-width: 400px;
 	margin: 0 auto;
@@ -34,7 +39,7 @@
 
 .getting-started-blocks>p, .getting-started-blocks>div, .getting-started-blocks>img  {
 	min-width: 200px;
-	/* max-width: 400px; */
+	max-width: 400px;
 }
 
 .landing-page-begin {
