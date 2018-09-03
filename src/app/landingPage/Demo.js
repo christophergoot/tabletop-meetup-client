@@ -4,7 +4,7 @@ import { Redirect} from 'react-router-dom';
 
 // import LoginForm from './login-form';
 import { login } from '../../actions/auth';
-import Spinner from '../../app/common/Spinner';
+import Spinner from '../common/Spinner';
 
 
 

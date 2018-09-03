@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { handleGameSearch, selectGameByGame, toggleGameSearchDrop } from '../../actions/collections';
 import './add-game.css';
-import Spinner from './spinner';
+import Spinner from '../../app/common/Spinner';
 import _ from 'lodash';
 import GameCard from '../collections/game-card';
 // import TextField from '@material-ui/core/TextField';

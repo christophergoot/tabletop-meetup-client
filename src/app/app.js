@@ -1,23 +1,24 @@
-import './reset.css';
+import './common/reset.css';
 import 'tachyons/css/tachyons.min.css';
 import './app.css';
 import React from 'react';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import Header from './header';
-import Landing from './landing-page';
-import Games from '../collections/games';
-import Events from '../events/events';
-import SingleEvent from '../events/single-event';
-import CreateNewEvent from '../events/create-new-event';
-import Footer from './footer';
-import Register from './register';
-import {refreshAuthToken} from '../../actions/auth';
-import Dashboard from './dashboard';
+import Header from './common/HeaderContainer';
+// import Landing from './landing-page';
+import Games from '../components/collections/games';
+import Events from '../components/events/events';
+import SingleEvent from '../components/events/single-event';
+import CreateNewEvent from '../components/events/create-new-event';
+import Footer from './common/Footer';
+import Register from '../components/app/register';
+import {refreshAuthToken} from '../actions/auth';
+import Dashboard from '../components/app/dashboard';
 // import ReactTooltip from 'react-tooltip';
 
-import Login from './login';
-import Demo from './demo';
+import Login from '../components/app/login';
+import Demo from './landingPage/Demo';
+import LandingPageContainer from './landingPage/LandingPageContainer';
 
 export class App extends React.Component {
 	componentDidUpdate(prevProps) {
@@ -65,7 +66,7 @@ export class App extends React.Component {
 					<Header />
 					{this.redirect()}
 					<main>
-						<Route exact path="/" component={Landing} />
+						<Route exact path="/" component={LandingPageContainer} />
 						<Route exact path="/dashboard" component={Dashboard} />
 						<Route exact path="/register" component={Register} />
 						<Route exact path="/login" component={Login} />

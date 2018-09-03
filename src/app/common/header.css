@@ -24,3 +24,23 @@ h1 {
     -1px 1px 0 #002A32,
      1px 1px 0 #002A32;
 }
+
+nav>ul {
+	margin: 0 1.5em;
+	padding-bottom: .25em;
+	/* margin-left: auto; */
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	flex-wrap: wrap;
+	color: #75b1a9;
+}
+
+nav>ul>li {
+	list-style-type: none;
+	cursor: pointer;
+	margin-left: 1em;
+}
+nav>ul>li:hover {
+	color: #d9b44a
+}
