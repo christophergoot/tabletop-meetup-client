@@ -6,7 +6,7 @@ import { castVote,
  } from '../../actions/events';
 import GameBallot from './GameBallot';
 // import './event-top-games.css';
-import MoreInfo from '../games/more-info';
+import MoreInfo from '../../components/games/more-info';
 
 class EventTopGames extends Component {
 	// componentDidMount() {

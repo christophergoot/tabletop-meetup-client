@@ -5,7 +5,7 @@ import { registerUser } from '../../actions/users';
 import { login } from '../../actions/auth';
 import { TextField } from 'redux-form-material-ui';
 import { Button } from '@material-ui/core';
-import Spinner from '../../app/common/Spinner';
+import Spinner from '../common/Spinner';
 
 import {required, nonEmpty, matches, length, isTrimmed, 
 	asyncValidateNewRegistration

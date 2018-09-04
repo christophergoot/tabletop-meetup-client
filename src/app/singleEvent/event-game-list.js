@@ -1,12 +1,12 @@
 import React from 'react';
-import GameBoxtop from '../games/game-boxtop';
-import GameFilter from '../games/game-filter';
-import GamesPaginate from '../games/games-paginate';
+import GameBoxtop from '../../components/games/game-boxtop';
+import GameFilter from '../../components/games/game-filter';
+import GamesPaginate from '../../components/games/games-paginate';
 import GameBallot from './GameBallot';
 import { fetchSingleEvent } from  '../../actions/collections';
 import { castVote } from '../../actions/events';
-import { FilterMethods } from '../games/filter-methods-base-set';
-import MoreInfo from '../games/more-info';
+import { FilterMethods } from '../../components/games/filter-methods-base-set';
+import MoreInfo from '../../components/games/more-info';
 
 export default class EventGameList extends React.Component {
 

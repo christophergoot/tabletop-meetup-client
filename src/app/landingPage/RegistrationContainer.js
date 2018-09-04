@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import { Redirect} from 'react-router-dom';
 
-import RegistrationForm from './registration-form';
+import RegistrationForm from '../forms/registration-form';
 
 export function Register(props) {
 	// redirect to dashboard if logged in

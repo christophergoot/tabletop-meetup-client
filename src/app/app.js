@@ -9,16 +9,16 @@ import Header from './common/HeaderContainer';
 import Games from '../components/collections/games';
 import Events from './events/EventsContainer';
 import SingleEvent from './singleEvent/SingleEventContainer';
-import CreateNewEvent from '../components/events/create-new-event';
 import Footer from './common/Footer';
-import Register from '../components/app/register';
+import Register from './landingPage/RegistrationContainer';
 import {refreshAuthToken} from '../actions/auth';
 import Dashboard from '../app/dashboard/DashboardContainer';
 // import ReactTooltip from 'react-tooltip';
 
-import Login from '../components/app/login';
+import Login from './landingPage/LoginContainer';
 import Demo from './landingPage/Demo';
 import LandingPageContainer from './landingPage/LandingPageContainer';
+import CreateNewEvent from './createNewEvent/NewEventContainer';
 
 export class App extends React.Component {
 	componentDidUpdate(prevProps) {

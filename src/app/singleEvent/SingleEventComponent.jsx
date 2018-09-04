@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 // import ListEvent from '../../components/events/list-event';
-import EventGameList from '../../components/events/event-game-list';
-import EventTopGames from '../../components/events/event-top-games';
+import EventGameList from './event-game-list';
+import EventTopGames from './event-top-games';
 import ReactTooltip from 'react-tooltip';
 import { ListEvent } from '../events/EventsComponent';
 
