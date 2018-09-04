@@ -43,7 +43,7 @@ export const ListEvent = props => {
 	const deleteButton = (isHost, eventId) => {
 		if (isHost) return (
 			<button 
-				onClick={() => this.props.dispatch(deleteEvent(eventId))} 
+				onClick={() => dispatch(deleteEvent(eventId))} 
 				style={{margin:'1em auto 0 auto'}} >
 				Delete Event
 			</button>
