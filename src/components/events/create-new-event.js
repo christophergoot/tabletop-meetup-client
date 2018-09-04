@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import requiresLogin from '../app/requires-login';
+import requiresLogin from '../../app/common/requires-login';
 import NewEventForm from './new-event-form';
 
 class CreateNewEvent extends Component {

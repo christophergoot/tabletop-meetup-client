@@ -4,7 +4,7 @@ import EventGameList from './event-game-list';
 import EventTopGames from './event-top-games';
 import { connect } from 'react-redux';
 import { fetchSingleEvent, deleteEvent, fetchEventTopGames } from '../../actions/events';
-import requiresLogin from '../app/requires-login';
+import requiresLogin from '../../app/common/requires-login';
 import { fetchUserWantToPlayList } from '../../actions/collections';
 import ReactTooltip from 'react-tooltip';
 

@@ -12,6 +12,11 @@ export const fetchEventsSuccess = events => ({
 	events
 });
 
+export const FETCH_EVENTS_BEGIN = 'FETCH_EVENTS_BEGIN';
+export const fetchEventsBegin = () => ({
+	type: FETCH_EVENTS_BEGIN
+})
+
 export const FETCH_SINGLE_EVENT_SUCCESS = 'FETCH_SINGLE_EVENT_SUCCESS';
 export const fetchSingleEventSuccess = event => ({
 	type: FETCH_SINGLE_EVENT_SUCCESS,
@@ -94,6 +99,7 @@ export const fetchSingleEvent = (eventId) => dispatch => {
 };
 
 export const fetchEvents = () => dispatch => {
+	dispatch(fetchEventsBegin());
 	const authToken = loadAuthToken();
 	return fetch(`${API_BASE_URL}events/`, {
 		headers: {

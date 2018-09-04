@@ -8,7 +8,8 @@ import { FETCH_EVENTS_SUCCESS,
 	CLEAR_REDIRECT,
 	CHANGE_RSVP_SUCCESS,
 	FETCH_EVENT_TOP_GAMES_SUCCESS,
-	UPDATE_EVENT_VOTE
+	UPDATE_EVENT_VOTE,
+	FETCH_EVENTS_BEGIN
 } from '../actions/events';
 import { FETCH_ALL_USERS_SUCCESS } from '../actions/users';
 
@@ -58,6 +59,7 @@ const initialState = ({
 			yearPublished: 0
 		}
 	],
+	listIsLoading: false,
 	list: [
 		{
 			eventId: '',
@@ -162,7 +164,14 @@ export default function eventsReducer(state=initialState, action) {
 	case FETCH_EVENTS_SUCCESS:
 		return {
 			...state,
-			list: action.events
+			list: action.events,
+			listIsLoading: false
+		};
+
+	case FETCH_EVENTS_BEGIN:
+		return {
+			...state,
+			listIsLoading: true
 		};
 
 	case FETCH_SINGLE_EVENT_SUCCESS:

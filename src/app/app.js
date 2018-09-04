@@ -13,7 +13,7 @@ import CreateNewEvent from '../components/events/create-new-event';
 import Footer from './common/Footer';
 import Register from '../components/app/register';
 import {refreshAuthToken} from '../actions/auth';
-import Dashboard from '../components/app/dashboard';
+import Dashboard from '../app/dashboard/DashboardContainer';
 // import ReactTooltip from 'react-tooltip';
 
 import Login from '../components/app/login';

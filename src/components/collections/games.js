@@ -4,7 +4,7 @@ import { fetchCollection } from '../../actions/collections';
 import GameFilter from '../games/game-filter';
 import GameList from './game-list';
 import GamesPaginate from '../games/games-paginate';
-import requiresLogin from '../app/requires-login';
+import requiresLogin from '../../app/common/requires-login';
 import { FilterMethods } from '../games/filter-methods-base-set'
 import AddGame from '../games/add-game';
 
