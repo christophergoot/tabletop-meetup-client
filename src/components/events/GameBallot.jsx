@@ -1,8 +1,8 @@
-import React from 'react';
-import './game-ballot.css';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { STATIC_MEDIA_FOLDER } from '../../config';
 
-export default class gameBallot extends React.Component{
+class GameBallot extends Component {
 	render() {
 		const { game, eventId, gameVotes, userId, userWantToPlayList } = this.props;
 		const votes = [
@@ -32,13 +32,7 @@ export default class gameBallot extends React.Component{
 				icon: '👍',
 				src: 'thumbs-up.png',
 				class: 'up'
-			},
-			
-			// {
-			// 	field: 'hide',
-			// 	description: 'never show this game again',
-			// 	button: 'Never'
-			// },
+			}
 		];
 
 		const currentGameVotes = gameVotes.filter(vote => vote.gameId === game.gameId)[0];
@@ -61,7 +55,6 @@ export default class gameBallot extends React.Component{
 			return (
 				<a 
 					className={className}
-					// type="image" 
 					onClick={e => this.props.handleVote(e,{
 						eventId,
 						game,
@@ -82,4 +75,15 @@ export default class gameBallot extends React.Component{
 			</div>
 		);
 	}
+
 }
+
+GameBallot.propTypes = {
+	game: PropTypes.object.isRequired, 
+	eventId: PropTypes.string.isRequired, 
+	gameVotes: PropTypes.array.isRequired, 
+	userId: PropTypes.string.isRequired, 
+	userWantToPlayList: PropTypes.array.isRequired
+};
+
+export default GameBallot;

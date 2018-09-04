@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import { castVote, 
 	// fetchEventTopGames, fetchSingleEvent
  } from '../../actions/events';
-import GameBallot from './game-ballot';
-import './event-top-games.css';
+import GameBallot from './GameBallot';
+// import './event-top-games.css';
 import MoreInfo from '../games/more-info';
 
 class EventTopGames extends Component {

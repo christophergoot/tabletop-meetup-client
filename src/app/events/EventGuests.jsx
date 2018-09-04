@@ -1,5 +1,5 @@
 import React from 'react';
-import './event-guests.css';
+// import './event-guests.css';
 import { changeRsvp } from '../../actions/events';
 
 export default class EventGuests extends React.Component {
@@ -119,5 +119,4 @@ export default class EventGuests extends React.Component {
 			</div>
 		);
 	}
-
 }

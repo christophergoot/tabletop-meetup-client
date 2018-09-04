@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 // import { Redirect } from 'react-router-dom';
 import { Button } from '@material-ui/core';
 import { required } from '../../validators';
-import './new-event-form.css';
+// import './new-event-form.css';
 
 import AddGuestsForm from './add-guests-form';
 import { getAllUsers } from '../../actions/users';

@@ -2,7 +2,7 @@ import React from 'react';
 import GameBoxtop from '../games/game-boxtop';
 import GameFilter from '../games/game-filter';
 import GamesPaginate from '../games/games-paginate';
-import GameBallot from './game-ballot';
+import GameBallot from './GameBallot';
 import { fetchSingleEvent } from  '../../actions/collections';
 import { castVote } from '../../actions/events';
 import { FilterMethods } from '../games/filter-methods-base-set';
@@ -59,11 +59,7 @@ export default class EventGameList extends React.Component {
 		return (
 			<section>
 				<h2>All Available Games <MoreInfo info='by guests either invited or attending' /></h2>
-				{/* <GameSort 
-					collection={event}
-					updateList={this.updateList}
-				/> */}
-				
+			
 				<GameFilter 
 					collection={event}
 					updateList={this.updateList}

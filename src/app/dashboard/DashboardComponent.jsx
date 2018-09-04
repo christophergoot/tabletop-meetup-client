@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './dashboard.css';
 import GameListSummary from '../../components/collections/game-list-summary';
-import Events from '../../components/events/events';
+import Events from '../events/EventsContainer';
 
 class DashboardComponent extends Component {
 	render() {
