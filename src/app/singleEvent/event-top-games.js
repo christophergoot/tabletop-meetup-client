@@ -1,19 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import { fetchUserWantToPlayList } from '../../actions/collections';
-import { castVote, 
-	// fetchEventTopGames, fetchSingleEvent
- } from '../../actions/events';
+import { castVote } from '../../actions/events';
 import GameBallot from './GameBallot';
-// import './event-top-games.css';
-import MoreInfo from '../../components/games/more-info';
+import MoreInfo from '../common/MoreInfo';
 
 class EventTopGames extends Component {
-	// componentDidMount() {
-	// 	// this.props.event.guests.forEach(guest => this.props.dispatch(fetchUserWantToPlayList(guest.userId)));
-	// 	// this.props.dispatch(fetchSingleEvent(this.props.event.eventId));
-	// 	this.props.dispatch(fetchEventTopGames(this.props.event.eventId));
-	// }
 	handleVote = (event, ballot) => {
 		event.preventDefault();
 		this.props.dispatch(castVote(ballot));

@@ -74,3 +74,13 @@
     background-color: #d9b44a;
 
 }
+
+
+.game-list {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	margin-bottom:.5em;
+}
+

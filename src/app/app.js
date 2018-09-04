@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Header from './common/HeaderContainer';
 // import Landing from './landing-page';
-import Games from '../components/collections/games';
+import Games from './games/GamesContainer';
 import Events from './events/EventsContainer';
 import SingleEvent from './singleEvent/SingleEventContainer';
 import Footer from './common/Footer';

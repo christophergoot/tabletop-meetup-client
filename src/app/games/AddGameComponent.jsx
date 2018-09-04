@@ -1,25 +1,14 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { handleGameSearch, selectGameByGame, toggleGameSearchDrop } from '../../actions/collections';
-import './add-game.css';
+import PropTypes from 'prop-types';
 import Spinner from '../../app/common/Spinner';
-import _ from 'lodash';
-import GameCard from '../collections/game-card';
-// import TextField from '@material-ui/core/TextField';
+import { GameCard } from './GamesComponent';
+import { selectGameByGame, toggleGameSearchDrop } from '../../actions/collections';
 
-class AddGame extends Component {
-	constructor(props) {
-		super(props);
-		this.debounceChange = _.debounce(
-			query => this.props.dispatch(handleGameSearch(query)), 
-			1000)
-	}
-
+class AddGameComponent extends Component {
 	
-
 	handleChange = () => event => {
 		const query = event.target.value.trim().toLowerCase();
-		this.debounceChange(query);
+		this.props.debounceChange(query);
 		// this.props.dispatch(handleGameSearch(query));
 	}
 	
@@ -53,7 +42,10 @@ class AddGame extends Component {
 		else if (this.props.drop === 'select') return (
 			<div className='select-game-dropdown'>
 				<div className='select-game-container'>
-					<GameCard game={this.props.selectedGame}/>
+					<GameCard 
+						game={this.props.selectedGame}
+						dispatch={this.props.dispatch}
+						/>
 					<button className='x-button' onClick={e => this.props.dispatch(toggleGameSearchDrop('search'))}>X</button>
 				</div>
 			</div>)
@@ -85,38 +77,34 @@ class AddGame extends Component {
 	}
 
 	render() {
-			return (
-				<div>
-					<div
-						style={{height:'30px',dispaly:'flex'}}
-						className='center-horrizonal'
-					>
-						<input 
-							id='game-search-input'
-							type='text'
-							placeholder='Add a Game'
-							autoComplete='off'
-							onChange={this.handleChange()}
-						/>
-						<div style={{width:'40px'}}>{this.spinner()}</div>
-					</div>
-					{this.errorMessage()}
-					{this.dropdown()}
+		return (
+			<div>
+				<div
+					style={{height:'30px',dispaly:'flex'}}
+					className='center-horrizonal'
+				>
+					<input 
+						id='game-search-input'
+						type='text'
+						placeholder='Add a Game'
+						autoComplete='off'
+						onChange={this.handleChange()}
+					/>
+					<div style={{width:'40px'}}>{this.spinner()}</div>
 				</div>
-			);
+				{this.errorMessage()}
+				{this.dropdown()}
+			</div>
+		);
 	}
 }
 
-function mapStateToProps(state) {
-	return {
-		gameSearchResults: state.collections.addGame.gameSearchResults,
-		drop: state.collections.addGame.gameSearchDrop,
-		currentSearches: state.collections.addGame.currentSearches,
-		selectedGame: state.collections.addGame.selectedGame,
-		// prevGame: state.collections.addGame.prevGame,
-		// nextGame: state.collections.addGame.nextGame,
-		errorMessage: state.collections.addGame.gameSearchError
-	};
-}
+AddGameComponent.propTypes = {
+	gameSearchResults: PropTypes.array.isRequired,
+	drop: PropTypes.string.isRequired,
+	currentSearches: PropTypes.number.isRequired,
+	selectedGame: PropTypes.object.isRequired,
+	errorMessage: PropTypes.string.isRequired
+};
 
-export default connect(mapStateToProps)(AddGame);
+export default AddGameComponent;
