@@ -7,9 +7,9 @@
 	color: #ACD0C0;
 }
 .landing-page.section:nth-child(even) {
-	background-color: #EBD893;
-	color: #4F6457;
-	border: #4F6457 2px solid;
+	font-size: 1.5em;
+	padding: 0;
+    color: #d9b44a;
 }
 .landing-page-list {
 	text-align: left;

@@ -50,7 +50,7 @@ class LandingPageComponent extends Component {
 				</div>				
 			</div>
 			<div className='landing-page section'>
-				<h2>Give it a Go</h2>
+				<h3>Give it a Go</h3>
 			</div>
 			<div className='landing-page-begin'>	
 				<p>
