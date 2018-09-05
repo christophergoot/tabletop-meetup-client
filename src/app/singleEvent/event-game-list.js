@@ -5,7 +5,7 @@ import GamesPaginate from '../common/GamesPaginate';
 import GameBallot from './GameBallot';
 import { fetchSingleEvent } from  '../../actions/collections';
 import { castVote } from '../../actions/events';
-import { FilterMethods } from '../../components/games/filter-methods-base-set';
+import { FilterMethods } from '../games/GamesComponent';
 import MoreInfo from '../common/MoreInfo';
 
 export default class EventGameList extends React.Component {

@@ -8,7 +8,7 @@ export class Games extends React.Component {
 	componentDidMount() {
 		this.props.dispatch(fetchCollection(this.props.userId));
 	}
-	updateList(limit,page,sort,filter) {
+	updateList = (limit,page,sort,filter) => {
 		this.props.dispatch(fetchCollection(this.props.userId, limit, page, sort, filter));
 	}
 
